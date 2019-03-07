@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>spring-cloud-dependencies-parent</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+        <version>2.1.3.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.java2e</groupId>
+    <artifactId>martin-common-bom</artifactId>
+    <version>${martin.version}</version>
+    <packaging>pom</packaging>
+
+    <description>martin公共版本控制</description>
+
+    <properties>
+        <!--通过控制最顶级pom与这里版本，达到对整个项目版本控制，这两个版本要保持一致-->
+        <martin.version>0.0.1</martin.version>
+
+        <!-- 引入的开源框架技术放到最上面，一目了然 -->
+        <hutool.version>4.3.2</hutool.version>
+        <mybatis-plus.version>3.1.0</mybatis-plus.version>
+        <mysql.connector.version>8.0.13</mysql.connector.version>
+        <ttl.version>2.10.1</ttl.version>
+
+        <!--本框架自研模块放到下面-->
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--hutool-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!--mybatis-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!--mysql 驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+            <!--TTL-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${ttl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.java2e</groupId>
+                <artifactId>martin-common-core</artifactId>
+                <version>${martin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.java2e</groupId>
+                <artifactId>martin-common-core-boot</artifactId>
+                <version>${martin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
