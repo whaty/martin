@@ -19,7 +19,6 @@
     <modules>
         <module>martin-common-bom</module>
         <module>martin-common-core</module>
-        <module>martin-common-core-boot</module>
     </modules>
 
 

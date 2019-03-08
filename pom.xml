@@ -7,10 +7,8 @@
     <groupId>com.java2e</groupId>
     <artifactId>martin</artifactId>
     <version>0.0.1</version>
-    <modules>
-        <module>martin-common</module>
-    </modules>
     <packaging>pom</packaging>
+
     <name>martin of java2e</name>
     <description>martin 微服务开发脚手架</description>
     <url>https://martin.java2e.com</url>
@@ -37,6 +35,11 @@
             </roles>
         </developer>
     </developers>
+
+    <modules>
+        <module>martin-common</module>
+        <module>martin-cloud</module>
+    </modules>
 
     <properties>
         <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
@@ -83,6 +86,7 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- provider=true支持使用容器自己的lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
