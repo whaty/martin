@@ -12,4 +12,10 @@ eureka:
 
 spring:
   application:
-    name: eurka-server
+    name: @artifactId@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
