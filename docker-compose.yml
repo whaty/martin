@@ -45,7 +45,7 @@ services:
     image: martin-cloud-config
     depends_on:
       - martin-cloud-eureka
-    entrypoint: dockerize -wait http://martin-cloud-eureka:9500 -timeout 10s
+    entrypoint: dockerize -wait tcp://martin-cloud-eureka:9500 -timeout 10s
 
   martin-cloud-gateway:
     build:
