@@ -12,6 +12,6 @@ EXPOSE 9500
 
 ADD ./martin-cloud/martin-cloud-eureka/target/martin-cloud-eureka.jar ./
 
-ADD ./dockerize /usr/local/bin
+ADD ./wait-for-it.sh /usr/local/bin
 
 CMD java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-eureka.jar

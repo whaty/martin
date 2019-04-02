@@ -12,6 +12,6 @@ EXPOSE 9501
 
 ADD ./martin-cloud/martin-cloud-config/target/martin-cloud-config.jar ./
 
-ADD ./dockerize /usr/local/bin
+ADD ./wait-for-it.sh /usr/local/bin
 
 CMD  java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-config.jar
