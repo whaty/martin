@@ -57,7 +57,7 @@ services:
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
-    entrypoint: dockerize -wait http://martin-cloud-config:9501 -timeout 15s
+    entrypoint: dockerize -wait tcp://martin-cloud-config:9501 -timeout 15s
     ports:
       - 9527:9527
 
