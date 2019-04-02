@@ -10,6 +10,6 @@ WORKDIR /martin-cloud-gateway
 
 EXPOSE 9527
 
-ADD ./martin-cloudy/martin-cloud-gateway/target/martin-cloud-gateway.jar ./
+ADD ./martin-cloud/martin-cloud-gateway/target/martin-cloud-gateway.jar ./
 
 CMD java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-gateway.jar
