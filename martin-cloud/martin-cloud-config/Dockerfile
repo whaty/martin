@@ -14,4 +14,6 @@ ADD ./martin-cloud/martin-cloud-config/target/martin-cloud-config.jar ./
 
 ADD ./dockerize /usr/local/bin
 
-CMD java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-config.jar
+ENTRYPOINT dockerize -wait http://martin-cloud-eureka:9500
+
+CMD && java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-config.jar
