@@ -43,7 +43,8 @@ services:
     restart: always
     container_name: martin-cloud-config
     image: martin-cloud-config
-    command: ["dockerize", "-wait", "http://martin-cloud-eureka:9500", "-timeout", "10s"]
+    depends_on:
+      - martin-cloud-eureka
 
   martin-cloud-gateway:
     build:
@@ -52,6 +53,9 @@ services:
     restart: always
     container_name: martin-cloud-gateway
     image: martin-cloud-gateway
+    depends_on:
+      - martin-cloud-eureka
+      - martin-cloud-config
     ports:
       - 9527:9527
 
