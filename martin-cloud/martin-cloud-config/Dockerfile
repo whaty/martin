@@ -10,6 +10,6 @@ WORKDIR /martin-cloud-config
 
 EXPOSE 9501
 
-ADD ./martin-cloud-config/target/martin-cloud-config.jar ./
+ADD ./martin-cloud/target/martin-cloud-config.jar ./
 
 CMD java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-config.jar
