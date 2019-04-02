@@ -14,6 +14,4 @@ ADD ./martin-cloud/martin-cloud-gateway/target/martin-cloud-gateway.jar ./
 
 ADD ./dockerize /usr/local/bin
 
-ENTRYPOINT dockerize -wait http://martin-cloud-config:9501 -timeout 15s
-
-CMD && java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-gateway.jar
+CMD java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-gateway.jar
