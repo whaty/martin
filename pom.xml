@@ -39,6 +39,7 @@
     <modules>
         <module>martin-common</module>
         <module>martin-cloud</module>
+        <module>martin-biz</module>
     </modules>
 
     <properties>
