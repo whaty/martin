@@ -10,6 +10,6 @@ WORKDIR /martin-cloud-eureka
 
 EXPOSE 9500
 
-ADD ./martin-cloud/target/martin-cloud-eureka.jar ./
+ADD ./martin-cloud/martin-cloud-eureka/target/martin-cloud-eureka.jar ./
 
 CMD java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-eureka.jar
