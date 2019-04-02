@@ -45,7 +45,7 @@ services:
     image: martin-cloud-config
     depends_on:
       - martin-cloud-eureka
-    entrypoint: wait-for-it.sh martin-cloud-eureka:9500 -t 10
+    entrypoint: "wait-for-it.sh -t 10 martin-cloud-eureka:9500 --"
 
   martin-cloud-gateway:
     build:
@@ -57,7 +57,7 @@ services:
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
-    entrypoint: wait-for-it.sh martin-cloud-config:9501 -t 15
+    entrypoint: "wait-for-it.sh -t 10 martin-cloud-config:9501 --"
     ports:
       - 9527:9527
 
