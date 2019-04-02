@@ -17,7 +17,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone:  http://martin:9500/eureka/
+      defaultZone:  http://martin-cloud-eureka:9500/eureka/
 
 management:
   endpoints:
