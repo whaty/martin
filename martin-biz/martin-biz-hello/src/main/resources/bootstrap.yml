@@ -13,12 +13,19 @@ spring:
       discovery:
         enabled: true
         service-id: martin-cloud-config
+    inetutils:
+      ignored-interfaces:
+        - docker0
+        - veth.*
+        - VM.*
   profiles:
     active: dev
+
 
 eureka:
   instance:
     prefer-ip-address: true
+    ip-address: ${spring.application.name}
   client:
     service-url:
       defaultZone:  http://martin-cloud-eureka:9500/eureka/

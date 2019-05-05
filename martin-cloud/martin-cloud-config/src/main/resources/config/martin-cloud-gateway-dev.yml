@@ -5,3 +5,10 @@ spring:
         locator:
           enabled: true
           lowerCaseServiceId: true
+      routes:
+        - id: martin-biz-hello
+          uri: lb://martin-biz-hello
+          predicates:
+            - Path=/hello/**
+          filters:
+            - StripPrefix=1

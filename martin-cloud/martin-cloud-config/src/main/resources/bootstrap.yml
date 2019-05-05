@@ -15,6 +15,7 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
+    ip-address: ${spring.application.name}
   client:
     service-url:
       defaultZone:  http://martin-cloud-eureka:9500/eureka/
