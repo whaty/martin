@@ -14,4 +14,4 @@ ADD ./martin-cloud/martin-cloud-eureka/target/martin-cloud-eureka.jar ./
 
 ADD ./wait-for-it.sh /usr/local/bin
 
-CMD java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-eureka.jar
+CMD java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-cloud-eureka.jar

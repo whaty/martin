@@ -50,7 +50,7 @@ services:
     depends_on:
       - martin-cloud-eureka
     entrypoint: "wait-for-it.sh -t 0 martin-cloud-eureka:9500 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-config.jar"
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-cloud-config.jar"
     ports:
       - 9501:9501
 
@@ -67,7 +67,7 @@ services:
       - martin-cloud-eureka
       - martin-cloud-config
     entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-gateway.jar"
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-cloud-gateway.jar"
     ports:
       - 9527:9527
 
