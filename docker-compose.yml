@@ -71,3 +71,18 @@ services:
     ports:
       - 9527:9527
 
+  martin-biz-hello:
+    build:
+      context: ./
+      dockerfile: ./martin-biz/martin-biz-hello/Dockerfile
+    restart: always
+    container_name: martin-biz-hello
+    image: martin-biz-hello
+    volumes:
+      - ./logs:/martin-biz-hello/logs
+    depends_on:
+      - martin-cloud-eureka
+      - martin-cloud-config
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-hello.jar"
+
