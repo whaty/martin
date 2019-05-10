@@ -55,6 +55,14 @@
 
     <dependencyManagement>
         <dependencies>
+           <!-- 自定义的这个bom一定要放在最上面，花了两天时间买的教训，maven的机制，当出现相同的引用，使用最开始定义的版本-->
+            <dependency>
+                <groupId>com.java2e</groupId>
+                <artifactId>martin-common-bom</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -76,13 +84,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>com.java2e</groupId>
-                <artifactId>martin-common-bom</artifactId>
-                <version>${project.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -150,15 +152,14 @@
     <!-- 指定阿里云仓库，加快下载速度 -->
     <repositories>
         <repository>
-            <id>maven-ali</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public//</url>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
+                <enabled>false</enabled>
             </snapshots>
         </repository>
     </repositories>

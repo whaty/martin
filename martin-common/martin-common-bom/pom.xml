@@ -16,7 +16,7 @@
     <version>${martin.version}</version>
     <packaging>pom</packaging>
 
-    <description>martin公共版本控制</description>
+    <description>martin 公共版本控制</description>
 
     <properties>
         <!--通过控制最顶级pom与这里版本，达到对整个项目版本控制，这两个版本要保持一致-->
@@ -29,6 +29,8 @@
         <ttl.version>2.10.1</ttl.version>
         <jasypt.version>2.1.0</jasypt.version>
         <spring-boot-admin.version>2.1.2</spring-boot-admin.version>
+        <security.oauth2.version>2.3.5.RELEASE</security.oauth2.version>
+        <security.oauth2.auto.version>2.1.2.RELEASE</security.oauth2.auto.version>
 
         <!--本框架自研模块放到下面-->
 
@@ -73,11 +75,32 @@
                 <version>${spring-boot-admin.version}</version>
             </dependency>
 
+            <!--稳定版本，替代spring security bom内置-->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${security.oauth2.version}</version>
+            </dependency>
+
+            <!--因为 Spring Boot 2.0 之后代码的合并， 需要添加 spring-security-oauth2-autoconfigure ，才能使用 @EnableOAuth2Sso 注解-->
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${security.oauth2.auto.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.java2e</groupId>
                 <artifactId>martin-common-core</artifactId>
                 <version>${martin.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.java2e</groupId>
+                <artifactId>martin-common-security</artifactId>
+                <version>${martin.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

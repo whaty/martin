@@ -15,10 +15,10 @@
 
     <description>martin公共资源模块</description>
 
-
     <modules>
         <module>martin-common-bom</module>
         <module>martin-common-core</module>
+        <module>martin-common-security</module>
     </modules>
 
 
