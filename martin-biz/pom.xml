@@ -16,6 +16,9 @@
     <modules>
         <module>martin-biz-hello</module>
         <module>martin-biz-auth</module>
+        <module>martin-biz-auth-demo</module>
+        <module>martin-biz-auth-demo1</module>
+        <module>martin-biz-auth-demo2</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -1,24 +1,28 @@
-package com.java2e.martin.biz.auth.config;
+package com.java2e.martin.biz.auth.demo2.config;
 
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
  * @author: liangcan
  * @version: 1.0
- * @date: 2019/5/9 11:03
+ * @date: 2019/5/20 11:41
  * @describtion: WebSecurityConfigurer
  */
+@EnableOAuth2Sso
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated()
-                .and().
-                formLogin().and().csrf().disable();
+        http.authorizeRequests()
+                .antMatchers("/client/index")
+                .permitAll()
+                .anyRequest()
+                .authenticated();
     }
-
-
 }
+
