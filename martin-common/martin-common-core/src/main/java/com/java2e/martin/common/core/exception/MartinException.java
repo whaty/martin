@@ -1,10 +1,10 @@
 package com.java2e.martin.common.core.exception;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/2/27 15:13
- * @describtion: MartinException
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/2/27 15:13
+ * @Describtion: MartinException
  */
 public class MartinException extends RuntimeException {
     private static final long serialVersionUID = 4913959406705554204L;

@@ -14,10 +14,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/3/5
- * @describtion: SpringContextHolder
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/3/5
+ * @Describtion: SpringContextHolder
  */
 @Slf4j
 @Service

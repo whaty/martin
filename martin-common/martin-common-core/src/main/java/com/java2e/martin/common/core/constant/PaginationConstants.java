@@ -1,10 +1,10 @@
 package com.java2e.martin.common.core.constant;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/3/1 11:25
- * @describtion: PaginationConstants
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/3/1 11:25
+ * @Describtion: PaginationConstants
  */
 public final class PaginationConstants {
     private PaginationConstants() {

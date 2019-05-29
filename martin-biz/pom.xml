@@ -14,11 +14,9 @@
     <artifactId>martin-biz</artifactId>
     <version>0.0.1</version>
     <modules>
-        <module>martin-biz-hello</module>
         <module>martin-biz-auth</module>
-        <module>martin-biz-auth-demo</module>
-        <module>martin-biz-auth-demo1</module>
-        <module>martin-biz-auth-demo2</module>
+        <module>martin-biz-auth-resource</module>
+        <module>martin-biz-auth-sso</module>
     </modules>
     <packaging>pom</packaging>
 

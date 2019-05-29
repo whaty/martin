@@ -22,9 +22,24 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
+        <!--server-api-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!-- spring boot 需要的一些注解在这个包里，单独引入，避免打包后jar包过大，微服务越来越流行，将来比得应该是每个服务得细节-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <!-- spring cloud 需要的一些注解在这个包里，单独引入，避免打包后jar包过大，微服务越来越流行，将来比得应该是每个服务得细节-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
         </dependency>
         <!--jackson模块，版本信息定义在了spring-boot-dependencies里-->
         <dependency>

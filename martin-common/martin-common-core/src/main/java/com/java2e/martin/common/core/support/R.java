@@ -11,10 +11,10 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/2/28 10:33
- * @describtion: @Accessors(chain = true)：SET方法返回当前对象； @Builde：允许链式调用
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/2/28 10:33
+ * @Describtion: @Accessors(chain = true)：SET方法返回当前对象； @Builde：允许链式调用
  */
 @Builder
 @ToString

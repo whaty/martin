@@ -3,10 +3,10 @@ package com.java2e.martin.common.core.exception;
 import cn.hutool.core.util.StrUtil;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/3/1 10:58
- * @describtion: 验证异常
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/3/1 10:58
+ * @Describtion: 验证异常
  */
 public class ValidateException extends StatefulException {
     private static final long serialVersionUID = 8315347862065295371L;

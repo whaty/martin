@@ -1,10 +1,13 @@
 server:
-  port: 9400
+  port: 9300
 
 spring:
   application:
     name: @project.artifactId@
- # 配置中心
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  # 配置中心
   cloud:
     config:
       fail-fast: true
@@ -20,20 +23,8 @@ spring:
         - VM.*
   profiles:
     active: dev
-  security:
-    user:
-      name: admin
-      password: admin
-
-security:
-  oauth2:
-    client:
-      client-id: clientId
-      client-secret: clientSecret
-      scope: scope1, scope2, scope3, scope4
-      registered-redirect-uri: http://localhost:9400/g
-
-
+  freemarker:
+    template-loader-path: classpath:/templates/
 
 
 eureka:
@@ -42,5 +33,4 @@ eureka:
     ip-address: ${spring.application.name}
   client:
     service-url:
-      defaultZone:  http://martin-cloud-eureka:9500/eureka/
-
+      defaultZone:  http://martin-cloud-eureka:9000/eureka/

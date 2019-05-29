@@ -3,10 +3,10 @@ package com.java2e.martin.common.core.exception;
 import cn.hutool.core.util.StrUtil;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/3/1 10:56
- * @describtion: 带有状态码的异常
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/3/1 10:56
+ * @Describtion: 带有状态码的异常
  */
 public class StatefulException extends MartinException {
     private static final long serialVersionUID = 7378660735559113436L;

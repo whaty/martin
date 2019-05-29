@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/5/6
- * @describtion: MartinBizAuthApplication
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/5/6
+ * @Describtion: MartinBizAuthApplication
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableAuthorizationServer
 @RestController
 public class MartinBizAuthApplication {
     public static void main(String[] args) {

@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/3/11
- * @describtion: MartinGateWayApplication
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/3/11
+ * @Describtion: MartinGateWayApplication
  */
 @SpringBootApplication
 @EnableDiscoveryClient

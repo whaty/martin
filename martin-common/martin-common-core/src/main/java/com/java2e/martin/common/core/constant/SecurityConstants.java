@@ -1,10 +1,10 @@
 package com.java2e.martin.common.core.constant;
 
 /**
- * @author: liangcan
- * @version: 1.0
- * @date: 2019/3/1 11:17
- * @describtion: SecurityConstants
+ * @Author: liangcan
+ * @Version: 1.0
+ * @Date: 2019/3/1 11:17
+ * @Describtion: SecurityConstants
  */
 public final class SecurityConstants {
     private SecurityConstants() {
@@ -115,4 +115,29 @@ public final class SecurityConstants {
      * 客户端模式
      */
     public static final String CLIENT_CREDENTIALS = "client_credentials";
+
+    /**
+     * 用户ID字段
+     */
+    public static final String DETAILS_USER_ID = "user_id";
+
+    /**
+     * 用户名字段
+     */
+    public static final String DETAILS_USERNAME = "username";
+
+    /**
+     * 用户部门字段
+     */
+    public static final String DETAILS_DEPT_ID = "dept_id";
+
+    /**
+     * 租户ID 字段
+     */
+    public static final String DETAILS_TENANT_ID = "tenant_id";
+
+    /**
+     * 协议字段
+     */
+    public static final String DETAILS_LICENSE = "license";
 }
