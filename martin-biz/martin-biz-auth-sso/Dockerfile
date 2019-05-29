@@ -8,7 +8,7 @@ RUN mkdir -p /martin-biz-auth-sso
 
 WORKDIR /martin-biz-auth-sso
 
-EXPOSE 94012
+EXPOSE 9402
 
 ADD ./martin-biz/martin-biz-auth-sso/target/martin-biz-auth-sso.jar ./
 
