@@ -6,27 +6,27 @@ spring:
           enabled: true
           lowerCaseServiceId: true
       routes:
-        - id: martin-biz-hello
-          uri: lb://martin-biz-hello
-          predicates:
-            - Path=/hello/**
-          filters:
-            - StripPrefix=1
         - id: martin-biz-auth
           uri: lb://martin-biz-auth
           predicates:
             - Path=/auth/**
           filters:
             - StripPrefix=1
-        - id: martin-biz-auth-resource
-          uri: lb://martin-biz-auth-resource
+        - id: martin-biz-resource
+          uri: lb://martin-biz-resource
           predicates:
             - Path=/resource/**
           filters:
             - StripPrefix=1
-        - id: martin-biz-auth-sso
-          uri: lb://martin-biz-auth-sso
+        - id: martin-biz-sso
+          uri: lb://martin-biz-sso
           predicates:
             - Path=/sso/**
+          filters:
+            - StripPrefix=1
+        - id: martin-biz-swagger
+          uri: lb://martin-biz-swagger
+          predicates:
+            - Path=/swagger/**
           filters:
             - StripPrefix=1

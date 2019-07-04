@@ -9,21 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>martin-common-security</artifactId>
+    <artifactId>martin-common-swagger</artifactId>
     <packaging>jar</packaging>
 
-    <description>martin 安全核心模块</description>
-
-
+    <description>martin 接口文档模块</description>
 
     <dependencies>
+        <!--swagger 依赖-->
         <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
         </dependency>
     </dependencies>
 

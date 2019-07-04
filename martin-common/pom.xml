@@ -19,7 +19,13 @@
         <module>martin-common-bom</module>
         <module>martin-common-core</module>
         <module>martin-common-security</module>
+        <module>martin-common-swagger</module>
     </modules>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-core</artifactId>
+        </dependency>
+    </dependencies>
 </project>

@@ -31,6 +31,7 @@
         <spring-boot-admin.version>2.1.2</spring-boot-admin.version>
         <security.oauth2.version>2.3.5.RELEASE</security.oauth2.version>
         <security.oauth2.auto.version>2.1.2.RELEASE</security.oauth2.auto.version>
+        <swagger.fox.version>2.9.2</swagger.fox.version>
 
         <!--本框架自研模块放到下面-->
 
@@ -89,6 +90,18 @@
                 <version>${security.oauth2.auto.version}</version>
             </dependency>
 
+            <!--swagger 依赖-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.fox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.fox.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.java2e</groupId>
                 <artifactId>martin-common-core</artifactId>
@@ -98,6 +111,12 @@
             <dependency>
                 <groupId>com.java2e</groupId>
                 <artifactId>martin-common-security</artifactId>
+                <version>${martin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.java2e</groupId>
+                <artifactId>martin-common-swagger</artifactId>
                 <version>${martin.version}</version>
             </dependency>
 

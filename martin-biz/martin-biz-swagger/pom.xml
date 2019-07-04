@@ -3,28 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>martin-common</artifactId>
+        <artifactId>martin-biz</artifactId>
         <groupId>com.java2e</groupId>
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>martin-common-security</artifactId>
+    <artifactId>martin-biz-swagger</artifactId>
     <packaging>jar</packaging>
 
-    <description>martin 安全核心模块</description>
-
-
+    <description>Martin 聚合文档示例</description>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
     </dependencies>
-
 </project>
