@@ -1,6 +1,8 @@
 package com.java2e.martin.common.security.component;
 
+import cn.hutool.core.convert.Convert;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
@@ -12,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  * @Date: 2019/5/28 15:47
  * @Describtion: MartinResourceServerConfigurerAdapter
  */
+@Slf4j
 public class MartinResourceServerConfigurerAdapter extends ResourceServerConfigurerAdapter {
     @Autowired
     private PermitAllUrlProperties permitAllUrlProperties;
@@ -30,8 +33,10 @@ public class MartinResourceServerConfigurerAdapter extends ResourceServerConfigu
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>
                 .ExpressionInterceptUrlRegistry registry = httpSecurity
                 .authorizeRequests();
+        log.info(Convert.toStr("permitAllUrlProperties : " + permitAllUrlProperties.getIgnoreUrls()));
         permitAllUrlProperties.getIgnoreUrls()
                 .forEach(url -> registry.antMatchers(url).permitAll());
+        registry.antMatchers("/test").permitAll();
         registry.anyRequest().authenticated()
                 .and().csrf().disable();
     }

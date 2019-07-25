@@ -4,12 +4,12 @@ MAINTAINER liangcan.jxjy.edu@gmail.com
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-RUN mkdir -p /martin-biz-auth-resource
+RUN mkdir -p /martin-biz-resource
 
-WORKDIR /martin-biz-auth-resource
+WORKDIR /martin-biz-resource
 
 EXPOSE 9401
 
-ADD ./martin-biz/martin-biz-auth-resource/target/martin-biz-auth-resource.jar ./
+ADD ./martin-biz/martin-biz-resource/target/martin-biz-resource.jar ./
 
 ADD ./wait-for-it.sh /usr/local/bin

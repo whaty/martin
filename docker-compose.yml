@@ -87,33 +87,33 @@ services:
     entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9100 -- "
     command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-auth.jar"
 
-  martin-biz-auth-resource:
+  martin-biz-resource:
     build:
       context: ./
-      dockerfile: ./martin-biz/martin-biz-auth-resource/Dockerfile
+      dockerfile: ./martin-biz/martin-biz-resource/Dockerfile
     restart: always
-    container_name: martin-biz-auth-resource
-    image: martin-biz-auth-resource
+    container_name: martin-biz-resource
+    image: martin-biz-resource
     volumes:
-      - ./logs:/martin-biz-auth-resource/logs
+      - ./logs:/martin-biz-resource/logs
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
     entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9100 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-auth-resource.jar"
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-resource.jar"
 
-  martin-biz-auth-sso:
+  martin-biz-sso:
     build:
       context: ./
-      dockerfile: ./martin-biz/martin-biz-auth-sso/Dockerfile
+      dockerfile: ./martin-biz/martin-biz-sso/Dockerfile
     restart: always
-    container_name: martin-biz-auth-sso
-    image: martin-biz-auth-sso
+    container_name: martin-biz-sso
+    image: martin-biz-sso
     volumes:
-      - ./logs:/martin-biz-auth-sso/logs
+      - ./logs:/martin-biz-sso/logs
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
     entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9100 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-auth-sso.jar"
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-sso.jar"
 
