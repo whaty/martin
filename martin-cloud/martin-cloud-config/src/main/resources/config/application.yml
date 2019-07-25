@@ -12,7 +12,7 @@ security:
     client:
       client-id: client2 # 授权服务器配置的client id
       client-secret: 123456 # 授权服务器配置的client secret
-      scope: select2
+      scope: all
       #access-token-uri: ${auth-server}/oauth/token # 获取access token接口
       #user-authorization-uri: ${auth-server}/oauth/authorize #  获取Authorization Code接口
     resource:

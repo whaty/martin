@@ -36,6 +36,7 @@ public class AuthorizationServerConfiguration  extends AuthorizationServerConfig
 //        password 方案二：用 BCrypt 对密码编码
 //        String finalSecret = new BCryptPasswordEncoder().encode("123456");
         // password 方案三：支持多种编码，通过密码的前缀区分编码方式
+        //todo 将来修改为数据库读取客户端
         String finalSecret = "{bcrypt}"+new BCryptPasswordEncoder().encode("123456");
         System.out.println("finalSecret = " + finalSecret);
         //配置两个客户端,一个用于password认证一个用于client认证

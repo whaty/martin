@@ -42,6 +42,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         // password 方案三：支持多种编码，通过密码的前缀区分编码方式
         String finalPassword = "{bcrypt}" + bCryptPasswordEncoder.encode("123456");
         System.out.println("finalPassword = " + finalPassword);
+        //todo 将来修改为数据库读取用户
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user1").password(finalPassword).authorities("USER").build());
         manager.createUser(User.withUsername("user2").password(finalPassword).authorities("USER").build());
