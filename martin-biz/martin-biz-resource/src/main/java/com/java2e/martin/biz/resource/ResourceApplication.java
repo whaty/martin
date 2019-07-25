@@ -14,7 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Describtion: ResourceApplication
  */
 @SpringBootApplication
-@EnableMartinResourceServer
 public class ResourceApplication {
     public static void main(String[] args) {
         SpringApplication.run(ResourceApplication.class, args);

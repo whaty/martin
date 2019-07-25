@@ -2,6 +2,7 @@ package com.java2e.martin.common.swagger;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -33,10 +34,11 @@ import java.util.List;
  * @Date: 2019/6/24
  * @Describtion: MartinSwaggerAutoConfiguration
  */
+@Slf4j
 @Configuration
 @EnableConfigurationProperties({SwaggerProperties.class})
 @ConditionalOnProperty(
-        prefix = "swagger",
+        prefix = "martin.swagger",
         name = {"enabled"},
         havingValue = "true",
         matchIfMissing = true
@@ -54,6 +56,7 @@ public class MartinSwaggerAutoConfiguration {
 
     @Bean
     public Docket api() {
+        log.debug("initializing swagger Docket");
         // base-path处理
         if (swaggerProperties.getBasePath().isEmpty()) {
             swaggerProperties.getBasePath().add(BASE_PATH);
@@ -68,7 +71,7 @@ public class MartinSwaggerAutoConfiguration {
         }
         List<Predicate<String>> excludePath = new ArrayList<>();
         swaggerProperties.getExcludePath().forEach(path -> excludePath.add(PathSelectors.ant(path)));
-
+        log.debug("initialized swagger Docket");
         //noinspection Guava
         return new Docket(DocumentationType.SWAGGER_2)
                 .host(swaggerProperties.getHost())

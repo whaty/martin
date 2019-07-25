@@ -22,7 +22,6 @@ security:
 
 #swagger公共信息
 swagger:
-  enabled: true
   host: localhost:9200
   title: Amap Swagger API
   description: Martin 聚合文档
@@ -42,3 +41,9 @@ swagger:
         description: server all
     token-url-list:
       - ${security.auth.server}/token
+
+martin:
+  swagger:
+    enabled: true
+  resource-server:
+    enabled: true
