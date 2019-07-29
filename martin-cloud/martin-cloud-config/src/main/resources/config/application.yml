@@ -4,7 +4,7 @@ spring:
 
 foot: foot
 
-auth-server: http://localhost:9300
+auth-server: http://localhost:9400
 
 #本项目用一个资源配置，将来可为每个服务单独配置oauth信息
 security:
@@ -22,7 +22,7 @@ security:
 
 #swagger公共信息
 swagger:
-  host: localhost:9200
+  host: localhost:9502
   title: Amap Swagger API
   description: Martin 聚合文档
   version: 2.0

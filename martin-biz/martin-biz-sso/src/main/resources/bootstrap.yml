@@ -1,5 +1,5 @@
 server:
-  port: 9403
+  port: 9402
 
 spring:
   application:
@@ -21,10 +21,13 @@ spring:
   profiles:
     active: dev
 
+  main:
+    allow-bean-definition-overriding: true
+
 eureka:
   instance:
     prefer-ip-address: true
     ip-address: ${spring.application.name}
   client:
     service-url:
-      defaultZone:  http://martin-cloud-eureka:9000/eureka/
+      defaultZone:  http://martin-cloud-eureka:9500/eureka/

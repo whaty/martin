@@ -1,5 +1,5 @@
 server:
-  port: 9404
+  port: 9403
 
 spring:
   application:
@@ -21,7 +21,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone:  http://martin-cloud-eureka:9000/eureka/
+      defaultZone:  http://martin-cloud-eureka:9500/eureka/
 
 
 

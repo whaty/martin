@@ -36,7 +36,7 @@ services:
     volumes:
       - ./logs:/martin-cloud-eureka/logs
     ports:
-      - 9000:9000
+      - 9500:9500
 
   martin-cloud-config:
     build:
@@ -49,10 +49,10 @@ services:
       - ./logs:/martin-cloud-config/logs
     depends_on:
       - martin-cloud-eureka
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-eureka:9000 -- "
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-eureka:9500 -- "
     command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-cloud-config.jar"
     ports:
-      - 9100:9100
+      - 9501:9501
 
   martin-cloud-gateway:
     build:
@@ -66,7 +66,7 @@ services:
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9100 -- "
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
     command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-cloud-gateway.jar"
     ports:
       - 9527:9527
@@ -84,7 +84,7 @@ services:
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9100 -- "
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
     command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-auth.jar"
 
   martin-biz-resource:
@@ -99,7 +99,7 @@ services:
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9100 -- "
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
     command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-resource.jar"
 
   martin-biz-sso:
@@ -114,6 +114,6 @@ services:
     depends_on:
       - martin-cloud-eureka
       - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9100 -- "
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
     command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-sso.jar"
 

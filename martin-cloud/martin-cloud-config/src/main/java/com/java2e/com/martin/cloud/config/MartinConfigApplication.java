@@ -12,7 +12,6 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * @Date: 2019/3/11
  * @Describtion: MartinConfigApplication
  */
-@EnableDiscoveryClient
 @EnableConfigServer
 @SpringBootApplication
 public class MartinConfigApplication {

@@ -28,4 +28,4 @@ eureka:
     ip-address: ${spring.application.name}
   client:
     service-url:
-      defaultZone:  http://martin-cloud-eureka:9000/eureka/
+      defaultZone:  http://martin-cloud-eureka:9500/eureka/

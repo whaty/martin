@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @Describtion: MartinGateWayApplication
  */
 @SpringBootApplication
-@EnableDiscoveryClient
 @RestController
 @RefreshScope
 public class MartinGateWayApplication {
