@@ -1,9 +1,9 @@
 package com.java2e.martin.common.security.service;
 
 import lombok.Getter;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 
 import java.util.Collection;
 

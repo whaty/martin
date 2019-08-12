@@ -2,6 +2,7 @@ package com.java2e.martin.common.swagger;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.java2e.martin.common.swagger.component.SwaggerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -32,7 +33,7 @@ import java.util.List;
  * @Author: liangcan
  * @Version: 1.0
  * @Date: 2019/6/24
- * @Describtion: MartinSwaggerAutoConfiguration
+ * @Describtion: 自动配置Martin文档服务
  */
 @Slf4j
 @Configuration

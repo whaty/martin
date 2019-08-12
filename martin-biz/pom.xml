@@ -21,13 +21,17 @@
     </modules>
     <packaging>pom</packaging>
 
-    <description>martin 业务模块</description>
+    <description>Martin业务模块</description>
 
 
     <dependencies>
         <dependency>
             <groupId>com.java2e</groupId>
-            <artifactId>martin-common-core</artifactId>
+            <artifactId>martin-common-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-feign</artifactId>
         </dependency>
         <dependency>
             <groupId>com.java2e</groupId>
@@ -67,16 +71,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <!-- feign替换JDK默认的URLConnection为okhttp,不知道版本信息定义在哪里-->
-        <dependency>
-            <groupId>io.github.openfeign</groupId>
-            <artifactId>feign-okhttp</artifactId>
-        </dependency>
-        <!--feign 依赖，因为要使用feign调用其他服务，所以需要添加此依赖,版本信息定义在了spring-cloud-dependencies里-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <!--web 模块-->
         <dependency>

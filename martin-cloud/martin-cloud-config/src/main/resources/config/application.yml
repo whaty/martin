@@ -47,3 +47,5 @@ martin:
     enabled: true
   resource-server:
     enabled: true
+  feign:
+    enabled: true

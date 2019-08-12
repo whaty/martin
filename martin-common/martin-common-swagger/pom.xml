@@ -12,9 +12,13 @@
     <artifactId>martin-common-swagger</artifactId>
     <packaging>jar</packaging>
 
-    <description>martin 接口文档模块</description>
+    <description>Martin接口文档模块</description>
 
     <dependencies>
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-core</artifactId>
+        </dependency>
         <!--swagger 依赖-->
         <dependency>
             <groupId>io.springfox</groupId>

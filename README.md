@@ -61,6 +61,8 @@ spring cloud微服务，开箱即用
 	        ----> Martin-common-security（控制整个项目安全策略）
 	        ----> Martin-common-swagger （配置整个项目接口文档）
 
+下面看看 eureka 管理端展示图吧！所有服务从上至下有序排列，一目了然！
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190729172614736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
 
 ### jar包引用不合理
 有的项目中jar引入过多，导致最终打出的jar包有点大。Martin中尽量只引入必须的包，比如想使用 spring boot 的一些基础功能，只引入spring-boot-starter，后面用到什么引入什么，做到最小化引入。

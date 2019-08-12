@@ -18,7 +18,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  * @Author: liangcan
  * @Version: 1.0
  * @Date: 2019/5/29 11:13
- * @Describtion: MartinSercurityAutoConfiguration
+ * @Describtion: 自动配置Martin安全服务
  */
 @Slf4j
 @Configuration

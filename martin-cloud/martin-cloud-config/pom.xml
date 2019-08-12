@@ -13,7 +13,7 @@
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <description>martin 配置中心</description>
+    <description>Martin配置中心</description>
 
     <dependencies>
         <dependency>

@@ -9,7 +9,7 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
-    <description>martin 微服务开发脚手架</description>
+    <description>Martin微服务开发脚手架</description>
     <url>https://martin.java2e.com</url>
     <organization>
         <name>martin of java2e</name>
@@ -39,6 +39,7 @@
         <module>martin-common</module>
         <module>martin-cloud</module>
         <module>martin-biz</module>
+        <module>martin-extend</module>
     </modules>
 
     <properties>

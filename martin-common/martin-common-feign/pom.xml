@@ -9,25 +9,25 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>martin-common-security</artifactId>
+    <artifactId>martin-common-feign</artifactId>
     <packaging>jar</packaging>
 
-    <description>Martin安全核心模块</description>
-
+    <description>Martin内部通信核心模块</description>
 
     <dependencies>
         <dependency>
             <groupId>com.java2e</groupId>
             <artifactId>martin-common-core</artifactId>
         </dependency>
+        <!-- feign替换JDK默认的URLConnection为okhttp,不知道版本信息定义在哪里-->
         <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
         </dependency>
+        <!--feign 依赖，因为要使用feign调用其他服务，所以需要添加此依赖,版本信息定义在了spring-cloud-dependencies里-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
-
 </project>
