@@ -30,3 +30,9 @@ spring:
             - Path=/swagger/**
           filters:
             - StripPrefix=1
+        - id: martin-biz-system
+          uri: lb://martin-biz-system
+          predicates:
+            - Path=/system/**
+          filters:
+            - StripPrefix=1

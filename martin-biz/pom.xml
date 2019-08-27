@@ -18,6 +18,7 @@
         <module>martin-biz-resource</module>
         <module>martin-biz-sso</module>
         <module>martin-biz-swagger</module>
+        <module>martin-biz-system</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -40,6 +41,10 @@
         <dependency>
             <groupId>com.java2e</groupId>
             <artifactId>martin-common-swagger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-log</artifactId>
         </dependency>
         <!--eureka 客户端-->
         <dependency>
@@ -94,6 +99,15 @@
             <artifactId>spring-security-oauth2</artifactId>
         </dependency>
         <!--业务模块都加安全验证 end-->
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
     </dependencies>
     
     <build>

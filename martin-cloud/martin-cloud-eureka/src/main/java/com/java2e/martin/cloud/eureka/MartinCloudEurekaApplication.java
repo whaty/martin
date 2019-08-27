@@ -8,12 +8,12 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
  * @Author: liangcan
  * @Version: 1.0
  * @Date: 2019/3/8
- * @Describtion: MartinEurekaApplication
+ * @Describtion: MartinCloudEurekaApplication
  */
 @EnableEurekaServer
 @SpringBootApplication
-public class MartinEurekaApplication {
+public class MartinCloudEurekaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MartinEurekaApplication.class, args);
+        SpringApplication.run(MartinCloudEurekaApplication.class, args);
     }
 }

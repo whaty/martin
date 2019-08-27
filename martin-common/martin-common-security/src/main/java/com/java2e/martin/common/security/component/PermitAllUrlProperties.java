@@ -16,11 +16,19 @@ import java.util.List;
  * @Describtion: PermitAllUrlProperties
  * 模块对外开放的url集合
  */
-@Data
+
 @Configuration
 @RefreshScope
-@ConditionalOnExpression("!'${security.oauth2.client.ignore-urls}'.isEmpty()")
 @ConfigurationProperties(prefix = "security.oauth2.client")
 public class PermitAllUrlProperties {
     private List<String> ignoreUrls = new ArrayList<>();
+
+    public List<String> getIgnoreUrls() {
+        return ignoreUrls;
+    }
+
+    @ConditionalOnExpression("!'${security.oauth2.client.ignore-urls}'.isEmpty()")
+    public void setIgnoreUrls(List<String> ignoreUrls) {
+        this.ignoreUrls = ignoreUrls;
+    }
 }

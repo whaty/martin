@@ -8,12 +8,12 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * @Author: liangcan
  * @Version: 1.0
  * @Date: 2019/3/11
- * @Describtion: MartinConfigApplication
+ * @Describtion: MartinCloudConfigApplication
  */
 @EnableConfigServer
 @SpringBootApplication
-public class MartinConfigApplication {
+public class MartinCloudConfigApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MartinConfigApplication.class, args);
+        SpringApplication.run(MartinCloudConfigApplication.class, args);
     }
 }

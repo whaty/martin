@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author: liangcan
  * @Version: 1.0
  * @Date: 2019/3/11
- * @Describtion: MartinGateWayApplication
+ * @Describtion: MartinCloudGateWayApplication
  */
 @SpringBootApplication
 @RestController
 @RefreshScope
-public class MartinGateWayApplication {
+public class MartinCloudGateWayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MartinGateWayApplication.class, args);
+        SpringApplication.run(MartinCloudGateWayApplication.class, args);
     }
 
     @Value("${foot}")

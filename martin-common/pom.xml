@@ -22,6 +22,7 @@
         <module>martin-common-swagger</module>
         <module>martin-common-feign</module>
         <module>martin-common-api</module>
+        <module>martin-common-log</module>
     </modules>
 
 </project>
