@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 菜单权限表 服务实现类
+ * 系统菜单 服务实现类
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Service
 public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> implements SysMenuService {

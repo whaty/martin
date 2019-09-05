@@ -13,28 +13,32 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 系统角色表
+ * 系统角色
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_role")
-@ApiModel(value="SysRole对象", description="系统角色表")
+@ApiModel(value="SysRole对象", description="系统角色")
 public class SysRole implements Serializable {
 
     private static final long serialVersionUID=1L;
 
+    @ApiModelProperty(value = "主键")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @ApiModelProperty(value = "角色名称")
     private String roleName;
 
+    @ApiModelProperty(value = "角色编码")
     private String roleCode;
 
+    @ApiModelProperty(value = "角色描述")
     private String roleDesc;
 
     @ApiModelProperty(value = "数据权限类型")

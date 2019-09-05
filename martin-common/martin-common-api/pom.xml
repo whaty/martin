@@ -12,12 +12,16 @@
     <artifactId>martin-common-api</artifactId>
     <packaging>jar</packaging>
 
-    <description>Martin统一内部接口调用服务，每个模块一个目录</description>
+    <description>Martin 内部接口调用服务，每个业务模块一个目录,本着架构最简原则，远程调用不允许传输自己模块的对象,要传输的对象统一放到martin-common-bean模块下</description>
 
     <dependencies>
         <dependency>
             <groupId>com.java2e</groupId>
             <artifactId>martin-common-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-bean</artifactId>
         </dependency>
     </dependencies>
 </project>

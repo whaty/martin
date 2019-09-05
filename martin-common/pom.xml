@@ -23,6 +23,7 @@
         <module>martin-common-feign</module>
         <module>martin-common-api</module>
         <module>martin-common-log</module>
+        <module>martin-common-bean</module>
     </modules>
 
 </project>

@@ -1,6 +1,7 @@
 package com.java2e.martin.common.core.exception;
 
 import cn.hutool.core.util.StrUtil;
+import com.java2e.martin.common.core.api.ApiErrorCode;
 
 /**
  * @Author: liangcan
@@ -29,6 +30,10 @@ public class StatefulException extends MartinException {
 
     public StatefulException(String msg, Throwable throwable) {
         super(msg, throwable);
+    }
+
+    public StatefulException(ApiErrorCode apiErrorCode) {
+        new StatefulException(apiErrorCode.getCode(), apiErrorCode.getMsg());
     }
 
     public StatefulException(int status, String msg) {

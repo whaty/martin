@@ -1,6 +1,7 @@
 package com.java2e.martin.common.core.exception;
 
 import cn.hutool.core.util.StrUtil;
+import com.java2e.martin.common.core.api.ApiErrorCode;
 
 /**
  * @Author: liangcan
@@ -28,6 +29,10 @@ public class ValidateException extends StatefulException {
 
     public ValidateException(String msg, Throwable throwable) {
         super(msg, throwable);
+    }
+
+    public ValidateException(ApiErrorCode apiErrorCode) {
+        super(apiErrorCode);
     }
 
     public ValidateException(int status, String msg) {

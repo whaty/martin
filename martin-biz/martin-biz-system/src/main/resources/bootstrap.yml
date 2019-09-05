@@ -23,12 +23,3 @@ eureka:
     service-url:
       defaultZone:  http://martin-cloud-eureka:9500/eureka/
 
-
-
-security:
-  oauth2:
-    client:
-      client-id:
-      client-secret:
-    resource:
-      id:

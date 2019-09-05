@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 系统社交登录账号表 服务实现类
+ * 系统社交账号 服务实现类
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Service
 public class SysSocialDetailsServiceImpl extends ServiceImpl<SysSocialDetailsMapper, SysSocialDetails> implements SysSocialDetailsService {

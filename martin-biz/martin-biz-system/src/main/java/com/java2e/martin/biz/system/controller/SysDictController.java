@@ -1,14 +1,13 @@
 package com.java2e.martin.biz.system.controller;
 
-
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.java2e.martin.biz.system.entity.SysDict;
 import com.java2e.martin.biz.system.service.SysDictService;
+import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
-import com.java2e.martin.common.core.enums.ApiErrorCode;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -27,16 +26,16 @@ import java.util.Map;
 
 /**
  * <p>
- * 字典表 前端控制器
+ * 系统字典 前端控制器
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Slf4j
 @RestController
 @RequestMapping("/sys-dict")
-@Api(value = "SysDict 控制器", tags = "字典表")
+@Api(value = "SysDict 控制器", tags = "系统字典")
 public class SysDictController {
 
     @Autowired
@@ -49,7 +48,7 @@ public class SysDictController {
      * @param sysDict SysDict
      * @return R
      */
-    @MartinLog("添加字典表")
+    @MartinLog("添加系统字典")
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_dict_add')")
     public R save(@Valid @RequestBody SysDict sysDict) {
@@ -62,7 +61,7 @@ public class SysDictController {
      * @param sysDict SysDict
      * @return R
      */
-    @MartinLog("删除字典表")
+    @MartinLog("删除系统字典")
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('sys_dict_del')")
     public R removeById(@Valid @RequestBody SysDict sysDict) {
@@ -75,7 +74,7 @@ public class SysDictController {
      * @param sysDict SysDict
      * @return R
      */
-    @MartinLog("编辑字典表")
+    @MartinLog("编辑系统字典")
     @PostMapping
     @PreAuthorize("hasAuthority('sys_dict_edit')")
     public R update(@Valid @RequestBody SysDict sysDict) {
@@ -89,7 +88,7 @@ public class SysDictController {
      * @param sysDict SysDict
      * @return R
      */
-    @MartinLog("单个查询字典表")
+    @MartinLog("单个查询系统字典")
     @PostMapping("/get")
     @PreAuthorize("hasAuthority('sys_dict_get')")
     public R getById(@RequestBody SysDict sysDict) {
@@ -102,7 +101,7 @@ public class SysDictController {
      * @param params 分页以及查询参数
      * @return R
      */
-    @MartinLog("分页查询字典表")
+    @MartinLog("分页查询系统字典")
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_dict_page')")
     public R<IPage> getPage(@RequestBody Map params) {

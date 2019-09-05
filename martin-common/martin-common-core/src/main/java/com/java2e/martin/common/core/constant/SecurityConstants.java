@@ -40,15 +40,11 @@ public final class SecurityConstants {
      */
     public static final String MARTIN_LICENSE = "made by martin";
 
-    /**
-     * 内部
-     */
-    public static final String FROM_IN = "Y";
 
     /**
      * 标志
      */
-    public static final String FROM = "from";
+    public static final String MARTIN_INNER = "martin-inner";
 
     /**
      * OAUTH URL

@@ -25,4 +25,9 @@ public final class ServiceNameConstants {
      */
     public static final String MARTIN_BIZ_SSO_SERVICE = "martin-biz-sso";
 
+    /**
+     * 系统服务
+     */
+    public static final String MARTIN_BIZ_SYSTEM_SERVICE = "martin-biz-system";
+
 }

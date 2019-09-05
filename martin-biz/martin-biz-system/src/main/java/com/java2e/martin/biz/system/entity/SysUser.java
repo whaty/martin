@@ -13,22 +13,22 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 用户表
+ * 系统用户
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_user")
-@ApiModel(value="SysUser对象", description="用户表")
+@ApiModel(value="SysUser对象", description="系统用户")
 public class SysUser implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "主键ID")
+    @ApiModelProperty(value = "主键")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -62,7 +62,7 @@ public class SysUser implements Serializable {
     @ApiModelProperty(value = "地址")
     private String address;
 
-    @ApiModelProperty(value = "简介")
+    @ApiModelProperty(value = "电话")
     private String phone;
 
     @ApiModelProperty(value = "部门ID")

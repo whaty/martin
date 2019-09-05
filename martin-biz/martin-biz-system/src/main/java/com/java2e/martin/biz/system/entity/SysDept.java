@@ -1,8 +1,6 @@
 package com.java2e.martin.biz.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -13,23 +11,22 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 部门管理
+ * 系统部门
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_dept")
-@ApiModel(value="SysDept对象", description="部门管理")
+@ApiModel(value="SysDept对象", description="系统部门")
 public class SysDept implements Serializable {
 
     private static final long serialVersionUID=1L;
 
     @ApiModelProperty(value = "主键")
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     @ApiModelProperty(value = "部门名称")

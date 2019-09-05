@@ -1,14 +1,13 @@
 package com.java2e.martin.biz.system.controller;
 
-
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.java2e.martin.biz.system.entity.SysDept;
 import com.java2e.martin.biz.system.service.SysDeptService;
+import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
-import com.java2e.martin.common.core.enums.ApiErrorCode;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -27,16 +26,16 @@ import java.util.Map;
 
 /**
  * <p>
- * 部门管理 前端控制器
+ * 系统部门 前端控制器
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Slf4j
 @RestController
 @RequestMapping("/sys-dept")
-@Api(value = "SysDept 控制器", tags = "部门管理")
+@Api(value = "SysDept 控制器", tags = "系统部门")
 public class SysDeptController {
 
     @Autowired
@@ -49,7 +48,7 @@ public class SysDeptController {
      * @param sysDept SysDept
      * @return R
      */
-    @MartinLog("添加部门管理")
+    @MartinLog("添加系统部门")
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_dept_add')")
     public R save(@Valid @RequestBody SysDept sysDept) {
@@ -62,7 +61,7 @@ public class SysDeptController {
      * @param sysDept SysDept
      * @return R
      */
-    @MartinLog("删除部门管理")
+    @MartinLog("删除系统部门")
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('sys_dept_del')")
     public R removeById(@Valid @RequestBody SysDept sysDept) {
@@ -75,7 +74,7 @@ public class SysDeptController {
      * @param sysDept SysDept
      * @return R
      */
-    @MartinLog("编辑部门管理")
+    @MartinLog("编辑系统部门")
     @PostMapping
     @PreAuthorize("hasAuthority('sys_dept_edit')")
     public R update(@Valid @RequestBody SysDept sysDept) {
@@ -89,7 +88,7 @@ public class SysDeptController {
      * @param sysDept SysDept
      * @return R
      */
-    @MartinLog("单个查询部门管理")
+    @MartinLog("单个查询系统部门")
     @PostMapping("/get")
     @PreAuthorize("hasAuthority('sys_dept_get')")
     public R getById(@RequestBody SysDept sysDept) {
@@ -102,7 +101,7 @@ public class SysDeptController {
      * @param params 分页以及查询参数
      * @return R
      */
-    @MartinLog("分页查询部门管理")
+    @MartinLog("分页查询系统部门")
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_dept_page')")
     public R<IPage> getPage(@RequestBody Map params) {

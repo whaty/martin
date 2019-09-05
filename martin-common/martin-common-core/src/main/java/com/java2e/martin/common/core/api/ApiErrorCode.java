@@ -1,6 +1,4 @@
-package com.java2e.martin.common.core.enums;
-
-import com.java2e.martin.common.core.api.IErrorCode;
+package com.java2e.martin.common.core.api;
 
 /**
  * @Author: liangcan
@@ -9,11 +7,13 @@ import com.java2e.martin.common.core.api.IErrorCode;
  * @Describtion: ApiErrorCode
  */
 public enum ApiErrorCode implements IErrorCode {
-    FAILED(500L, "操作失败"),
+    FAILED(500, "操作失败"),
 
-    SUCCESS(200L, "操作成功");
+    SUCCESS(200, "操作成功"),
 
-    private final long code;
+    FORBIDEN(403, "禁止操作");
+
+    private final int code;
     private final String msg;
 
     /**
@@ -22,12 +22,12 @@ public enum ApiErrorCode implements IErrorCode {
      * @param code 错误码
      * @param msg  错误信息
      */
-    private ApiErrorCode(final long code, final String msg) {
+    ApiErrorCode(final int code, final String msg) {
         this.code = code;
         this.msg = msg;
     }
 
-    public static ApiErrorCode fromCode(long code) {
+    public static ApiErrorCode fromCode(int code) {
         ApiErrorCode[] ecs = values();
         ApiErrorCode[] var3 = ecs;
         int var4 = ecs.length;
@@ -43,7 +43,7 @@ public enum ApiErrorCode implements IErrorCode {
     }
 
     @Override
-    public long getCode() {
+    public int getCode() {
         return this.code;
     }
 

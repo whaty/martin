@@ -11,17 +11,17 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 菜单权限表
+ * 系统菜单
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_menu")
-@ApiModel(value="SysMenu对象", description="菜单权限表")
+@ApiModel(value="SysMenu对象", description="系统菜单")
 public class SysMenu implements Serializable {
 
     private static final long serialVersionUID=1L;
@@ -32,8 +32,8 @@ public class SysMenu implements Serializable {
     @ApiModelProperty(value = "菜单名称")
     private String name;
 
-    @ApiModelProperty(value = "菜单权限标识")
-    private String permission;
+    @ApiModelProperty(value = "菜单编码")
+    private String code;
 
     @ApiModelProperty(value = "前端URL")
     private String path;
@@ -44,17 +44,11 @@ public class SysMenu implements Serializable {
     @ApiModelProperty(value = "图标")
     private String icon;
 
-    @ApiModelProperty(value = "VUE页面")
+    @ApiModelProperty(value = "前端组件")
     private String component;
 
     @ApiModelProperty(value = "排序值")
     private Integer sort;
-
-    @ApiModelProperty(value = "0-开启，1- 关闭")
-    private String keepAlive;
-
-    @ApiModelProperty(value = "菜单类型 （0菜单 1按钮）")
-    private String type;
 
     @ApiModelProperty(value = "所属租户")
     private Integer tenantId;

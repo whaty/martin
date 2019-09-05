@@ -1,4 +1,4 @@
-package com.java2e.martin.common.security.service;
+package com.java2e.martin.common.security.userdetail;
 
 import lombok.Getter;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;

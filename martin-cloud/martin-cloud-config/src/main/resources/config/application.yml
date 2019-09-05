@@ -122,3 +122,4 @@ martin:
     enabled: true
   feign:
     enabled: true
+    secret: 12345678

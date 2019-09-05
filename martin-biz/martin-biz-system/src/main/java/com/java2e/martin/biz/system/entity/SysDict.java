@@ -1,8 +1,6 @@
 package com.java2e.martin.biz.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -13,23 +11,22 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 字典表
+ * 系统字典
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_dict")
-@ApiModel(value="SysDict对象", description="字典表")
+@ApiModel(value="SysDict对象", description="系统字典")
 public class SysDict implements Serializable {
 
     private static final long serialVersionUID=1L;
 
     @ApiModelProperty(value = "编号")
-    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     @ApiModelProperty(value = "数据值")

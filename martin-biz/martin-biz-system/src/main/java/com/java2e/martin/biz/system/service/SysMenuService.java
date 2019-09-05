@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 菜单权限表 服务类
+ * 系统菜单 服务类
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 public interface SysMenuService extends IService<SysMenu> {
 

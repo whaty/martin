@@ -1,14 +1,13 @@
 package com.java2e.martin.biz.system.controller;
 
-
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.java2e.martin.biz.system.entity.SysUser;
 import com.java2e.martin.biz.system.service.SysUserService;
+import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
-import com.java2e.martin.common.core.enums.ApiErrorCode;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -27,16 +26,16 @@ import java.util.Map;
 
 /**
  * <p>
- * 用户表 前端控制器
+ * 系统用户 前端控制器
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Slf4j
 @RestController
 @RequestMapping("/sys-user")
-@Api(value = "SysUser 控制器", tags = "用户表")
+@Api(value = "SysUser 控制器", tags = "系统用户")
 public class SysUserController {
 
     @Autowired
@@ -49,7 +48,7 @@ public class SysUserController {
      * @param sysUser SysUser
      * @return R
      */
-    @MartinLog("添加用户表")
+    @MartinLog("添加系统用户")
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_user_add')")
     public R save(@Valid @RequestBody SysUser sysUser) {
@@ -62,7 +61,7 @@ public class SysUserController {
      * @param sysUser SysUser
      * @return R
      */
-    @MartinLog("删除用户表")
+    @MartinLog("删除系统用户")
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('sys_user_del')")
     public R removeById(@Valid @RequestBody SysUser sysUser) {
@@ -75,7 +74,7 @@ public class SysUserController {
      * @param sysUser SysUser
      * @return R
      */
-    @MartinLog("编辑用户表")
+    @MartinLog("编辑系统用户")
     @PostMapping
     @PreAuthorize("hasAuthority('sys_user_edit')")
     public R update(@Valid @RequestBody SysUser sysUser) {
@@ -89,7 +88,7 @@ public class SysUserController {
      * @param sysUser SysUser
      * @return R
      */
-    @MartinLog("单个查询用户表")
+    @MartinLog("单个查询系统用户")
     @PostMapping("/get")
     @PreAuthorize("hasAuthority('sys_user_get')")
     public R getById(@RequestBody SysUser sysUser) {
@@ -102,7 +101,7 @@ public class SysUserController {
      * @param params 分页以及查询参数
      * @return R
      */
-    @MartinLog("分页查询用户表")
+    @MartinLog("分页查询系统用户")
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_user_page')")
     public R<IPage> getPage(@RequestBody Map params) {

@@ -13,17 +13,17 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 系统社交登录账号表
+ * 系统社交账号
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_social_details")
-@ApiModel(value="SysSocialDetails对象", description="系统社交登录账号表")
+@ApiModel(value="SysSocialDetails对象", description="系统社交账号")
 public class SysSocialDetails implements Serializable {
 
     private static final long serialVersionUID=1L;

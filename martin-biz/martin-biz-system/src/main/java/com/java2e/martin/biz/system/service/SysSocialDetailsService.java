@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 系统社交登录账号表 服务类
+ * 系统社交账号 服务类
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 public interface SysSocialDetailsService extends IService<SysSocialDetails> {
 

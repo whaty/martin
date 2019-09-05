@@ -1,7 +1,5 @@
 package com.java2e.martin.common.core.api;
 
-import com.java2e.martin.common.core.enums.ApiErrorCode;
-
 import java.io.Serializable;
 import java.util.Optional;
 

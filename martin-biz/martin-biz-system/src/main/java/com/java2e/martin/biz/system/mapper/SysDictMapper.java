@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 字典表 Mapper 接口
+ * 系统字典 Mapper 接口
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-05
  */
 public interface SysDictMapper extends BaseMapper<SysDict> {
 
