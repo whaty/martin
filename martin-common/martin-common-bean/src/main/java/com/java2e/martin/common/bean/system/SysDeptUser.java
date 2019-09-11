@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 系统部门
+ * 系统用户部门关系
  * </p>
  *
  * @author liangcan
@@ -22,9 +22,9 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_dept")
-@ApiModel(value="SysDept对象", description="系统部门")
-public class SysDept implements Serializable {
+@TableName("sys_dept_user")
+@ApiModel(value="SysDeptUser对象", description="系统用户部门关系")
+public class SysDeptUser implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -32,24 +32,16 @@ public class SysDept implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "部门名称")
-    private String name;
+    @ApiModelProperty(value = "用户id")
+    private Integer userId;
 
-    @ApiModelProperty(value = "排序")
-    private Integer sort;
-
-    private Integer parentId;
-
-    @ApiModelProperty(value = "所属租户")
-    private Integer tenantId;
-
-    @ApiModelProperty(value = "删除标识（0-正常,1-删除）")
-    private String delFlag;
+    @ApiModelProperty(value = "部门id")
+    private Integer deptId;
 
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;
 
-    @ApiModelProperty(value = "更新时间")
+    @ApiModelProperty(value = "修改时间")
     private LocalDateTime updateTime;
 
 

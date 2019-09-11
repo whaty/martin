@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.biz.system.entity.SysFile;
+import com.java2e.martin.common.bean.system.SysFile;
 import com.java2e.martin.biz.system.service.SysFileService;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
@@ -30,7 +30,7 @@ import java.util.Map;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-05
+ * @since 2019-09-11
  */
 @Slf4j
 @RestController

@@ -4,8 +4,8 @@ import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.SysDeptUser;
-import com.java2e.martin.biz.system.service.SysDeptUserService;
+import com.java2e.martin.common.bean.system.SysUserRole;
+import com.java2e.martin.biz.system.service.SysUserRoleService;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
@@ -26,7 +26,7 @@ import java.util.Map;
 
 /**
  * <p>
- * 系统用户部门关系 前端控制器
+ * 系统用户角色关系 前端控制器
  * </p>
  *
  * @author liangcan
@@ -34,65 +34,65 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping("/sys-dept-user")
-@Api(value = "SysDeptUser 控制器", tags = "系统用户部门关系")
-public class SysDeptUserController {
+@RequestMapping("/sys-user-role")
+@Api(value = "SysUserRole 控制器", tags = "系统用户角色关系")
+public class SysUserRoleController {
 
     @Autowired
-    private SysDeptUserService sysDeptUserService;
+    private SysUserRoleService sysUserRoleService;
 
 
     /**
      * 添加
      *
-     * @param sysDeptUser SysDeptUser
+     * @param sysUserRole SysUserRole
      * @return R
      */
-    @MartinLog("添加系统用户部门关系")
+    @MartinLog("添加系统用户角色关系")
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('sys_dept_user_add')")
-    public R save(@Valid @RequestBody SysDeptUser sysDeptUser) {
-        return R.ok(sysDeptUserService.save(sysDeptUser));
+    @PreAuthorize("hasAuthority('sys_user_role_add')")
+    public R save(@Valid @RequestBody SysUserRole sysUserRole) {
+        return R.ok(sysUserRoleService.save(sysUserRole));
     }
 
     /**
      * 删除
      *
-     * @param sysDeptUser SysDeptUser
+     * @param sysUserRole SysUserRole
      * @return R
      */
-    @MartinLog("删除系统用户部门关系")
+    @MartinLog("删除系统用户角色关系")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('sys_dept_user_del')")
-    public R removeById(@Valid @RequestBody SysDeptUser sysDeptUser) {
-        return R.ok(sysDeptUserService.removeById(sysDeptUser.getId()));
+    @PreAuthorize("hasAuthority('sys_user_role_del')")
+    public R removeById(@Valid @RequestBody SysUserRole sysUserRole) {
+        return R.ok(sysUserRoleService.removeById(sysUserRole.getId()));
     }
 
     /**
      * 编辑
      *
-     * @param sysDeptUser SysDeptUser
+     * @param sysUserRole SysUserRole
      * @return R
      */
-    @MartinLog("编辑系统用户部门关系")
+    @MartinLog("编辑系统用户角色关系")
     @PostMapping
-    @PreAuthorize("hasAuthority('sys_dept_user_edit')")
-    public R update(@Valid @RequestBody SysDeptUser sysDeptUser) {
-        sysDeptUser.setUpdateTime(LocalDateTime.now());
-        return R.ok(sysDeptUserService.updateById(sysDeptUser));
+    @PreAuthorize("hasAuthority('sys_user_role_edit')")
+    public R update(@Valid @RequestBody SysUserRole sysUserRole) {
+        sysUserRole.setUpdateTime(LocalDateTime.now());
+        return R.ok(sysUserRoleService.updateById(sysUserRole));
     }
 
     /**
      * 通过ID查询
      *
-     * @param sysDeptUser SysDeptUser
+     * @param sysUserRole SysUserRole
      * @return R
      */
-    @MartinLog("单个查询系统用户部门关系")
+    @MartinLog("单个查询系统用户角色关系")
     @PostMapping("/get")
-    @PreAuthorize("hasAuthority('sys_dept_user_get')")
-    public R getById(@RequestBody SysDeptUser sysDeptUser) {
-        return R.ok(sysDeptUserService.getById(sysDeptUser.getId()));
+    @PreAuthorize("hasAuthority('sys_user_role_get')")
+    public R getById(@RequestBody SysUserRole sysUserRole) {
+        return R.ok(sysUserRoleService.getById(sysUserRole.getId()));
     }
 
     /**
@@ -101,20 +101,20 @@ public class SysDeptUserController {
      * @param params 分页以及查询参数
      * @return R
      */
-    @MartinLog("分页查询系统用户部门关系")
+    @MartinLog("分页查询系统用户角色关系")
     @PostMapping("/page")
-    @PreAuthorize("hasAuthority('sys_dept_user_page')")
+    @PreAuthorize("hasAuthority('sys_user_role_page')")
     public R<IPage> getPage(@RequestBody Map params) {
         Page page = new Page();
-        SysDeptUser sysDeptUser = new SysDeptUser();
+        SysUserRole sysUserRole = new SysUserRole();
         try {
             BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, sysDeptUser, true);
+            BeanUtil.fillBeanWithMap(params, sysUserRole, true);
         } catch (Exception e) {
             log.error(e.getMessage());
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(sysDeptUserService.page(page, Wrappers.query(sysDeptUser)));
+        return R.ok(sysUserRoleService.page(page, Wrappers.query(sysUserRole)));
     }
 
 

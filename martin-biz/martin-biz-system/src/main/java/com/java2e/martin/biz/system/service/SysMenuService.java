@@ -1,6 +1,6 @@
 package com.java2e.martin.biz.system.service;
 
-import com.java2e.martin.biz.system.entity.SysMenu;
+import com.java2e.martin.common.bean.system.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-05
+ * @since 2019-09-11
  */
 public interface SysMenuService extends IService<SysMenu> {
 

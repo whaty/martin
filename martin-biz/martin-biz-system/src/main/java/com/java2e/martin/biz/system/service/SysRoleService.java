@@ -1,6 +1,6 @@
 package com.java2e.martin.biz.system.service;
 
-import com.java2e.martin.biz.system.entity.SysRole;
+import com.java2e.martin.common.bean.system.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-05
+ * @since 2019-09-11
  */
 public interface SysRoleService extends IService<SysRole> {
 

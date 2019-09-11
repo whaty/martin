@@ -1,6 +1,6 @@
 package com.java2e.martin.biz.system.mapper;
 
-import com.java2e.martin.biz.system.entity.SysDict;
+import com.java2e.martin.common.bean.system.SysDict;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-05
+ * @since 2019-09-11
  */
 public interface SysDictMapper extends BaseMapper<SysDict> {
 

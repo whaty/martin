@@ -13,22 +13,22 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 日志表
+ * 系统日志
  * </p>
  *
  * @author liangcan
- * @since 2019-08-23
+ * @since 2019-09-11
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_log")
-@ApiModel(value="SysLog对象", description="日志表")
+@ApiModel(value="SysLog对象", description="系统日志")
 public class SysLog implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @ApiModelProperty(value = "编号")
+    @ApiModelProperty(value = "主键")
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

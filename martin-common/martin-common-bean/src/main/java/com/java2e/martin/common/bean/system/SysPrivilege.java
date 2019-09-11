@@ -1,6 +1,8 @@
-package com.java2e.martin.biz.system.entity;
+package com.java2e.martin.common.bean.system;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -15,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-05
+ * @since 2019-09-11
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -27,6 +29,7 @@ public class SysPrivilege implements Serializable {
     private static final long serialVersionUID=1L;
 
     @ApiModelProperty(value = "主键")
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     @ApiModelProperty(value = "权限类型")

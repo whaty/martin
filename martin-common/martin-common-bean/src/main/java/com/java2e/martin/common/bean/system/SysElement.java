@@ -1,4 +1,4 @@
-package com.java2e.martin.biz.system.entity;
+package com.java2e.martin.common.bean.system;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -13,18 +13,18 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 系统角色
+ * 系统页面元素
  * </p>
  *
  * @author liangcan
- * @since 2019-09-05
+ * @since 2019-09-11
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("sys_role")
-@ApiModel(value="SysRole对象", description="系统角色")
-public class SysRole implements Serializable {
+@TableName("sys_element")
+@ApiModel(value="SysElement对象", description="系统页面元素")
+public class SysElement implements Serializable {
 
     private static final long serialVersionUID=1L;
 
@@ -32,20 +32,17 @@ public class SysRole implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "角色名称")
-    private String roleName;
+    @ApiModelProperty(value = "页面元素名称")
+    private String name;
 
-    @ApiModelProperty(value = "角色编码")
-    private String roleCode;
+    @ApiModelProperty(value = "权限编码，以element_开头")
+    private String code;
 
-    @ApiModelProperty(value = "角色描述")
-    private String roleDesc;
+    @ApiModelProperty(value = "页面元素路径")
+    private String url;
 
-    @ApiModelProperty(value = "数据权限类型")
-    private String dsType;
-
-    @ApiModelProperty(value = "数据权限范围")
-    private String dsScope;
+    @ApiModelProperty(value = "排序值")
+    private Integer sort;
 
     @ApiModelProperty(value = "所属租户")
     private Integer tenantId;
