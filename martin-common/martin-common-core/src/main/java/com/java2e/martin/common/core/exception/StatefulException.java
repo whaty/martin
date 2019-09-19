@@ -11,7 +11,7 @@ import com.java2e.martin.common.core.api.ApiErrorCode;
  */
 public class StatefulException extends MartinException {
     private static final long serialVersionUID = 7378660735559113436L;
-    private int status;
+    private long status;
 
     public StatefulException() {
     }
@@ -36,22 +36,22 @@ public class StatefulException extends MartinException {
         new StatefulException(apiErrorCode.getCode(), apiErrorCode.getMsg());
     }
 
-    public StatefulException(int status, String msg) {
+    public StatefulException(long status, String msg) {
         super(msg);
         this.status = status;
     }
 
-    public StatefulException(int status, Throwable throwable) {
+    public StatefulException(long status, Throwable throwable) {
         super(throwable);
         this.status = status;
     }
 
-    public StatefulException(int status, String msg, Throwable throwable) {
+    public StatefulException(long status, String msg, Throwable throwable) {
         super(msg, throwable);
         this.status = status;
     }
 
-    public int getStatus() {
+    public long getStatus() {
         return this.status;
     }
 }

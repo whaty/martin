@@ -157,8 +157,8 @@ public class MartinExtensionGeneratorApplication {
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("");
         //todo 修改要生成的表名，多个英文逗号分割
-        strategy.setInclude("sys_dept","sys_dept_role","sys_dept_user","sys_dict","sys_element","sys_file","sys_log","sys_menu","sys_operation","sys_privilege","sys_role","sys_role_privilege","sys_social_details","sys_user","sys_user_role");
-//        strategy.setInclude("sys_dept");
+//        strategy.setInclude("sys_dept","sys_dept_role","sys_dept_user","sys_dict","sys_element","sys_file","sys_log","sys_menu","sys_operation","sys_privilege","sys_role","sys_role_privilege","sys_social_details","sys_user","sys_user_role");
+        strategy.setInclude("sys_dept","sys_dept_role","sys_dept_user","sys_dict","sys_element","sys_file","sys_log","sys_menu","sys_operation","sys_role","sys_role_privilege","sys_social_details","sys_user_role");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);

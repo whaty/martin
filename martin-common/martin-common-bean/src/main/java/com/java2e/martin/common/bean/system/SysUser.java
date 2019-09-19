@@ -36,7 +36,7 @@ public class SysUser implements Serializable {
     private String username;
 
     @ApiModelProperty(value = "密码")
-    private String password;
+    private String pwd;
 
     @ApiModelProperty(value = "随机盐")
     private String salt;
@@ -57,7 +57,7 @@ public class SysUser implements Serializable {
     private String title;
 
     @ApiModelProperty(value = "分类")
-    private String group;
+    private String classification;
 
     @ApiModelProperty(value = "地址")
     private String address;

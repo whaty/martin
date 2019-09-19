@@ -35,15 +35,15 @@ public class ValidateException extends StatefulException {
         super(apiErrorCode);
     }
 
-    public ValidateException(int status, String msg) {
+    public ValidateException(long status, String msg) {
         super(status, msg);
     }
 
-    public ValidateException(int status, Throwable throwable) {
+    public ValidateException(long status, Throwable throwable) {
         super(status, throwable);
     }
 
-    public ValidateException(int status, String msg, Throwable throwable) {
+    public ValidateException(long status, String msg, Throwable throwable) {
         super(status, msg, throwable);
     }
 }

@@ -1,11 +1,18 @@
 package com.java2e.martin.biz.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.SysUser;
+import com.java2e.martin.biz.system.service.SysPrivilegeService;
+import com.java2e.martin.biz.system.service.SysRolePrivilegeService;
+import com.java2e.martin.biz.system.service.SysUserRoleService;
 import com.java2e.martin.biz.system.service.SysUserService;
+import com.java2e.martin.common.bean.system.SysUser;
+import com.java2e.martin.common.bean.system.SysUserRole;
+import com.java2e.martin.common.bean.system.dto.UserRolePrivilegeDto;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
@@ -13,6 +20,8 @@ import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
-
+import java.util.Set;
 
 
 /**
@@ -40,6 +50,14 @@ public class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
+
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
+
+    @Autowired
+    private SysPrivilegeService sysPrivilegeService;
+
+    private SysRolePrivilegeService sysRolePrivilegeService;
 
 
     /**
@@ -117,6 +135,28 @@ public class SysUserController {
         return R.ok(sysUserService.page(page, Wrappers.query(sysUser)));
     }
 
+    @GetMapping("/loadUserByUsername/{username}")
+    public R<UserRolePrivilegeDto> loadUserByUsername(@PathVariable String username) {
+        UserRolePrivilegeDto userRolePrivilegeDto = new UserRolePrivilegeDto();
+        SysUser sysUser = sysUserService.getOne(Wrappers.<SysUser>query().lambda().eq(SysUser::getUsername, username));
+        log.debug("{}", Convert.toStr(sysUser));
+        if (null == sysUser) {
+            return R.failed(ApiErrorCode.USERNOTFIND);
+        }
+        userRolePrivilegeDto.setSysUser(sysUser);
+        List<SysUserRole> roleList = sysUserRoleService.list(Wrappers.<SysUserRole>query().lambda().eq(SysUserRole::getUserId, sysUser.getId()));
+        if (CollectionUtil.isEmpty(roleList)) {
+            log.error("{}",R.failed(ApiErrorCode.ROLENOTFIND));
+            return R.failed(ApiErrorCode.ROLENOTFIND);
+        }
+        Set<String> authoritySet = sysPrivilegeService.getPrivilegeByRoles(roleList);
+        if (CollectionUtil.isEmpty(authoritySet)) {
+            log.error("{}",R.failed(ApiErrorCode.PRIVILEGENOTFIND));
+            return R.failed(ApiErrorCode.PRIVILEGENOTFIND);
+        }
+        userRolePrivilegeDto.setAuthoritySet(authoritySet);
+        return R.ok(userRolePrivilegeDto);
+    }
 
 }
 

@@ -11,9 +11,15 @@ public enum ApiErrorCode implements IErrorCode {
 
     SUCCESS(200, "操作成功"),
 
-    FORBIDEN(403, "禁止操作");
+    FORBIDEN(403, "禁止操作"),
 
-    private final int code;
+    USERNOTFIND(9404001, "查无此用户"),
+
+    ROLENOTFIND(9404002, "用户未分配角色"),
+
+    PRIVILEGENOTFIND(9404003, "用户未授权");
+
+    private final long code;
     private final String msg;
 
     /**
@@ -22,7 +28,7 @@ public enum ApiErrorCode implements IErrorCode {
      * @param code 错误码
      * @param msg  错误信息
      */
-    ApiErrorCode(final int code, final String msg) {
+    ApiErrorCode(final long code, final String msg) {
         this.code = code;
         this.msg = msg;
     }
@@ -43,7 +49,7 @@ public enum ApiErrorCode implements IErrorCode {
     }
 
     @Override
-    public int getCode() {
+    public long getCode() {
         return this.code;
     }
 

@@ -1,6 +1,7 @@
 package com.java2e.martin.common.api.system;
 
 import com.java2e.martin.common.bean.system.dto.UserRolePrivilegeDto;
+import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.core.constant.ServiceNameConstants;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +27,7 @@ public interface RemoteSystem {
      * @return
      */
     @GetMapping("/sys-user/loadUserByUsername/{username}")
-    UserRolePrivilegeDto loadUserByUsername(@PathVariable("username") String username);
+    R<UserRolePrivilegeDto> loadUserByUsername(@PathVariable("username") String username);
 
     /**
      * 测试 post

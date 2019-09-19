@@ -28,7 +28,7 @@ public final class CommonConstants {
     /**
      * 锁定
      */
-    public static final String STATUS_LOCK = "9";
+    public static final String STATUS_LOCK = "1";
 
     /**
      * 菜单

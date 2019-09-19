@@ -33,15 +33,15 @@ public class SecurityException extends StatefulException {
         super(apiErrorCode);
     }
 
-    public SecurityException(int status, String msg) {
+    public SecurityException(long status, String msg) {
         super(status, msg);
     }
 
-    public SecurityException(int status, Throwable throwable) {
+    public SecurityException(long status, Throwable throwable) {
         super(status, throwable);
     }
 
-    public SecurityException(int status, String msg, Throwable throwable) {
+    public SecurityException(long status, String msg, Throwable throwable) {
         super(status, msg, throwable);
     }
 
