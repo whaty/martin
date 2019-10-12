@@ -57,7 +57,6 @@ public class SysUserController {
     @Autowired
     private SysPrivilegeService sysPrivilegeService;
 
-    private SysRolePrivilegeService sysRolePrivilegeService;
 
 
     /**
@@ -93,7 +92,7 @@ public class SysUserController {
      * @return R
      */
     @MartinLog("编辑系统用户")
-    @PostMapping
+    @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_user_edit')")
     public R update(@Valid @RequestBody SysUser sysUser) {
         sysUser.setUpdateTime(LocalDateTime.now());

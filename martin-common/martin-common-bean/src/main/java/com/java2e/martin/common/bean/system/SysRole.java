@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-11
+ * @since 2019-09-19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -58,6 +58,12 @@ public class SysRole implements Serializable {
 
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
+
+    @ApiModelProperty(value = "创建人")
+    private String creator;
+
+    @ApiModelProperty(value = "修改人")
+    private String updater;
 
 
 }

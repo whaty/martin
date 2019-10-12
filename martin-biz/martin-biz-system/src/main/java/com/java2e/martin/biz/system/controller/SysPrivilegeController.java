@@ -75,7 +75,7 @@ public class SysPrivilegeController {
      * @return R
      */
     @MartinLog("编辑系统权限")
-    @PostMapping
+    @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_privilege_edit')")
     public R update(@Valid @RequestBody SysPrivilege sysPrivilege) {
         sysPrivilege.setUpdateTime(LocalDateTime.now());

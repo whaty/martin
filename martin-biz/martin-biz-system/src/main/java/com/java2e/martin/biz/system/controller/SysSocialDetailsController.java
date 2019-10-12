@@ -30,7 +30,7 @@ import java.util.Map;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-11
+ * @since 2019-09-19
  */
 @Slf4j
 @RestController
@@ -75,7 +75,7 @@ public class SysSocialDetailsController {
      * @return R
      */
     @MartinLog("编辑系统社交账号")
-    @PostMapping
+    @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_social_details_edit')")
     public R update(@Valid @RequestBody SysSocialDetails sysSocialDetails) {
         sysSocialDetails.setUpdateTime(LocalDateTime.now());

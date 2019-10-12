@@ -97,7 +97,7 @@ public class ${table.controllerName} {
      * @return R
      */
     @MartinLog("编辑$!{table.comment}")
-    @PostMapping
+    @PostMapping("/update")
     @PreAuthorize("hasAuthority('$!{table.name}_edit')")
     public R update(@Valid @RequestBody $!{entity} $!{entityname}) {
         $!{entityname}.setUpdateTime(LocalDateTime.now());
@@ -133,7 +133,7 @@ public class ${table.controllerName} {
             BeanUtil.fillBeanWithMap(params, page, true);
             BeanUtil.fillBeanWithMap(params, $!{entityname}, true);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
         return R.ok($!{servicename}.page(page, Wrappers.query($!{entityname})));

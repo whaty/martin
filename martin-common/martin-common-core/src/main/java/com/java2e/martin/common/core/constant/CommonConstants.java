@@ -31,9 +31,9 @@ public final class CommonConstants {
     public static final String STATUS_LOCK = "1";
 
     /**
-     * 菜单
+     * 菜单根节点标识
      */
-    public static final String MENU = "0";
+    public static final Integer MENU_ROOT = 0;
 
     /**
      * 编码

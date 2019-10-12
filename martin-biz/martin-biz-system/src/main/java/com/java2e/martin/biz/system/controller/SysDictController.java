@@ -30,7 +30,7 @@ import java.util.Map;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-11
+ * @since 2019-09-19
  */
 @Slf4j
 @RestController
@@ -75,7 +75,7 @@ public class SysDictController {
      * @return R
      */
     @MartinLog("编辑系统字典")
-    @PostMapping
+    @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_dict_edit')")
     public R update(@Valid @RequestBody SysDict sysDict) {
         sysDict.setUpdateTime(LocalDateTime.now());

@@ -19,7 +19,6 @@ public class MartinClientDetailsService extends JdbcClientDetailsService {
     }
 
     /**
-     * 重写原生方法支持redis缓存
      *
      * @param clientId
      * @return

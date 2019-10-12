@@ -1,7 +1,7 @@
 package com.java2e.martin.biz.system.service;
 
-import com.java2e.martin.common.bean.system.SysPrivilege;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.java2e.martin.common.bean.system.SysPrivilege;
 import com.java2e.martin.common.bean.system.SysUserRole;
 
 import java.util.List;
@@ -17,5 +17,11 @@ import java.util.Set;
  */
 public interface SysPrivilegeService extends IService<SysPrivilege> {
 
+    /**
+     * 通过角色获取权限
+     *
+     * @param roleList
+     * @return
+     */
     Set<String> getPrivilegeByRoles(List<SysUserRole> roleList);
 }

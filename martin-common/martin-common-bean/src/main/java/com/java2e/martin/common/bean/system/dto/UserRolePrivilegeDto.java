@@ -15,8 +15,8 @@ import java.util.Set;
  */
 @Data
 public class UserRolePrivilegeDto implements Serializable {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = -74188199181458373L;
     /**
      * 当前用户所有信息
      */

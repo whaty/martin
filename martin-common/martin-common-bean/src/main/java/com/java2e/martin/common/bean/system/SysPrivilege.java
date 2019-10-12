@@ -53,5 +53,10 @@ public class SysPrivilege implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private LocalDateTime updateTime;
 
+    @ApiModelProperty(value = "创建人")
+    private String creator;
+
+    @ApiModelProperty(value = "修改人")
+    private String updater;
 
 }

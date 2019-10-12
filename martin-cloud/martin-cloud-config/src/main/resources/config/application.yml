@@ -4,7 +4,7 @@ spring:
 
   # 数据源
   datasource:
-    url: jdbc:mysql://localhost:3306/martin?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://martin-mysql:3306/martin?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root

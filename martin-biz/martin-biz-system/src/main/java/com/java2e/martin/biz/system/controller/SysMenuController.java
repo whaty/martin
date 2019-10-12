@@ -1,18 +1,24 @@
 package com.java2e.martin.biz.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.SysMenu;
 import com.java2e.martin.biz.system.service.SysMenuService;
+import com.java2e.martin.common.bean.system.SysMenu;
+import com.java2e.martin.common.bean.system.SysUser;
+import com.java2e.martin.common.bean.util.TreeUtil;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
+import com.java2e.martin.common.core.constant.CommonConstants;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
-
+import java.util.stream.Collectors;
 
 
 /**
@@ -30,7 +39,7 @@ import java.util.Map;
  * </p>
  *
  * @author liangcan
- * @since 2019-09-11
+ * @since 2019-09-19
  */
 @Slf4j
 @RestController
@@ -50,7 +59,6 @@ public class SysMenuController {
      */
     @MartinLog("添加系统菜单")
     @PostMapping("/add")
-    @PreAuthorize("hasAuthority('sys_menu_add')")
     public R save(@Valid @RequestBody SysMenu sysMenu) {
         return R.ok(sysMenuService.save(sysMenu));
     }
@@ -63,7 +71,6 @@ public class SysMenuController {
      */
     @MartinLog("删除系统菜单")
     @PostMapping("/delete")
-    @PreAuthorize("hasAuthority('sys_menu_del')")
     public R removeById(@Valid @RequestBody SysMenu sysMenu) {
         return R.ok(sysMenuService.removeById(sysMenu.getId()));
     }
@@ -74,9 +81,9 @@ public class SysMenuController {
      * @param sysMenu SysMenu
      * @return R
      */
-    @MartinLog("编辑系统菜单")
-    @PostMapping
-    @PreAuthorize("hasAuthority('sys_menu_edit')")
+//    @MartinLog("编辑系统菜单")
+    @PostMapping("/update")
+//    @PreAuthorize("hasAuthority('sys_menu_edit')")
     public R update(@Valid @RequestBody SysMenu sysMenu) {
         sysMenu.setUpdateTime(LocalDateTime.now());
         return R.ok(sysMenuService.updateById(sysMenu));
@@ -88,11 +95,13 @@ public class SysMenuController {
      * @param sysMenu SysMenu
      * @return R
      */
-    @MartinLog("单个查询系统菜单")
+//    @MartinLog("单个查询系统菜单")
     @PostMapping("/get")
-    @PreAuthorize("hasAuthority('sys_menu_get')")
+//    @PreAuthorize("hasAuthority('sys_menu_get')")
+
     public R getById(@RequestBody SysMenu sysMenu) {
-        return R.ok(sysMenuService.getById(sysMenu.getId()));
+        SysMenu byId = sysMenuService.getById(sysMenu.getId());
+        return R.ok(byId);
     }
 
     /**
@@ -101,9 +110,7 @@ public class SysMenuController {
      * @param params 分页以及查询参数
      * @return R
      */
-    @MartinLog("分页查询系统菜单")
     @PostMapping("/page")
-    @PreAuthorize("hasAuthority('sys_menu_page')")
     public R<IPage> getPage(@RequestBody Map params) {
         Page page = new Page();
         SysMenu sysMenu = new SysMenu();
@@ -111,12 +118,26 @@ public class SysMenuController {
             BeanUtil.fillBeanWithMap(params, page, true);
             BeanUtil.fillBeanWithMap(params, sysMenu, true);
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
         return R.ok(sysMenuService.page(page, Wrappers.query(sysMenu)));
     }
 
+    @GetMapping("/tree")
+    public R getMenuTree() {
+        return R.ok(TreeUtil.buildByRecursive(sysMenuService.list(Wrappers.<SysMenu>query().lambda().orderByAsc(SysMenu::getParentId,SysMenu::getSort)), CommonConstants.MENU_ROOT));
+    }
+
+    @MartinLog("批量删除系统菜单")
+    @PostMapping("/deleteBatch")
+    public R removeBatch(@RequestBody String ids){
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if(CollUtil.isEmpty(idList)){
+            return R.failed("id 不能为空");
+        }
+        return R.ok(sysMenuService.removeByIds(idList));
+    }
 
 }
 

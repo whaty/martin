@@ -2,29 +2,29 @@
 
 version: '2'
 services:
-#  martin-mysql:
-#    build:
-#      context: ./
-#      dockerfile: ./db/Dockerfile
-#    environment:
-#      MYSQL_ROOT_PASSWORD: root
-#    restart: always
-#    privileged: true
-#    container_name: martin-mysql
-#    image: martin-mysql
+  martin-mysql:
+    build:
+      context: ./
+      dockerfile: ./db/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    privileged: true
+    container_name: martin-mysql
+    image: martin-mysql
 #    volumes:
 #      - /opt/docker/mysql:/var/lib/mysql
-#    ports:
-#      - 3306:3306
+    ports:
+      - 3306:3306
 #
 #  martin-zookeeper:
 #    image: zookeeper:3.4.13
 #    restart: always
 #
-#  martin-redis:
-#    image: redis:4.0.10
-#    restart: always
-#    container_name: martin-redis
+  martin-redis:
+    image: redis:4.0.10
+    restart: always
+    container_name: martin-redis
 
   martin-cloud-eureka:
     build:
@@ -116,4 +116,35 @@ services:
       - martin-cloud-config
     entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
     command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-sso.jar"
+
+  martin-biz-swagger:
+    build:
+      context: ./
+      dockerfile: ./martin-biz/martin-biz-swagger/Dockerfile
+    restart: always
+    container_name: martin-biz-swagger
+    image: martin-biz-swagger
+    volumes:
+      - ./logs:/martin-biz-swagger/logs
+    depends_on:
+      - martin-cloud-eureka
+      - martin-cloud-config
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-swagger.jar"
+
+
+  martin-biz-system:
+    build:
+      context: ./
+      dockerfile: ./martin-biz/martin-biz-system/Dockerfile
+    restart: always
+    container_name: martin-biz-system
+    image: martin-biz-system
+    volumes:
+      - ./logs:/martin-biz-system/logs
+    depends_on:
+      - martin-cloud-eureka
+      - martin-cloud-config
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-system.jar"
 

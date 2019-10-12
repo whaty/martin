@@ -165,7 +165,7 @@
         <repository>
             <id>maven</id>
             <name>maven</name>
-            <url>https://repo1.maven.org/maven2/</url>
+            <url>http://repo1.maven.org/maven2/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>

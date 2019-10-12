@@ -5,7 +5,7 @@ spring:
   application:
     name: @project.artifactId@
   redis:
-    host: 127.0.0.1
+    host: martin-redis
     port: 6379
   # 配置中心
   cloud:

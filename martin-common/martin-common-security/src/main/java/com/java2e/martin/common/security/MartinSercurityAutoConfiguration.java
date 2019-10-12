@@ -23,6 +23,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -96,6 +97,19 @@ public class MartinSercurityAutoConfiguration extends ResourceServerConfigurerAd
         remoteTokenServices.setClientId(oAuth2ClientProperties.getClientId());
         remoteTokenServices.setClientSecret(oAuth2ClientProperties.getClientSecret());
         resources.tokenServices(remoteTokenServices);
+    }
+
+
+    @Override
+    public void addCorsMappings(CorsRegistry corsRegistry) {
+        // 允许跨域访问资源定义： /api/ 所有资源
+        corsRegistry.addMapping("/**")
+                // 只允许本地的9000端口访问
+                .allowedOrigins("http://localhost:8000", "http://127.0.0.1:8000")
+                // 允许发送Cookie
+                .allowCredentials(true)
+                // 允许所有方法
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD");
     }
 
     @Bean

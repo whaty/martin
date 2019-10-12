@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.swing.tree.TreeNode;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "树基类")
-public class BaseTree implements Serializable {
+public class BaseTreeNode implements Serializable {
 
     private static final long serialVersionUID = 7444637036085561618L;
 
@@ -36,9 +35,9 @@ public class BaseTree implements Serializable {
      * 名字必须为children，ant design pro  中的子节点都叫children
      */
     @ApiModelProperty(value = "子节点列表")
-    protected List<TreeNode> children = new ArrayList<TreeNode>();
+    protected List<BaseTreeNode> children = new ArrayList<BaseTreeNode>();
 
-    public void add(TreeNode node) {
+    public void add(BaseTreeNode node) {
         children.add(node);
     }
 }
