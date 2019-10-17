@@ -1,0 +1,17 @@
+import React, {Component} from 'react';
+import MartinCRUD from "@/components/MartinCRUD";
+import columns from './$!{entity}Columns';
+
+class $!{entity}  extends Component {
+
+  render() {
+    return <MartinCRUD
+      columns={columns}
+      modalPath='$!{package.ModuleName}/$!{entity}/$!{entity}Modal'
+      title='$!{table.comment}"'
+      content=''
+    />;
+  }
+}
+
+export default $!{entity} ;

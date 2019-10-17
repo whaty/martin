@@ -1,0 +1,71 @@
+import React, { PureComponent } from 'react'
+import { Form, Input, InputNumber, Modal as AntModal } from 'antd'
+
+const FormItem = Form.Item
+
+const formItemLayout = {
+  labelCol: {
+    span: 6,
+  },
+  wrapperCol: {
+    span: 14,
+  },
+}
+@Form.create()
+class Modal extends PureComponent {
+  handleOk = () => {
+  const { item = {}, onOk, form } = this.props
+const { validateFields, getFieldsValue } = form
+
+validateFields(errors => {
+  if (errors) {
+    return
+  }
+  const data = {
+...getFieldsValue(),
+        key: item.key,
+}
+onOk(data);
+})
+}
+
+
+render() {
+  const { item = {}, onOk,title, form, ...modalProps } = this.props
+  const { getFieldDecorator } = form
+
+  return (
+          <AntModal title={title} {...modalProps} onOk={this.handleOk}>
+            <Form  layout="horizontal">
+              <FormItem {...formItemLayout}>
+                {getFieldDecorator('id', {
+                  initialValue: item.id,
+                })(<Input type='hidden' />)}
+              </FormItem>
+            ## ----------  BEGIN 字段循环遍历  ----------
+              #foreach($field in ${table.fields})
+                #if("$!field.propertyName" != "id")
+                <FormItem label='$!{field.propertyName}' hasFeedback {...formItemLayout}>
+                  {getFieldDecorator('$!{field.propertyName}', {
+                    initialValue: item.$!{field.propertyName},
+                    rules: [
+                      {
+                      #if("$!{field.customMap.get('NULL')}" == "NO")
+                        required: true,
+                      #end
+                      },
+                    ],
+                  })(<Input />)}
+                </FormItem>
+                #end
+              #end
+
+            </Form>
+          </AntModal>
+  )
+}
+}
+
+
+export default Modal
+

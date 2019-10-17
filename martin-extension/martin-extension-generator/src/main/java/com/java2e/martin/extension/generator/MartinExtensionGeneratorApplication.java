@@ -1,5 +1,6 @@
 package com.java2e.martin.extension.generator;
 
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -12,6 +13,7 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.lang3.StringUtils;
@@ -54,7 +56,6 @@ public class MartinExtensionGeneratorApplication {
     }
 
 
-
     private static void codeGenerate() {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
@@ -62,7 +63,7 @@ public class MartinExtensionGeneratorApplication {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         //todo 修改输出路径
-        String projectPath = "C:\\idea_project\\martin\\martin-biz\\martin-biz-system";
+        String projectPath = "C:\\idea_project\\martin\\martin-extension\\martin-extension-generator\\";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setFileOverride(true);
         //todo 修改作者
@@ -86,14 +87,29 @@ public class MartinExtensionGeneratorApplication {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
+        dsc.setDbQuery(
+                new MySqlQuery() {
+
+                    /**
+                     * 重写父类预留查询自定义字段<br>
+                     * 这里查询的 SQL 对应父类 tableFieldsSql 的查询字段，默认不能满足你的需求请重写它<br>
+                     * 模板中调用：  table.fields 获取所有字段信息，
+                     * 然后循环字段获取 field.customMap 从 MAP 中获取注入字段如下  NULL 或者 PRIVILEGES
+                     */
+                    @Override
+                    public String[] fieldCustom() {
+                        return new String[]{"NULL", "PRIVILEGES"};
+                    }
+                }
+        );
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
         //module 会生成新的模块，每个module一个目录，下面包含controller、entity、service、mapper
-        pc.setModuleName("");
+        pc.setModuleName("System");
         //todo 修改包名
-        pc.setParent("com.java2e.martin.biz.system");
+        pc.setParent("com.java2e.martin.extension.generator");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -108,6 +124,9 @@ public class MartinExtensionGeneratorApplication {
         //String templatePath = "/templates/mapper.xml.ftl";
         // 如果模板引擎是 velocity
         String templatePath = "/templates/mapper.xml.vm";
+        String columnsPath = "/templates/ui/columns.js.vm";
+        String modalPath = "/templates/ui/Modal.js.vm";
+        String tablePath = "/templates/ui/Table.js.vm";
 //
 //        // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
@@ -120,6 +139,36 @@ public class MartinExtensionGeneratorApplication {
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
+        // 自定义配置会被优先输出
+        focList.add(new FileOutConfig(columnsPath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName()
+                        + "/" + tableInfo.getEntityName() + "Columns.js";
+            }
+        });
+        // 自定义配置会被优先输出
+        focList.add(new FileOutConfig(modalPath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName()
+                        + "/" + tableInfo.getEntityName() + "Modal.js";
+            }
+        });
+
+        // 自定义配置会被优先输出
+        focList.add(new FileOutConfig(tablePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName()
+                        + "/" + tableInfo.getEntityName() + ".js";
+            }
+        });
+
+
         /*
         cfg.setFileCreate(new IFileCreate() {
             @Override
@@ -152,15 +201,18 @@ public class MartinExtensionGeneratorApplication {
         strategy.setSuperEntityClass("");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
+        strategy.setTablePrefix("sys_");
+        strategy.setEntitySerialVersionUID(true);
+        strategy.setLogicDeleteFieldName("del_flag");
         // 公共父类
         strategy.setSuperControllerClass("");
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("");
         //todo 修改要生成的表名，多个英文逗号分割
-//        strategy.setInclude("sys_dept","sys_dept_role","sys_dept_user","sys_dict","sys_element","sys_file","sys_log","sys_menu","sys_operation","sys_privilege","sys_role","sys_role_privilege","sys_social_details","sys_user","sys_user_role");
-        strategy.setInclude("sys_dept","sys_dept_role","sys_dept_user","sys_dict","sys_element","sys_file","sys_log","sys_menu","sys_operation","sys_role","sys_role_privilege","sys_social_details","sys_user_role");
+        strategy.setInclude("sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role");
+//        strategy.setInclude("sys_menu");
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+//        strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         //mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
