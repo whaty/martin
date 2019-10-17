@@ -16,7 +16,7 @@ Date: 2019-10-09 11:43:35
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for oauth_client_details
+-- TableJs structure for oauth_client_details
 -- ----------------------------
 DROP TABLE IF EXISTS `oauth_client_details`;
 CREATE TABLE `oauth_client_details` (
@@ -47,7 +47,7 @@ INSERT INTO `oauth_client_details` VALUES ('3', 'client3', '{bcrypt}$2a$10$gESiy
 INSERT INTO `oauth_client_details` VALUES ('4', 'client4', '{bcrypt}$2a$10$gESiyFVZEXfaE9RWHoRhxOLxv7YKSg.n1bd0gWRqwZgGPcN2Rcn5i', null, 'select', 'implicit', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for sys_dept
+-- TableJs structure for sys_dept
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept`;
 CREATE TABLE `sys_dept` (
@@ -71,7 +71,7 @@ INSERT INTO `sys_dept` VALUES ('1', 'liangcan', null, null, null, '0', '2019-08-
 INSERT INTO `sys_dept` VALUES ('2', 'liangcan', null, null, null, '0', '2019-08-27 10:39:54', null, null, null);
 
 -- ----------------------------
--- Table structure for sys_dept_role
+-- TableJs structure for sys_dept_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept_role`;
 CREATE TABLE `sys_dept_role` (
@@ -94,7 +94,7 @@ CREATE TABLE `sys_dept_role` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_dept_user
+-- TableJs structure for sys_dept_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dept_user`;
 CREATE TABLE `sys_dept_user` (
@@ -117,7 +117,7 @@ CREATE TABLE `sys_dept_user` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_dict
+-- TableJs structure for sys_dict
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dict`;
 CREATE TABLE `sys_dict` (
@@ -149,7 +149,7 @@ INSERT INTO `sys_dict` VALUES ('3', '3', '3', 'flag_resource_status', '文件', 
 INSERT INTO `sys_dict` VALUES ('4', '4', '4', 'flag_resource_status', '页面元素', '4', null, '0', '0', '2019-09-12 16:40:59', '2019-09-12 16:40:59', null, null);
 
 -- ----------------------------
--- Table structure for sys_element
+-- TableJs structure for sys_element
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_element`;
 CREATE TABLE `sys_element` (
@@ -173,7 +173,7 @@ CREATE TABLE `sys_element` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_file
+-- TableJs structure for sys_file
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_file`;
 CREATE TABLE `sys_file` (
@@ -196,7 +196,7 @@ CREATE TABLE `sys_file` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_log
+-- TableJs structure for sys_log
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_log`;
 CREATE TABLE `sys_log` (
@@ -230,7 +230,7 @@ CREATE TABLE `sys_log` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_menu
+-- TableJs structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
@@ -300,14 +300,14 @@ INSERT INTO `sys_menu` VALUES ('42', '图形编辑器', 'editor', '/editor', '0'
 INSERT INTO `sys_menu` VALUES ('43', '流程编辑器', 'editorflow', '/editor/flow', '42', null, null, './Editor/GGEditor/Flow', '1', '0', '0', '2019-09-23 11:06:35', null, null, null);
 INSERT INTO `sys_menu` VALUES ('44', '脑图编辑器', 'editor-mind', '/editor/mind', '42', null, null, './Editor/GGEditor/Mind', '1', '0', '0', '2019-09-23 11:07:29', null, null, null);
 INSERT INTO `sys_menu` VALUES ('45', '拓扑编辑器', 'editor-koni', '/editor/koni', '42', null, null, './Editor/GGEditor/Koni', '1', '0', '0', '2019-09-23 11:08:19', null, null, null);
-INSERT INTO `sys_menu` VALUES ('46', '列表页面', 'table-table', '/table/table', '0', null, null, './Table/Table', '1', '0', '0', '2019-09-24 10:13:33', null, null, null);
+INSERT INTO `sys_menu` VALUES ('46', '列表页面', 'table-table', '/table/table', '0', null, null, './TableJs/TableJs', '1', '0', '0', '2019-09-24 10:13:33', null, null, null);
 INSERT INTO `sys_menu` VALUES ('47', '100', '12321', '100', '100', '100', '100', '312321', '100', '0', '0', '2019-09-29 11:21:34', null, null, null);
 INSERT INTO `sys_menu` VALUES ('49', '19', '恶趣味', '19', '19', '18', '18', '打', '19', '0', '0', '2019-09-29 11:25:36', null, null, null);
 INSERT INTO `sys_menu` VALUES ('50', '20', 'eqeq', '20', '20', '18', '20', 'eqwe', '20', '0', '0', '2019-09-29 11:31:49', null, null, null);
 INSERT INTO `sys_menu` VALUES ('51', '23', '绕弯儿', '20', '21', '22', '22', '4324', '18', '0', '0', '2019-09-29 15:46:35', null, null, null);
 
 -- ----------------------------
--- Table structure for sys_operation
+-- TableJs structure for sys_operation
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_operation`;
 CREATE TABLE `sys_operation` (
@@ -333,7 +333,7 @@ CREATE TABLE `sys_operation` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_privilege
+-- TableJs structure for sys_privilege
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_privilege`;
 CREATE TABLE `sys_privilege` (
@@ -359,7 +359,7 @@ CREATE TABLE `sys_privilege` (
 INSERT INTO `sys_privilege` VALUES ('1', '1', '1', '1', '0', '0', '2019-09-12 16:29:22', '2019-09-12 16:29:22', null, null);
 
 -- ----------------------------
--- Table structure for sys_role
+-- TableJs structure for sys_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
@@ -385,7 +385,7 @@ CREATE TABLE `sys_role` (
 INSERT INTO `sys_role` VALUES ('1', 'admin', 'admin', '1', '2', '1', '1', '0', '2019-09-12 16:22:22', null, null, null);
 
 -- ----------------------------
--- Table structure for sys_role_privilege
+-- TableJs structure for sys_role_privilege
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_privilege`;
 CREATE TABLE `sys_role_privilege` (
@@ -409,7 +409,7 @@ CREATE TABLE `sys_role_privilege` (
 INSERT INTO `sys_role_privilege` VALUES ('1', '1', '1', '2019-09-12 16:30:17', null, null, null);
 
 -- ----------------------------
--- Table structure for sys_social_details
+-- TableJs structure for sys_social_details
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_social_details`;
 CREATE TABLE `sys_social_details` (
@@ -433,7 +433,7 @@ CREATE TABLE `sys_social_details` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_user
+-- TableJs structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
@@ -473,7 +473,7 @@ INSERT INTO `sys_user` VALUES ('1', '1', '1', '1', '1', '1', '1', '1', '1', '1',
 INSERT INTO `sys_user` VALUES ('2', 'user1', '{bcrypt}$2a$10$vAxxCnKsa0MLdCLoP9A2UOsBMdsVLOaodDIezhtyFhkLdLilo6Mce', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '0', '2019-09-18 15:01:37', null, null, null);
 
 -- ----------------------------
--- Table structure for sys_user_role
+-- TableJs structure for sys_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (

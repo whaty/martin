@@ -19,7 +19,7 @@ SET NAMES utf8;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
---  Table structure for `ACT_EVT_LOG`
+--  TableJs structure for `ACT_EVT_LOG`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_EVT_LOG`;
 CREATE TABLE `ACT_EVT_LOG` (
@@ -39,7 +39,7 @@ CREATE TABLE `ACT_EVT_LOG` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_GE_BYTEARRAY`
+--  TableJs structure for `ACT_GE_BYTEARRAY`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_GE_BYTEARRAY`;
 CREATE TABLE `ACT_GE_BYTEARRAY` (
@@ -62,7 +62,7 @@ INSERT INTO `ACT_GE_BYTEARRAY` VALUES ('12510', '1', '请教流程.bpmn20.xml', 
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_GE_PROPERTY`
+--  TableJs structure for `ACT_GE_PROPERTY`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_GE_PROPERTY`;
 CREATE TABLE `ACT_GE_PROPERTY` (
@@ -80,7 +80,7 @@ INSERT INTO `ACT_GE_PROPERTY` VALUES ('next.dbid', '32501', '14'), ('schema.hist
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_HI_ACTINST`
+--  TableJs structure for `ACT_HI_ACTINST`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_ACTINST`;
 CREATE TABLE `ACT_HI_ACTINST` (
@@ -113,7 +113,7 @@ INSERT INTO `ACT_HI_ACTINST` VALUES ('30106', 'LeaveBill:1:30104', '30105', '301
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_HI_ATTACHMENT`
+--  TableJs structure for `ACT_HI_ATTACHMENT`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_ATTACHMENT`;
 CREATE TABLE `ACT_HI_ATTACHMENT` (
@@ -132,7 +132,7 @@ CREATE TABLE `ACT_HI_ATTACHMENT` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_HI_COMMENT`
+--  TableJs structure for `ACT_HI_COMMENT`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_COMMENT`;
 CREATE TABLE `ACT_HI_COMMENT` (
@@ -156,7 +156,7 @@ INSERT INTO `ACT_HI_COMMENT` VALUES ('30111', 'comment', '2018-12-18 22:52:05.80
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_HI_DETAIL`
+--  TableJs structure for `ACT_HI_DETAIL`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_DETAIL`;
 CREATE TABLE `ACT_HI_DETAIL` (
@@ -184,7 +184,7 @@ CREATE TABLE `ACT_HI_DETAIL` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_HI_IDENTITYLINK`
+--  TableJs structure for `ACT_HI_IDENTITYLINK`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_IDENTITYLINK`;
 CREATE TABLE `ACT_HI_IDENTITYLINK` (
@@ -208,7 +208,7 @@ INSERT INTO `ACT_HI_IDENTITYLINK` VALUES ('30109', null, 'candidate', 'admin', '
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_HI_PROCINST`
+--  TableJs structure for `ACT_HI_PROCINST`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_PROCINST`;
 CREATE TABLE `ACT_HI_PROCINST` (
@@ -240,7 +240,7 @@ INSERT INTO `ACT_HI_PROCINST` VALUES ('30105', '30105', 'LeaveBill_6', 'LeaveBil
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_HI_TASKINST`
+--  TableJs structure for `ACT_HI_TASKINST`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_TASKINST`;
 CREATE TABLE `ACT_HI_TASKINST` (
@@ -276,7 +276,7 @@ INSERT INTO `ACT_HI_TASKINST` VALUES ('30108', 'LeaveBill:1:30104', 'user', '301
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_HI_VARINST`
+--  TableJs structure for `ACT_HI_VARINST`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_HI_VARINST`;
 CREATE TABLE `ACT_HI_VARINST` (
@@ -308,7 +308,7 @@ INSERT INTO `ACT_HI_VARINST` VALUES ('30112', '30105', '30105', null, 'days', 'i
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_ID_GROUP`
+--  TableJs structure for `ACT_ID_GROUP`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_ID_GROUP`;
 CREATE TABLE `ACT_ID_GROUP` (
@@ -320,7 +320,7 @@ CREATE TABLE `ACT_ID_GROUP` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_ID_INFO`
+--  TableJs structure for `ACT_ID_INFO`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_ID_INFO`;
 CREATE TABLE `ACT_ID_INFO` (
@@ -336,7 +336,7 @@ CREATE TABLE `ACT_ID_INFO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_ID_MEMBERSHIP`
+--  TableJs structure for `ACT_ID_MEMBERSHIP`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_ID_MEMBERSHIP`;
 CREATE TABLE `ACT_ID_MEMBERSHIP` (
@@ -349,7 +349,7 @@ CREATE TABLE `ACT_ID_MEMBERSHIP` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_ID_USER`
+--  TableJs structure for `ACT_ID_USER`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_ID_USER`;
 CREATE TABLE `ACT_ID_USER` (
@@ -364,7 +364,7 @@ CREATE TABLE `ACT_ID_USER` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_PROCDEF_INFO`
+--  TableJs structure for `ACT_PROCDEF_INFO`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_PROCDEF_INFO`;
 CREATE TABLE `ACT_PROCDEF_INFO` (
@@ -381,7 +381,7 @@ CREATE TABLE `ACT_PROCDEF_INFO` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_RE_DEPLOYMENT`
+--  TableJs structure for `ACT_RE_DEPLOYMENT`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RE_DEPLOYMENT`;
 CREATE TABLE `ACT_RE_DEPLOYMENT` (
@@ -401,7 +401,7 @@ INSERT INTO `ACT_RE_DEPLOYMENT` VALUES ('12509', '请教流程', null, '1', '201
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_RE_MODEL`
+--  TableJs structure for `ACT_RE_MODEL`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RE_MODEL`;
 CREATE TABLE `ACT_RE_MODEL` (
@@ -435,7 +435,7 @@ INSERT INTO `ACT_RE_MODEL` VALUES ('1', '13', '请假流程', 'LeaveBill', 'Leav
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_RE_PROCDEF`
+--  TableJs structure for `ACT_RE_PROCDEF`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RE_PROCDEF`;
 CREATE TABLE `ACT_RE_PROCDEF` (
@@ -465,7 +465,7 @@ INSERT INTO `ACT_RE_PROCDEF` VALUES ('LeaveBill:1:30104', '2', 'LeaveBill', 'Lea
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_RU_EVENT_SUBSCR`
+--  TableJs structure for `ACT_RU_EVENT_SUBSCR`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_EVENT_SUBSCR`;
 CREATE TABLE `ACT_RU_EVENT_SUBSCR` (
@@ -487,7 +487,7 @@ CREATE TABLE `ACT_RU_EVENT_SUBSCR` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_RU_EXECUTION`
+--  TableJs structure for `ACT_RU_EXECUTION`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_EXECUTION`;
 CREATE TABLE `ACT_RU_EXECUTION` (
@@ -528,7 +528,7 @@ INSERT INTO `ACT_RU_EXECUTION` VALUES ('30105', '3', '30105', 'LeaveBill_6', nul
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_RU_IDENTITYLINK`
+--  TableJs structure for `ACT_RU_IDENTITYLINK`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_IDENTITYLINK`;
 CREATE TABLE `ACT_RU_IDENTITYLINK` (
@@ -559,7 +559,7 @@ INSERT INTO `ACT_RU_IDENTITYLINK` VALUES ('30110', '1', null, 'participant', 'ad
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_RU_JOB`
+--  TableJs structure for `ACT_RU_JOB`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_JOB`;
 CREATE TABLE `ACT_RU_JOB` (
@@ -586,7 +586,7 @@ CREATE TABLE `ACT_RU_JOB` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
---  Table structure for `ACT_RU_TASK`
+--  TableJs structure for `ACT_RU_TASK`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_TASK`;
 CREATE TABLE `ACT_RU_TASK` (
@@ -627,7 +627,7 @@ INSERT INTO `ACT_RU_TASK` VALUES ('30119', '1', '30105', '30105', 'LeaveBill:1:3
 COMMIT;
 
 -- ----------------------------
---  Table structure for `ACT_RU_VARIABLE`
+--  TableJs structure for `ACT_RU_VARIABLE`
 -- ----------------------------
 DROP TABLE IF EXISTS `ACT_RU_VARIABLE`;
 CREATE TABLE `ACT_RU_VARIABLE` (
@@ -661,7 +661,7 @@ INSERT INTO `ACT_RU_VARIABLE` VALUES ('30112', '1', 'integer', 'days', '30105', 
 COMMIT;
 
 -- ----------------------------
---  Table structure for `oa_leave_bill`
+--  TableJs structure for `oa_leave_bill`
 -- ----------------------------
 DROP TABLE IF EXISTS `oa_leave_bill`;
 CREATE TABLE `oa_leave_bill` (

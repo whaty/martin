@@ -19,7 +19,7 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for zipkin_annotations
+-- TableJs structure for zipkin_annotations
 -- ----------------------------
 DROP TABLE IF EXISTS `zipkin_annotations`;
 CREATE TABLE `zipkin_annotations`  (
@@ -44,7 +44,7 @@ CREATE TABLE `zipkin_annotations`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compressed;
 
 -- ----------------------------
--- Table structure for zipkin_dependencies
+-- TableJs structure for zipkin_dependencies
 -- ----------------------------
 DROP TABLE IF EXISTS `zipkin_dependencies`;
 CREATE TABLE `zipkin_dependencies`  (
@@ -57,7 +57,7 @@ CREATE TABLE `zipkin_dependencies`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compressed;
 
 -- ----------------------------
--- Table structure for zipkin_spans
+-- TableJs structure for zipkin_spans
 -- ----------------------------
 DROP TABLE IF EXISTS `zipkin_spans`;
 CREATE TABLE `zipkin_spans`  (

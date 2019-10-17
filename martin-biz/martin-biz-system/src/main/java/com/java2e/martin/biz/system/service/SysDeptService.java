@@ -2,6 +2,7 @@ package com.java2e.martin.biz.system.service;
 
 import com.java2e.martin.common.bean.system.SysDept;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author liangcan
  * @since 2019-09-19
  */
+@Transactional(rollbackFor = Exception.class)
 public interface SysDeptService extends IService<SysDept> {
 
 }
