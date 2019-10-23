@@ -1,9 +1,9 @@
 package com.java2e.martin.common.bean.util;
 
-import com.java2e.martin.common.bean.system.SysMenu;
+import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.dto.BaseTreeNode;
+import com.java2e.martin.common.bean.system.dto.MenuConverter;
 import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
-import com.java2e.martin.common.bean.system.dto.SysMenuConverter;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
@@ -76,8 +76,8 @@ public class TreeUtil {
      * @param root
      * @return
      */
-    public List<MenuTreeNode> buildByRecursive(List<SysMenu> menus, int root) {
-        List<MenuTreeNode> menuTreeNodes = SysMenuConverter.INSTANCE.po2dto(menus);
+    public List<MenuTreeNode> buildByRecursive(List<Menu> menus, int root) {
+        List<MenuTreeNode> menuTreeNodes = MenuConverter.INSTANCE.po2dto(menus);
         return TreeUtil.buildByRecursive(menuTreeNodes, root);
     }
 
@@ -107,8 +107,8 @@ public class TreeUtil {
      * @param root
      * @return
      */
-    public List<MenuTreeNode> buildTree(List<SysMenu> menus, int root) {
-        List<MenuTreeNode> menuTreeNodes = SysMenuConverter.INSTANCE.po2dto(menus);
+    public List<MenuTreeNode> buildTree(List<Menu> menus, int root) {
+        List<MenuTreeNode> menuTreeNodes = MenuConverter.INSTANCE.po2dto(menus);
         return TreeUtil.build(menuTreeNodes, root);
     }
 }

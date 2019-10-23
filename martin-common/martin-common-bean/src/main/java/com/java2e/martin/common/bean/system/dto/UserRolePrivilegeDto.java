@@ -1,6 +1,6 @@
 package com.java2e.martin.common.bean.system.dto;
 
-import com.java2e.martin.common.bean.system.SysUser;
+import com.java2e.martin.common.bean.system.User;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -20,7 +20,7 @@ public class UserRolePrivilegeDto implements Serializable {
     /**
      * 当前用户所有信息
      */
-    private SysUser sysUser;
+    private User user;
 
     /**
      * 角色信息

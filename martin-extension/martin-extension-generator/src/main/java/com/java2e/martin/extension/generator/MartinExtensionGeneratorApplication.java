@@ -63,7 +63,7 @@ public class MartinExtensionGeneratorApplication {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         //todo 修改输出路径
-        String projectPath = "C:\\idea_project\\martin\\martin-extension\\martin-extension-generator\\";
+        String projectPath = "C:\\idea_project\\martin\\martin-biz\\martin-biz-system";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setFileOverride(true);
         //todo 修改作者
@@ -107,9 +107,9 @@ public class MartinExtensionGeneratorApplication {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //module 会生成新的模块，每个module一个目录，下面包含controller、entity、service、mapper
-        pc.setModuleName("System");
+        pc.setModuleName("system");
         //todo 修改包名
-        pc.setParent("com.java2e.martin.extension.generator");
+        pc.setParent("com.java2e.martin.biz");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -144,7 +144,8 @@ public class MartinExtensionGeneratorApplication {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName()
+
+                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
                         + "/" + tableInfo.getEntityName() + "Columns.js";
             }
         });
@@ -153,7 +154,7 @@ public class MartinExtensionGeneratorApplication {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName()
+                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
                         + "/" + tableInfo.getEntityName() + "Modal.js";
             }
         });
@@ -163,7 +164,7 @@ public class MartinExtensionGeneratorApplication {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName()
+                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
                         + "/" + tableInfo.getEntityName() + ".js";
             }
         });

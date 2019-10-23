@@ -7,9 +7,10 @@ class $!{entity}  extends Component {
   render() {
     return <MartinCRUD
       columns={columns}
-      modalPath='$!{package.ModuleName}/$!{entity}/$!{entity}Modal'
+      modalPath='$!{package.ModuleName.substring(0,1).toUpperCase()}$!{package.ModuleName.substring(1)}/$!{entity}/$!{entity}Modal'
       title='$!{table.comment}"'
       content=''
+      url='/$!{package.ModuleName}/$!{table.entityPath}/'
     />;
   }
 }

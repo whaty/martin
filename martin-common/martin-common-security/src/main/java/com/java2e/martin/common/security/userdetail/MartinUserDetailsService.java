@@ -2,7 +2,7 @@ package com.java2e.martin.common.security.userdetail;
 
 import cn.hutool.core.util.StrUtil;
 import com.java2e.martin.common.api.system.RemoteSystem;
-import com.java2e.martin.common.bean.system.SysUser;
+import com.java2e.martin.common.bean.system.User;
 import com.java2e.martin.common.bean.system.dto.UserRolePrivilegeDto;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
@@ -55,7 +55,7 @@ public class MartinUserDetailsService implements UserDetailsService {
             log.error("{}", ApiErrorCode.USERNOTFIND);
             throw new StatefulException(ApiErrorCode.USERNOTFIND);
         }
-        SysUser sysUser = userRolePrivilegeDto.getSysUser();
+        User sysUser = userRolePrivilegeDto.getUser();
 
         Set<String> authoritySet = userRolePrivilegeDto.getAuthoritySet();
         log.debug("authoritySet : {}", authoritySet);

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java2e.martin.biz.system.mapper.PrivilegeMapper">
+
+    <select id="getPrivilegeByRoles" resultType="java.lang.String">
+        SELECT
+        m.authority
+        FROM
+        sys_role_privilege rp
+        INNER JOIN sys_role r ON rp.role_id = r.id
+        INNER JOIN sys_privilege p ON rp.privilege_id = p.id
+        INNER JOIN sys_dict d on p.dict_id=d.id and d.type='flag_resource_status' and d.value='1'
+        LEFT JOIN sys_menu m on p.resource_id=m.id
+        WHERE
+        r.id IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item.roleId}
+        </foreach>
+        UNION
+        SELECT
+        o.authority
+        FROM
+        sys_role_privilege rp
+        INNER JOIN sys_role r ON rp.role_id = r.id
+        INNER JOIN sys_privilege p ON rp.privilege_id = p.id
+        INNER JOIN sys_dict d on p.dict_id=d.id and d.type='flag_resource_status' and d.value='2'
+        LEFT JOIN sys_operation o on p.resource_id=o.id
+        WHERE
+        r.id IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item.roleId}
+        </foreach>
+        UNION
+        SELECT
+        f.authority
+        FROM
+        sys_role_privilege rp
+        INNER JOIN sys_role r ON rp.role_id = r.id
+        INNER JOIN sys_privilege p ON rp.privilege_id = p.id
+        INNER JOIN sys_dict d on p.dict_id=d.id and d.type='flag_resource_status' and d.value='3'
+        LEFT JOIN sys_file f on p.resource_id=f.id
+        WHERE
+        r.id IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item.roleId}
+        </foreach>
+        UNION
+        SELECT
+        e.authority
+        FROM
+        sys_role_privilege rp
+        INNER JOIN sys_role r ON rp.role_id = r.id
+        INNER JOIN sys_privilege p ON rp.privilege_id = p.id
+        INNER JOIN sys_dict d on p.dict_id=d.id and d.type='flag_resource_status' and d.value='4'
+        LEFT JOIN sys_element e on p.resource_id=e.id
+        WHERE
+        r.id IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item.roleId}
+        </foreach>
+
+    </select>
+</mapper>

@@ -45,7 +45,7 @@ render() {
             ## ----------  BEGIN 字段循环遍历  ----------
               #foreach($field in ${table.fields})
                 #if("$!field.propertyName" != "id")
-                <FormItem label='$!{field.propertyName}' hasFeedback {...formItemLayout}>
+                <FormItem label='$!{field.comment}' hasFeedback {...formItemLayout}>
                   {getFieldDecorator('$!{field.propertyName}', {
                     initialValue: item.$!{field.propertyName},
                     rules: [
