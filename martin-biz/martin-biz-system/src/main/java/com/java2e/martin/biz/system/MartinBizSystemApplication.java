@@ -21,12 +21,4 @@ public class MartinBizSystemApplication {
         SpringApplication.run(MartinBizSystemApplication.class, args);
     }
 
-    /**
-     * 分页插件
-     */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
-    }
-
 }

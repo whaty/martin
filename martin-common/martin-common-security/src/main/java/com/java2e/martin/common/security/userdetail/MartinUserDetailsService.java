@@ -18,6 +18,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Set;
@@ -29,6 +30,7 @@ import java.util.Set;
  * @Describtion: MartinUserDetailsService
  */
 @Slf4j
+@Service
 public class MartinUserDetailsService implements UserDetailsService {
     @Autowired
     private RemoteSystem remoteSystem;
@@ -42,18 +44,17 @@ public class MartinUserDetailsService implements UserDetailsService {
      */
     @Override
     @SneakyThrows
-    @Cacheable(value = CacheConstants.USER_DETAILS, key = "#username", unless = "#result == null")
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public MartinUser loadUserByUsername(String username) throws UsernameNotFoundException {
         R<UserRolePrivilegeDto> r = remoteSystem.loadUserByUsername(username);
         return getUserDetails(r);
     }
 
-    private UserDetails getUserDetails(R<UserRolePrivilegeDto> r) {
+    private MartinUser getUserDetails(R<UserRolePrivilegeDto> r) {
         UserRolePrivilegeDto userRolePrivilegeDto = r.getData();
         log.debug("loadUserByUsername :{},{}", r.getCode(), r.getMsg());
         if (null == userRolePrivilegeDto) {
-            log.error("{}", ApiErrorCode.USERNOTFIND);
-            throw new StatefulException(ApiErrorCode.USERNOTFIND);
+            log.error("{}", ApiErrorCode.USER_NOT_FOUND);
+            throw new StatefulException(ApiErrorCode.USER_NOT_FOUND);
         }
         User sysUser = userRolePrivilegeDto.getUser();
 

@@ -11,13 +11,15 @@ public enum ApiErrorCode implements IErrorCode {
 
     SUCCESS(200, "操作成功"),
 
-    FORBIDEN(403, "禁止操作"),
+    UNAUTHORIZED(401, "未经授权的操作"),
 
-    USERNOTFIND(9404001, "查无此用户"),
+    FORBIDDEN(403, "禁止操作"),
 
-    ROLENOTFIND(9404002, "用户未分配角色"),
+    USER_NOT_FOUND(9404001, "查无此用户"),
 
-    PRIVILEGENOTFIND(9404003, "用户未授权");
+    ROLE_NOT_FOUND(9404002, "用户未分配角色"),
+
+    PRIVILEGE_NOT_FOUND(9404003, "用户未授权");
 
 
 

@@ -26,7 +26,7 @@ public interface RemoteSystem {
      * @param username
      * @return
      */
-    @GetMapping("/sys-user/loadUserByUsername/{username}")
+    @GetMapping("/user/loadUserByUsername/{username}")
     R<UserRolePrivilegeDto> loadUserByUsername(@PathVariable("username") String username);
 
     /**

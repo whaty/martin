@@ -1,6 +1,7 @@
 package com.java2e.martin.biz.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -103,7 +105,7 @@ public class DeptController {
      */
     @MartinLog("分页查询系统部门")
     @PostMapping("/page")
-//    @PreAuthorize("hasAuthority('sys_dept_page')")
+    @PreAuthorize("hasAuthority('sys_dept_page')")
     public R<IPage> getPage(@RequestBody Map params) {
         Page page = new Page();
         Dept dept  = new Dept();
@@ -116,7 +118,6 @@ public class DeptController {
         }
         return R.ok(deptService.page(page, Wrappers.query(dept)));
     }
-
 
 }
 

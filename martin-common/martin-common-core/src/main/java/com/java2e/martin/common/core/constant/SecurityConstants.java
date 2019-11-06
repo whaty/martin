@@ -10,6 +10,9 @@ public final class SecurityConstants {
     private SecurityConstants() {
     }
 
+    public static final String MARTIN_ROUTES = "routes";
+    public static final String AUTHORITIES = "authorities";
+
     /**
      * 刷新
      */
@@ -115,25 +118,25 @@ public final class SecurityConstants {
     /**
      * 用户ID字段
      */
-    public static final String DETAILS_USER_ID = "user_id";
+    public static final String TOKEN_USER_ID = "user_id";
 
     /**
      * 用户名字段
      */
-    public static final String DETAILS_USERNAME = "username";
+    public static final String TOKEN_USERNAME = "username";
 
     /**
      * 用户部门字段
      */
-    public static final String DETAILS_DEPT_ID = "dept_id";
+    public static final String TOKEN_DEPT_ID = "dept_id";
 
     /**
      * 租户ID 字段
      */
-    public static final String DETAILS_TENANT_ID = "tenant_id";
+    public static final String TOKEN_TENANT_ID = "tenant_id";
 
     /**
      * 协议字段
      */
-    public static final String DETAILS_LICENSE = "license";
+    public static final String TOKEN_LICENSE = "license";
 }

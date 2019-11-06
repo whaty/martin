@@ -70,6 +70,24 @@ public class TreeUtil {
     }
 
     /**
+     * 递归获取所有路由信息
+     *
+     * @param treeNodes 所有路由
+     * @param root      父节点
+     * @param <T>
+     * @return
+     */
+    public <T extends BaseTreeNode> List<T> buildRoutesByRecursive(List<T> treeNodes, Object root) {
+        List<T> trees = new ArrayList<T>();
+        for (T treeNode : treeNodes) {
+            if (root.equals(treeNode.getParentId())) {
+                trees.add(findRoutes(treeNode, treeNodes));
+            }
+        }
+        return trees;
+    }
+
+    /**
      * 通过sysMenu集合创建树形节点
      *
      * @param menus
@@ -79,6 +97,18 @@ public class TreeUtil {
     public List<MenuTreeNode> buildByRecursive(List<Menu> menus, int root) {
         List<MenuTreeNode> menuTreeNodes = MenuConverter.INSTANCE.po2dto(menus);
         return TreeUtil.buildByRecursive(menuTreeNodes, root);
+    }
+
+    /**
+     * 通过sysMenu集合创建树形路由
+     *
+     * @param menus
+     * @param root
+     * @return
+     */
+    public List<MenuTreeNode> buildRoutesByRecursive(List<Menu> menus, int root) {
+        List<MenuTreeNode> menuTreeNodes = MenuConverter.INSTANCE.po2dto(menus);
+        return TreeUtil.buildRoutesByRecursive(menuTreeNodes, root);
     }
 
     /**
@@ -98,6 +128,25 @@ public class TreeUtil {
         }
         return treeNode;
     }
+
+    /**
+     * 递归查找子路由
+     *
+     * @param treeNodes
+     * @return
+     */
+    public <T extends BaseTreeNode> T findRoutes(T treeNode, List<T> treeNodes) {
+        for (T it : treeNodes) {
+            if (treeNode.getId() == it.getParentId()) {
+                if (treeNode.getRoutes() == null) {
+                    treeNode.setRoutes(new ArrayList<>());
+                }
+                treeNode.addRoutes(findRoutes(it, treeNodes));
+            }
+        }
+        return treeNode;
+    }
+
 
 
     /**

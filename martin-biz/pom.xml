@@ -28,6 +28,10 @@
     <dependencies>
         <dependency>
             <groupId>com.java2e</groupId>
+            <artifactId>martin-common-data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.java2e</groupId>
             <artifactId>martin-common-security</artifactId>
         </dependency>
         <dependency>
@@ -91,17 +95,8 @@
             <artifactId>spring-security-oauth2</artifactId>
         </dependency>
         <!--业务模块都加安全验证 end-->
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>

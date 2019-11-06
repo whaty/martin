@@ -69,7 +69,7 @@ public class FeignInnerInterceptor extends HandlerInterceptorAdapter {
         String martinInner = request.getHeader(SecurityConstants.MARTIN_INNER);
         log.debug("martin-inner secret:{}", martinInner);
         if (null == martinInner || !martinInner.equals(secret)) {
-            log.error("{}", R.failed(ApiErrorCode.FORBIDEN));
+            log.error("{}", R.failed(ApiErrorCode.FORBIDDEN));
             response.sendError(403);
             return false;
         } else {

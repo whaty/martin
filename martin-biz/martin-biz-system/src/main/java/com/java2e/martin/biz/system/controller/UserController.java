@@ -138,18 +138,18 @@ public class UserController {
         User user = userService.getOne(Wrappers.<User>query().lambda().eq(User::getUsername, username));
         log.debug("{}", Convert.toStr(user));
         if (null == user) {
-            return R.failed(ApiErrorCode.USERNOTFIND);
+            return R.failed(ApiErrorCode.USER_NOT_FOUND);
         }
         userRolePrivilegeDto.setUser(user);
         List<UserRole> roleList = userRoleService.list(Wrappers.<UserRole>query().lambda().eq(UserRole::getUserId, user.getId()));
         if (CollectionUtil.isEmpty(roleList)) {
-            log.error("{}", R.failed(ApiErrorCode.ROLENOTFIND));
-            return R.failed(ApiErrorCode.ROLENOTFIND);
+            log.error("{}", R.failed(ApiErrorCode.ROLE_NOT_FOUND));
+            return R.failed(ApiErrorCode.ROLE_NOT_FOUND);
         }
         Set<String> authoritySet = privilegeService.getPrivilegeByRoles(roleList);
         if (CollectionUtil.isEmpty(authoritySet)) {
-            log.error("{}", R.failed(ApiErrorCode.PRIVILEGENOTFIND));
-            return R.failed(ApiErrorCode.PRIVILEGENOTFIND);
+            log.error("{}", R.failed(ApiErrorCode.PRIVILEGE_NOT_FOUND));
+            return R.failed(ApiErrorCode.PRIVILEGE_NOT_FOUND);
         }
         userRolePrivilegeDto.setAuthoritySet(authoritySet);
         return R.ok(userRolePrivilegeDto);

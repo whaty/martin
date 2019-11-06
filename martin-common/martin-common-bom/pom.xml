@@ -147,6 +147,12 @@
 
             <dependency>
                 <groupId>com.java2e</groupId>
+                <artifactId>martin-common-data</artifactId>
+                <version>${martin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.java2e</groupId>
                 <artifactId>martin-common-feign</artifactId>
                 <version>${martin.version}</version>
             </dependency>

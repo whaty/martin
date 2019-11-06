@@ -1,7 +1,7 @@
 package com.java2e.martin.extension.generator;
 
-import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -12,16 +12,16 @@ import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
+import com.baomidou.mybatisplus.generator.config.po.TableField;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -34,6 +34,7 @@ public class MartinExtensionGeneratorApplication {
 
     public static void main(String[] args) {
         codeGenerate();
+//        printMenuSql();
     }
 
     /**
@@ -63,7 +64,7 @@ public class MartinExtensionGeneratorApplication {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         //todo 修改输出路径
-        String projectPath = "C:\\idea_project\\martin\\martin-biz\\martin-biz-system";
+        String projectPath = "C:\\idea_project\\martin\\martin-extension\\martin-extension-generator";
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setFileOverride(true);
         //todo 修改作者
@@ -127,6 +128,7 @@ public class MartinExtensionGeneratorApplication {
         String columnsPath = "/templates/ui/columns.js.vm";
         String modalPath = "/templates/ui/Modal.js.vm";
         String tablePath = "/templates/ui/Table.js.vm";
+        String sqlPath = "/templates/ui/Table.sql.vm";
 //
 //        // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
@@ -165,9 +167,18 @@ public class MartinExtensionGeneratorApplication {
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
-                        + "/" + tableInfo.getEntityName() + ".js";
+                        + "/" + "index.js";
             }
         });
+
+        // 自定义配置会被优先输出
+        focList.add(new FileOutConfig(sqlPath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "Table.sql";
+            }
+        });
+
 
 
         /*
@@ -210,12 +221,65 @@ public class MartinExtensionGeneratorApplication {
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("");
         //todo 修改要生成的表名，多个英文逗号分割
-        strategy.setInclude("sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role");
+        String[] tables = {"sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role"};
+        strategy.setInclude(tables);
+        System.out.println("========menuSql========");
+        printMenuSql(tables);
+        System.out.println("========================");
+        System.out.println("========operateSql======");
+        printOperateSql(tables);
+        System.out.println("========================");
 //        strategy.setInclude("sys_menu");
         strategy.setControllerMappingHyphenStyle(true);
 //        strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
         //mpg.setTemplateEngine(new FreemarkerTemplateEngine());
+        ArrayList<TableFill> tableFills = new ArrayList<>();
+        tableFills.add(new TableFill("creator", FieldFill.INSERT));
+        tableFills.add(new TableFill("updater", FieldFill.UPDATE));
+        tableFills.add(new TableFill("update_time", FieldFill.UPDATE));
+        strategy.setTableFillList(tableFills);
         mpg.execute();
     }
+
+    private static void printOperateSql(String[] tables) {
+        if (tables.length <= 0) {
+            return;
+        }
+        String sql = "INSERT INTO sys_operation ( name, authority,parent_id) VALUES ('{}', '{}','0');";
+        Arrays.asList(tables).stream().forEach(s -> {
+            String[] operate = {"add","del","edit","get","page","deleteBatch"};
+            Arrays.asList(operate).forEach(s1 -> System.out.println(StrUtil.format(sql, s + "_" + s1, s + "_" + s1)));
+        });
+    }
+
+    public static void printMenuSql(String[] tables ) {
+//        String[] tables = {"sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role"};
+        if (tables.length <= 0) {
+            return;
+        }
+        String childSql = "INSERT INTO sys_menu ( name, authority, path,component, sort) VALUES ( '{}', '{}', '{}', './System/{}/index',1);";
+        String parentSql = "INSERT INTO sys_menu ( name, authority, path) VALUES ( '{}', '{}', '{}');";
+        System.out.println(StrUtil.format(parentSql,"system","system","/system"));
+        Arrays.asList(tables).stream()
+                .map(s -> StrUtil.format(childSql, getSysCamel(s, "sys_"),"system-"+ getSysAuth(s, "sys_"),"/system/"+ getSysUrl(s, "sys_"),StrUtil.upperFirst(getSysCamel(s, "sys_"))))
+                .forEach(s -> System.out.println(s));
+    }
+
+    private static String getSys(String s, String sys_) {
+        return StrUtil.subAfter(s, sys_, true);
+    }
+
+    private static String getSysCamel(String s, String sys_) {
+        return StrUtil.toCamelCase(getSys(s, sys_));
+    }
+
+    private static String getSysAuth(String s, String sys_) {
+        return StrUtil.subAfter(s, sys_, true).replace("_","-");
+    }
+
+    private static String getSysUrl(String s, String sys_) {
+        return StrUtil.subAfter(s, sys_, true).replace("_","");
+    }
+
 }

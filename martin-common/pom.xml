@@ -24,6 +24,7 @@
         <module>martin-common-api</module>
         <module>martin-common-log</module>
         <module>martin-common-bean</module>
+        <module>martin-common-data</module>
     </modules>
 
 </project>

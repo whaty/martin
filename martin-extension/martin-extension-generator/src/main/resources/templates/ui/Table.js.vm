@@ -8,9 +8,9 @@ class $!{entity}  extends Component {
     return <MartinCRUD
       columns={columns}
       modalPath='$!{package.ModuleName.substring(0,1).toUpperCase()}$!{package.ModuleName.substring(1)}/$!{entity}/$!{entity}Modal'
-      title='$!{table.comment}"'
+      title='$!{table.comment}'
       content=''
-      url='/$!{package.ModuleName}/$!{table.entityPath}/'
+      url='/$!{package.ModuleName}/$!{controllerMappingHyphen}/'
     />;
   }
 }

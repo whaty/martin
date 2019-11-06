@@ -3,5 +3,5 @@ security:
     client:
       ignore-urls:
         - /client/test
-        - /sys-user/loadUserByUsername/*
+        - /user/loadUserByUsername/*
         - /**

@@ -6,6 +6,7 @@ import com.java2e.martin.common.security.component.PermitAllUrlProperties;
 import com.java2e.martin.common.security.component.RemoteTokenServiceProperties;
 import com.java2e.martin.common.security.interceptor.FeignInnerInterceptor;
 import com.java2e.martin.common.security.interceptor.MartinOAuth2FeignRequestInterceptor;
+import com.java2e.martin.common.security.provider.token.MartinUserAuthenticationConverter;
 import feign.RequestInterceptor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,9 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
+import org.springframework.security.oauth2.provider.token.UserAuthenticationConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -83,6 +86,8 @@ public class MartinSercurityAutoConfiguration extends ResourceServerConfigurerAd
      * url认证必须配置以下几项：   checkTokenEndpointUrl;  clientId; clientSecret;
      * <p>
      * RemoteTokenServices 会加重认证副武器的压力，因为每个请求都会去认证
+     * <p>
+     * 还有一种jwt认证方式，虽然可以减少开销，但是也会带来安全性问题
      *
      * @param resources
      */
@@ -96,6 +101,10 @@ public class MartinSercurityAutoConfiguration extends ResourceServerConfigurerAd
         remoteTokenServices.setCheckTokenEndpointUrl(resourceServerProperties.getTokenInfoUri());
         remoteTokenServices.setClientId(oAuth2ClientProperties.getClientId());
         remoteTokenServices.setClientSecret(oAuth2ClientProperties.getClientSecret());
+        DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
+        UserAuthenticationConverter userTokenConverter = new MartinUserAuthenticationConverter();
+        accessTokenConverter.setUserTokenConverter(userTokenConverter);
+        remoteTokenServices.setAccessTokenConverter(accessTokenConverter);
         resources.tokenServices(remoteTokenServices);
     }
 
@@ -104,7 +113,7 @@ public class MartinSercurityAutoConfiguration extends ResourceServerConfigurerAd
     public void addCorsMappings(CorsRegistry corsRegistry) {
         // 允许跨域访问资源定义： /api/ 所有资源
         corsRegistry.addMapping("/**")
-                // 只允许本地的9000端口访问
+                // 只允许本地的8000端口访问
                 .allowedOrigins("http://localhost:8000", "http://127.0.0.1:8000")
                 // 允许发送Cookie
                 .allowCredentials(true)
