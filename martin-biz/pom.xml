@@ -42,15 +42,15 @@
             <groupId>com.java2e</groupId>
             <artifactId>martin-common-log</artifactId>
         </dependency>
-        <!--eureka 客户端-->
+        <!--nacos 服务注册发现-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!--配置中心客户端-->
+        <!--nacos 配置管理-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <!--jasypt配置文件加解密-->
         <dependency>

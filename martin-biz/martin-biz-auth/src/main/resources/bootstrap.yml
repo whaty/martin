@@ -4,33 +4,18 @@ server:
 spring:
   application:
     name: @project.artifactId@
-  redis:
-    host: martin-redis
-    port: 6379
+  profiles:
+    active: @profiles.active@
   # 配置中心
   cloud:
-    config:
-      fail-fast: true
-      name: ${spring.application.name}
-      profile: ${spring.profiles.active}
+    nacos:
       discovery:
-        enabled: true
-        service-id: martin-cloud-config
-    inetutils:
-      ignored-interfaces:
-        - docker0
-        - veth.*
-        - VM.*
-  profiles:
-    active: dev
-  freemarker:
-    template-loader-path: classpath:/templates/
+        server-addr: ${NACOS-HOST:martin-cloud-nacos}:${NACOS-PORT:8848}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        file-extension: ${file-extension}
+        shared-dataids: application.${file-extension},application-${spring.profiles.active}.${file-extension}
+        refreshable-dataids: application.${file-extension},application-${spring.profiles.active}.${file-extension}
 
 
-eureka:
-  instance:
-    prefer-ip-address: true
-    ip-address: ${spring.application.name}
-  client:
-    service-url:
-      defaultZone:  http://martin-cloud-eureka:9500/eureka/
+

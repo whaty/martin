@@ -65,7 +65,6 @@ public class MartinSercurityAutoConfiguration extends ResourceServerConfigurerAd
     @Override
     @SneakyThrows
     public void configure(HttpSecurity httpSecurity) {
-        //允许使用iframe 嵌套，避免swagger-ui 不被加载的问题
         httpSecurity.headers().frameOptions().disable();
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>
                 .ExpressionInterceptUrlRegistry registry = httpSecurity

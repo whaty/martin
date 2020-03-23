@@ -13,38 +13,39 @@ import InlinePopconfirmBtn from '@/components/InlinePopconfirmBtn';
 import { ModalForm } from '@/components/Form';
 
 
-import { SiteStateType, SiteListItem } from './model.ts';
+import { $!{entity}StateType, $!{entity}ListItem } from './model.ts';
 
 import { openWindow } from '@/utils/utils';
 
-interface SiteProps {
+interface $!{entity}Props {
   dispatch: Dispatch<any>;
   loading: boolean;
-  site: SiteStateType;
+  site: $!{entity}StateType;
 }
 
-interface SiteState {
-  selectedRows: SiteListItem[];
+interface $!{entity}State {
+  selectedRows: $!{entity}ListItem[];
   showLoginScriptModal: boolean;
-  currentRecord?: SiteListItem;
+  currentRecord?: $!{entity}ListItem;
 }
 
-class Site extends Component<SiteProps, SiteState> {
-  state: SiteState = {
+class $!{entity} extends Component<$!{entity}Props, $!{entity}State> {
+  state: $!{entity}State = {
     selectedRows: [],
     showLoginScriptModal: false,
   };
 
-  private pageRef: RefObject<TablePage<SiteListItem>> = React.createRef();
+  private pageRef: RefObject<TablePage<$!{entity}ListItem>> = React.createRef();
 /**
  *
  *
- * @type {StandardTableColumnProps<SiteListItem>[]}
- * @memberof Site
+ * @type {StandardTableColumnProps<$!{entity}ListItem>[]}
+ * @memberof $!{entity}
  */
-columns: StandardTableColumnProps<SiteListItem>[] = [
+columns: StandardTableColumnProps<$!{entity}ListItem>[] = [
+        //TODO 生成所有列，国际化设置
     {
-      title: <FormattedMessage id="app.crawler.site.label.name" />,
+      title: <FormattedMessage id="app.martin.site.label.name" />,
       dataIndex: 'name',
       width: 100,
     },
@@ -55,10 +56,10 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
       key: 'operation',
       width: 120,
       fixed: 'right',
-      render: (text: string, record: SiteListItem) => (
+      render: (text: string, record: $!{entity}ListItem) => (
         <>
           <ModalForm
-            title={formatMessage({ id: 'app.crawler.site.edit-the-site' })}
+            title={formatMessage({ id: 'app.martin.site.edit-the-site' })}
             onSubmit={this.handleEdit}
             element={
               <a>
@@ -77,6 +78,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
   ];
 
   modalFormItems = () => [
+    //TODO 新增修改时要操作的列
     {
       label: 'id',
       name: 'id',
@@ -84,7 +86,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
       hidden: true,
     },
     {
-      label: <FormattedMessage id="app.crawler.site.label.home-page" />,
+      label: <FormattedMessage id="app.martin.site.label.home-page" />,
       name: 'homePage',
       rules: [
         {
@@ -99,7 +101,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
       itemRender: <Input placeholder="首页链接" />,
     },
     {
-      label: <FormattedMessage id="app.crawler.site.label.name" />,
+      label: <FormattedMessage id="app.martin.site.label.name" />,
       name: 'name',
       rules: [
         {
@@ -111,7 +113,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
     },
   ];
 
-  showModal = (currentRecord: SiteListItem) => {
+  showModal = (currentRecord: $!{entity}ListItem) => {
     this.setState({ showLoginScriptModal: true, currentRecord });
   };
 
@@ -167,7 +169,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
     });
   };
 
-  handleSelectRows = (rows: SiteListItem[]) => {
+  handleSelectRows = (rows: $!{entity}ListItem[]) => {
     this.setState({
       selectedRows: rows,
     });
@@ -175,11 +177,12 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
 
   //配置搜索项
   searchFormRender = (form: WrappedFormUtils) => {
+    //TODO 用于搜索的列
     const { getFieldDecorator } = form;
     return (
       [
         <Col md={8} sm={24}>
-          <Form.Item label={<FormattedMessage id="app.crawler.site.filter.name" />}>
+          <Form.Item label={<FormattedMessage id="app.martin.site.filter.name" />}>
             {getFieldDecorator('name')(<Input placeholder="请输入" />)}
           </Form.Item>
         </Col>,
@@ -192,7 +195,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
   operatorRender = () => (
     [
       <ModalForm
-        title={formatMessage({ id: 'app.crawler.site.add-new-site' })}
+        title={formatMessage({ id: 'app.martin.site.add-new-site' })}
         onSubmit={this.handleAdd}
         element={
           <Button type="primary" icon="plus">
@@ -216,7 +219,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
 
     return (
       <>
-        <TablePage<SiteListItem>
+        <TablePage<$!{entity}ListItem>
           ref={this.pageRef}
           title={formatMessage({ id: 'menu.site' })}
           action="site/fetch"
@@ -227,7 +230,7 @@ columns: StandardTableColumnProps<SiteListItem>[] = [
           operatorRender={this.operatorRender}
           selectedRows={selectedRows}
           handleSelectRows={this.handleSelectRows}
-          onDelete={(rows: SiteListItem[]) => this.onDelete(rows.map(row => row.id))}
+          onDelete={(rows: $!{entity}ListItem[]) => this.onDelete(rows.map(row => row.id))}
           dispatch={dispatch}
         />
       </>
@@ -240,7 +243,7 @@ export default connect(
     site,
     loading,
   }: {
-    site: SiteStateType;
+    site: $!{entity}StateType;
     loading: {
       models: {
         [key: string]: boolean;
@@ -250,4 +253,4 @@ export default connect(
     site,
     loading: loading.models.site,
   }),
-)(Site);
+)($!{entity});

@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { addTableList, editTableList, getTableList, deleteTableList } from '../../../../mock/utils';
-import { SiteListItem } from './model.ts';
+import { $!{entity}ListItem } from './model.ts';
 
+//TODO 模拟数据
 // mock tableListDataSource
-const tableListDataSource: SiteListItem[] = [
+const tableListDataSource: $!{entity}ListItem[] = [
   {
     id: '911527780227661826',
     homePage: 'https://www.jianshu.com/u/53671b43e905',
@@ -23,7 +24,7 @@ const tableListDataSource: SiteListItem[] = [
   },
 ];
 
-function getSites(req: Request, res: Response) {
+function get$!{entity}s(req: Request, res: Response) {
   const params = req.query;
 
   let dataSource = [...tableListDataSource];
@@ -34,21 +35,21 @@ function getSites(req: Request, res: Response) {
   return getTableList(req, res, dataSource);
 }
 
-function deleteSites(req: Request, res: Response) {
+function delete$!{entity}s(req: Request, res: Response) {
   return deleteTableList(req, res, tableListDataSource);
 }
 
-function addSite(req: Request, res: Response) {
+function add$!{entity}(req: Request, res: Response) {
   return addTableList(req, res, tableListDataSource);
 }
 
-function editSite(req: Request, res: Response) {
+function edit$!{entity}(req: Request, res: Response) {
   return editTableList(req, res, tableListDataSource);
 }
 
 export default {
-  'GET /api/crawler/sites': getSites,
-  'POST /api/crawler/sites': addSite,
-  'PUT /api/crawler/sites': editSite,
-  'DELETE /api/crawler/sites': deleteSites,
+  'GET /api/crawler/sites': get$!{entity}s,
+  'POST /api/crawler/sites': add$!{entity},
+  'PUT /api/crawler/sites': edit$!{entity},
+  'DELETE /api/crawler/sites': delete$!{entity}s,
 };

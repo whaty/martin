@@ -1,1 +1,12 @@
+spring:
+  redis:
+    host: martin-redis
+    port: 6379
+    inetutils:
+      ignored-interfaces:
+        - docker0
+        - veth.*
+        - VM.*
+  freemarker:
+    template-loader-path: classpath:/templates/
 

@@ -11,3 +11,5 @@ COPY ./db/2martin.sql /docker-entrypoint-initdb.d
 COPY ./db/3martin_ac.sql /docker-entrypoint-initdb.d
 
 COPY ./db/4martin_zipkin.sql /docker-entrypoint-initdb.d
+
+COPY ./db/5nacos_config.sql /docker-entrypoint-initdb.d

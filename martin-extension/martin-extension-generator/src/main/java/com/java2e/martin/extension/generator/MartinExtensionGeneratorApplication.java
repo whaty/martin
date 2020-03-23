@@ -129,6 +129,18 @@ public class MartinExtensionGeneratorApplication {
         String modalPath = "/templates/ui/Modal.js.vm";
         String tablePath = "/templates/ui/Table.js.vm";
         String sqlPath = "/templates/ui/Table.sql.vm";
+
+
+        // ant v4 ui 模板
+        String enUsPath = "/templates/ui/locales/en-US.ts.vm";
+        String zhCnPath = "/templates/ui/locales/zh-CN.ts.vm";
+        String zhTwPath = "/templates/ui/locales/zh-TW.ts.vm";
+        String mockPath = "/templates/ui/_mock.ts.vm";
+        String indexPath = "/templates/ui/index.tsx.vm";
+        String modelPath = "/templates/ui/model.ts.vm";
+        String servicePath = "/templates/ui/service.ts.vm";
+
+
 //
 //        // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
@@ -141,45 +153,109 @@ public class MartinExtensionGeneratorApplication {
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
+//        // 自定义配置会被优先输出
+//        focList.add(new FileOutConfig(columnsPath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+//
+//                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
+//                        + "/" + tableInfo.getEntityName() + "Columns.js";
+//            }
+//        });
+//        // 自定义配置会被优先输出
+//        focList.add(new FileOutConfig(modalPath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+//                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
+//                        + "/" + tableInfo.getEntityName() + "Modal.js";
+//            }
+//        });
+//
+//        // 自定义配置会被优先输出
+//        focList.add(new FileOutConfig(tablePath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+//                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
+//                        + "/" + "index.js";
+//            }
+//        });
+//
+//        // 自定义配置会被优先输出
+//        focList.add(new FileOutConfig(sqlPath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "Table.sql";
+//            }
+//        });
+
+
+
         // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(columnsPath) {
+        focList.add(new FileOutConfig(enUsPath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-
-                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
-                        + "/" + tableInfo.getEntityName() + "Columns.js";
+                // 自定义输出文件名
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName().toLowerCase()
+                        + "/locales/" + "en-US.ts";
             }
         });
-        // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(modalPath) {
+
+        focList.add(new FileOutConfig(zhCnPath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
-                        + "/" + tableInfo.getEntityName() + "Modal.js";
+                // 自定义输出文件名
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName().toLowerCase()
+                        + "/locales/" + "zh-CN.ts";
             }
         });
 
-        // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(tablePath) {
+        focList.add(new FileOutConfig(zhTwPath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "/" + tableInfo.getEntityName()
-                        + "/" + "index.js";
+                // 自定义输出文件名
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName().toLowerCase()
+                        + "/locales/" + "zh-TW.ts";
             }
         });
 
-        // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(sqlPath) {
+        focList.add(new FileOutConfig(mockPath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
-                return projectPath + "/src/main/resources/ui/" + StrUtil.upperFirst(pc.getModuleName()) + "Table.sql";
+                // 自定义输出文件名
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName().toLowerCase()
+                        + "/" + "_mock.ts";
             }
         });
 
+        focList.add(new FileOutConfig(indexPath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName().toLowerCase()
+                        + "/" + "index.tsx";
+            }
+        });
 
+        focList.add(new FileOutConfig(modelPath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName().toLowerCase()
+                        + "/" + "model.ts";
+            }
+        });
+
+        focList.add(new FileOutConfig(servicePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名
+                return projectPath + "/src/main/resources/ui/" + pc.getModuleName() + "/" + tableInfo.getEntityName().toLowerCase()
+                        + "/" + "service.ts";
+            }
+        });
 
         /*
         cfg.setFileCreate(new IFileCreate() {
@@ -221,7 +297,8 @@ public class MartinExtensionGeneratorApplication {
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("");
         //todo 修改要生成的表名，多个英文逗号分割
-        String[] tables = {"sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role"};
+//        String[] tables = {"sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role"};
+        String[] tables = {"sys_dept"};
         strategy.setInclude(tables);
         System.out.println("========menuSql========");
         printMenuSql(tables);

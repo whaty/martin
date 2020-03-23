@@ -1,6 +1,6 @@
-# V0.0.1
+# martin-cloud V0.0.1
 
-version: '2'
+version: '2.2'
 services:
   martin-mysql:
     build:
@@ -9,13 +9,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     restart: always
+    mem_limit: 256m
     privileged: true
     container_name: martin-mysql
     image: martin-mysql
-#    volumes:
-#      - /opt/docker/mysql:/var/lib/mysql
+    volumes:
+      - /f/volumes/mysql:/var/lib/mysql
     ports:
       - 3306:3306
+    networks:
+      - martin
+
 #
 #  martin-zookeeper:
 #    image: zookeeper:3.4.13
@@ -24,52 +28,50 @@ services:
   martin-redis:
     image: redis:4.0.10
     restart: always
+    mem_limit: 256m
     container_name: martin-redis
+    ports:
+      - 6379:6379
+    networks:
+      - martin
 
-  martin-cloud-eureka:
+  martin-cloud-nacos:
     build:
       context: ./
-      dockerfile: ./martin-cloud/martin-cloud-eureka/Dockerfile
+      dockerfile: ./martin-cloud/martin-cloud-nacos/Dockerfile
     restart: always
-    container_name: martin-cloud-eureka
-    image: martin-cloud-eureka
+    container_name: martin-cloud-nacos
+    image: martin-cloud-nacos
     volumes:
-      - ./logs:/martin-cloud-eureka/logs
+      - ./logs/martin-cloud-nacos:/martin-cloud-nacos/logs
+    entrypoint: "wait-for-it.sh -t 0 martin-mysql:3306 -- "
+    command: "sh bin/startup.sh -m standalone"
+    links:
+      - martin-mysql
     ports:
-      - 9500:9500
-
-  martin-cloud-config:
-    build:
-      context: ./
-      dockerfile: ./martin-cloud/martin-cloud-config/Dockerfile
-    restart: always
-    container_name: martin-cloud-config
-    image: martin-cloud-config
-    volumes:
-      - ./logs:/martin-cloud-config/logs
-    depends_on:
-      - martin-cloud-eureka
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-eureka:9500 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-cloud-config.jar"
-    ports:
-      - 9501:9501
+      - 8848:8848
+      - 6666:6666
+    networks:
+      - martin
 
   martin-cloud-gateway:
     build:
       context: ./
       dockerfile: ./martin-cloud/martin-cloud-gateway/Dockerfile
     restart: always
+    mem_limit: 256m
     container_name: martin-cloud-gateway
     image: martin-cloud-gateway
     volumes:
       - ./logs:/martin-cloud-gateway/logs
     depends_on:
-      - martin-cloud-eureka
-      - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-cloud-gateway.jar"
+      - martin-cloud-nacos
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m martin-cloud-gateway.jar"
     ports:
-      - 9527:9527
+      - 9502:9502
+    networks:
+      - martin
 
 
   martin-biz-auth:
@@ -77,74 +79,90 @@ services:
       context: ./
       dockerfile: ./martin-biz/martin-biz-auth/Dockerfile
     restart: always
+    mem_limit: 256m
     container_name: martin-biz-auth
     image: martin-biz-auth
     volumes:
       - ./logs:/martin-biz-auth/logs
     depends_on:
-      - martin-cloud-eureka
-      - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-auth.jar"
+      - martin-cloud-nacos
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m martin-biz-auth.jar"
+    networks:
+      - martin
+
 
   martin-biz-resource:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-resource/Dockerfile
     restart: always
+    mem_limit: 256m
     container_name: martin-biz-resource
     image: martin-biz-resource
     volumes:
       - ./logs:/martin-biz-resource/logs
     depends_on:
-      - martin-cloud-eureka
-      - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-resource.jar"
+      - martin-cloud-nacos
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m martin-biz-resource.jar"
+    networks:
+      - martin
+
 
   martin-biz-sso:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-sso/Dockerfile
     restart: always
+    mem_limit: 256m
     container_name: martin-biz-sso
     image: martin-biz-sso
     volumes:
       - ./logs:/martin-biz-sso/logs
     depends_on:
-      - martin-cloud-eureka
-      - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-sso.jar"
+      - martin-cloud-nacos
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m martin-biz-sso.jar"
+    networks:
+      - martin
+
 
   martin-biz-swagger:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-swagger/Dockerfile
     restart: always
+    mem_limit: 256m
     container_name: martin-biz-swagger
     image: martin-biz-swagger
     volumes:
       - ./logs:/martin-biz-swagger/logs
     depends_on:
-      - martin-cloud-eureka
-      - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-swagger.jar"
-
+      - martin-cloud-nacos
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m martin-biz-swagger.jar"
+    networks:
+      - martin
 
   martin-biz-system:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-system/Dockerfile
     restart: always
+    mem_limit: 256m
     container_name: martin-biz-system
     image: martin-biz-system
     volumes:
       - ./logs:/martin-biz-system/logs
     depends_on:
-      - martin-cloud-eureka
-      - martin-cloud-config
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-config:9501 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx256m -XX:PermSize=128m -XX:MaxPermSize=256m martin-biz-system.jar"
+      - martin-cloud-nacos
+    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m martin-biz-system.jar"
+    networks:
+      - martin
 
+networks:
+  martin:
+    driver: bridge
+    external: true

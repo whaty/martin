@@ -6,3 +6,6 @@ create database `martin_ac` default character set utf8 collate utf8_general_ci;
 
 -- Martinzipkin相关库
 create database `martin_zipkin` default character set utf8 collate utf8_general_ci;
+
+-- Martinzipkin相关库
+create database `nacos_config` default character set utf8 collate utf8_general_ci;

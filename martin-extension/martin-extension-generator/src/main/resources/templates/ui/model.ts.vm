@@ -5,9 +5,11 @@ import { isEmpty, isNumber } from 'lodash';
 import { TableListItem } from '@/components/StandardTable';
 import { TableListData } from '@/components/Page/TablePage';
 
-import { query as querySites, removeSites, addSite, editSite } from './service.ts';
+import { query as query$!{entity}s, remove$!{entity}s, add$!{entity}, edit$!{entity} } from './service.ts';
 
-export interface SiteListItem extends TableListItem {
+
+//TODO 生成所有列的定义
+export interface $!{entity}ListItem extends TableListItem {
   id: string;
   logo: string;
   name: string;
@@ -25,18 +27,18 @@ export interface SiteListItem extends TableListItem {
   loginJudgeExpression?: string;
 }
 
-export interface SiteStateType {
-  data: TableListData<SiteListItem>;
+export interface $!{entity}StateType {
+  data: TableListData<$!{entity}ListItem>;
 }
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: SiteStateType) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: $!{entity}StateType) => T) => T },
 ) => void;
 
-export interface SiteModelType {
+export interface $!{entity}ModelType {
   namespace: string;
-  state: SiteStateType;
+  state: $!{entity}StateType;
   effects: {
     fetch: Effect;
     create: Effect;
@@ -44,13 +46,13 @@ export interface SiteModelType {
     modify: Effect;
   };
   reducers: {
-    save: Reducer<SiteStateType>;
-    add: Reducer<SiteStateType>;
-    edit: Reducer<SiteStateType>;
-    del: Reducer<SiteStateType>;
+    save: Reducer<$!{entity}StateType>;
+    add: Reducer<$!{entity}StateType>;
+    edit: Reducer<$!{entity}StateType>;
+    del: Reducer<$!{entity}StateType>;
   };
 }
-const SiteModel: SiteModelType = {
+const $!{entity}Model: $!{entity}ModelType = {
   namespace: 'site',
 
   state: {
@@ -62,14 +64,14 @@ const SiteModel: SiteModelType = {
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const response = yield call(querySites, payload);
+      const response = yield call(query$!{entity}s, payload);
       yield put({
         type: 'save',
         payload: response.data,
       });
     },
     *create({ payload }, { call, put }) {
-      const response = yield call(addSite, payload);
+      const response = yield call(add$!{entity}, payload);
       yield put({
         type: 'add',
         payload: response.data,
@@ -77,7 +79,7 @@ const SiteModel: SiteModelType = {
     },
     *modify({ payload }, { call, put }) {
       try {
-        const response = yield call(editSite, payload);
+        const response = yield call(edit$!{entity}, payload);
         yield put({
           type: 'edit',
           payload: response.data,
@@ -87,7 +89,7 @@ const SiteModel: SiteModelType = {
       }
     },
     *remove({ payload }, { call, put }) {
-      yield call(removeSites, payload);
+      yield call(remove$!{entity}s, payload);
       yield put({
         type: 'del',
         payload,
@@ -175,4 +177,4 @@ const SiteModel: SiteModelType = {
   },
 };
 
-export default SiteModel;
+export default $!{entity}Model;

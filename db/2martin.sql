@@ -13,8 +13,10 @@ File Encoding         : 65001
 Date: 2019-10-09 11:43:35
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+USE martin;
 
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- TableJs structure for oauth_client_details
 -- ----------------------------

@@ -1,11 +1,7 @@
 package com.java2e.martin.cloud.gateway;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author: liangcan
@@ -14,18 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @Describtion: MartinCloudGateWayApplication
  */
 @SpringBootApplication
-@RestController
-@RefreshScope
 public class MartinCloudGateWayApplication {
     public static void main(String[] args) {
         SpringApplication.run(MartinCloudGateWayApplication.class, args);
     }
 
-    @Value("${foot}")
-    private String profile;
-
-    @GetMapping("/foot")
-    public String hello() {
-        return this.profile;
-    }
 }
