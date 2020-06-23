@@ -1,7 +1,13 @@
 pipeline {
-  agent none
+  agent any
   stages {
-    stage('') {
+    stage('echo') {
+      agent {
+        docker {
+          image 'maven:3-alpine'
+        }
+
+      }
       steps {
         sh 'echo \'123\''
       }
