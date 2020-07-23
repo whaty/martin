@@ -7,6 +7,8 @@ import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,51 +27,6 @@ import java.util.List;
 @UtilityClass
 public class TreeUtil {
     /**
-     * 获取某个父节点下所有节点树
-     *
-     * @param treeNodes 所有节点
-     * @param root      父节点
-     * @param <T>
-     * @return
-     */
-    public <T extends BaseTreeNode> List<T> build(List<T> treeNodes, Object root) {
-        List<T> trees = new ArrayList<>();
-        for (T treeNode : treeNodes) {
-            if (root.equals(treeNode.getParentId())) {
-                trees.add(treeNode);
-            }
-            for (T it : treeNodes) {
-                if (it.getParentId() == treeNode.getId()) {
-                    if (treeNode.getChildren() == null) {
-                        treeNode.setChildren(new ArrayList<>());
-                    }
-                    treeNode.add(it);
-                }
-            }
-        }
-        return trees;
-    }
-
-
-    /**
-     * 递归获取某个父节点下所有节点树
-     *
-     * @param treeNodes 所有节点
-     * @param root      父节点
-     * @param <T>
-     * @return
-     */
-    public <T extends BaseTreeNode> List<T> buildByRecursive(List<T> treeNodes, Object root) {
-        List<T> trees = new ArrayList<T>();
-        for (T treeNode : treeNodes) {
-            if (root.equals(treeNode.getParentId())) {
-                trees.add(findChildren(treeNode, treeNodes));
-            }
-        }
-        return trees;
-    }
-
-    /**
      * 递归获取所有路由信息
      *
      * @param treeNodes 所有路由
@@ -81,22 +38,11 @@ public class TreeUtil {
         List<T> trees = new ArrayList<T>();
         for (T treeNode : treeNodes) {
             if (root.equals(treeNode.getParentId())) {
-                trees.add(findRoutes(treeNode, treeNodes));
+                trees.add(findRoutes(treeNode, treeNodes,treeNode.getParentKeys()));
             }
+
         }
         return trees;
-    }
-
-    /**
-     * 通过sysMenu集合创建树形节点
-     *
-     * @param menus
-     * @param root
-     * @return
-     */
-    public List<MenuTreeNode> buildByRecursive(List<Menu> menus, int root) {
-        List<MenuTreeNode> menuTreeNodes = MenuConverter.INSTANCE.po2dto(menus);
-        return TreeUtil.buildByRecursive(menuTreeNodes, root);
     }
 
     /**
@@ -112,52 +58,27 @@ public class TreeUtil {
     }
 
     /**
-     * 递归查找子节点
-     *
-     * @param treeNodes
-     * @return
-     */
-    public <T extends BaseTreeNode> T findChildren(T treeNode, List<T> treeNodes) {
-        for (T it : treeNodes) {
-            if (treeNode.getId() == it.getParentId()) {
-                if (treeNode.getChildren() == null) {
-                    treeNode.setChildren(new ArrayList<>());
-                }
-                treeNode.add(findChildren(it, treeNodes));
-            }
-        }
-        return treeNode;
-    }
-
-    /**
      * 递归查找子路由
      *
      * @param treeNodes
      * @return
      */
-    public <T extends BaseTreeNode> T findRoutes(T treeNode, List<T> treeNodes) {
+    public <T extends BaseTreeNode> T findRoutes(T treeNode, List<T> treeNodes,String[] parentKeys) {
         for (T it : treeNodes) {
+            ArrayList<String> parentKeysList = new ArrayList<>();
             if (treeNode.getId() == it.getParentId()) {
-                if (treeNode.getRoutes() == null) {
-                    treeNode.setRoutes(new ArrayList<>());
+                if (treeNode.getChildren() == null) {
+                    treeNode.setChildren(new ArrayList<>());
                 }
-                treeNode.addRoutes(findRoutes(it, treeNodes));
+                treeNode.addChildren(findRoutes(it, treeNodes,treeNode.getParentKeys()));
             }
+            if (parentKeys != null) {
+                parentKeysList.addAll(Arrays.asList(parentKeys));
+            }
+            parentKeysList.add(treeNode.getParentKey());
+            treeNode.setParentKeys(parentKeysList.toArray(new String[parentKeysList.size()]));
         }
         return treeNode;
     }
 
-
-
-    /**
-     * 通过sysMenu集合创建树形节点
-     *
-     * @param menus
-     * @param root
-     * @return
-     */
-    public List<MenuTreeNode> buildTree(List<Menu> menus, int root) {
-        List<MenuTreeNode> menuTreeNodes = MenuConverter.INSTANCE.po2dto(menus);
-        return TreeUtil.build(menuTreeNodes, root);
-    }
 }

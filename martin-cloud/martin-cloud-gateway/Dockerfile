@@ -10,6 +10,5 @@ WORKDIR /martin-cloud-gateway
 
 EXPOSE 9527
 
-ADD ./martin-cloud/martin-cloud-gateway/target/martin-cloud-gateway.jar ./
+ADD ./target/martin-cloud-gateway.jar ./
 
-ADD ./wait-for-it.sh /usr/local/bin

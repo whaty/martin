@@ -19,19 +19,29 @@ import lombok.NoArgsConstructor;
 @ApiModel(value = "菜单树")
 @EqualsAndHashCode(callSuper = true)
 public class MenuTreeNode extends BaseTreeNode {
-    @ApiModelProperty(value = "菜单名称")
-    private String name;
-
     @ApiModelProperty(value = "权限编码，以menu_开头")
     private String authority;
 
-    @ApiModelProperty(value = "前端URL")
-    private String path;
+    @ApiModelProperty(value = "是否隐藏子菜单")
+    private Boolean hideChildrenInMenu;
+
+    @ApiModelProperty(value = "是否隐藏菜单")
+    private Boolean hideInMenu;
 
     @ApiModelProperty(value = "图标")
     private String icon;
 
+    @ApiModelProperty(value = "国际化名称")
     private String locale;
+
+    @ApiModelProperty(value = "菜单名称")
+    private String name;
+
+    @ApiModelProperty(value = "任意值")
+    private String key;
+
+    @ApiModelProperty(value = "前端URL")
+    private String path;
 
     @ApiModelProperty(value = "前端组件")
     private String component;

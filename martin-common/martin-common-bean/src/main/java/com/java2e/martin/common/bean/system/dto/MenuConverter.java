@@ -2,6 +2,9 @@ package com.java2e.martin.common.bean.system.dto;
 
 import com.java2e.martin.common.bean.system.Menu;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
+import org.mapstruct.ap.shaded.freemarker.template.utility.StringUtil;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -22,6 +25,9 @@ public interface MenuConverter {
      * @param menu
      * @return
      */
+    @Mappings({
+            @Mapping(source = "uiKey", target = "key"),
+    })
     MenuTreeNode po2dto(Menu menu);
 
     /**

@@ -10,6 +10,5 @@ WORKDIR /martin-biz-sso
 
 EXPOSE 9402
 
-ADD ./martin-biz/martin-biz-sso/target/martin-biz-sso.jar ./
+ADD ./target/martin-biz-sso.jar ./
 
-ADD ./wait-for-it.sh /usr/local/bin

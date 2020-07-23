@@ -10,6 +10,5 @@ WORKDIR /martin-biz-auth
 
 EXPOSE 9400
 
-ADD ./martin-biz/martin-biz-auth/target/martin-biz-auth.jar ./
+ADD ./target/martin-biz-auth.jar ./
 
-ADD ./wait-for-it.sh /usr/local/bin

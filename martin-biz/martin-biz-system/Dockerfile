@@ -10,6 +10,5 @@ WORKDIR /martin-biz-system
 
 EXPOSE 9404
 
-ADD ./martin-biz/martin-biz-system/target/martin-biz-system.jar ./
+ADD ./target/martin-biz-system.jar ./
 
-ADD ./wait-for-it.sh /usr/local/bin

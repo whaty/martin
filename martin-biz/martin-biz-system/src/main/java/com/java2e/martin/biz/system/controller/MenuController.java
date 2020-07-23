@@ -5,15 +5,14 @@ import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.biz.system.service.MenuService;
+import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
 import com.java2e.martin.common.bean.util.TreeUtil;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.core.constant.CommonConstants;
 import com.java2e.martin.common.log.annotation.MartinLog;
-import com.java2e.martin.common.security.util.SecurityContextUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -131,21 +129,30 @@ public class MenuController {
     @GetMapping("/tree")
     @PreAuthorize("hasAuthority('sys_menu_tree')")
     public R getMenuTree() {
-        List<MenuTreeNode> routes = TreeUtil.buildRoutesByRecursive(menuService.list(Wrappers.<Menu>query().lambda().orderByAsc(Menu::getParentId, Menu::getSort)), CommonConstants.MENU_ROOT);
-        Set<String> authorities = SecurityContextUtil.getAuthorities();
-        SecurityContextUtil.getUser();
-        HashMap<Object, Object> data = new HashMap<>(2);
-        data.put("routes", routes);
-        data.put("authorities", authorities);
-        return R.ok(data);
+        List<Menu> list = menuService.list(Wrappers.<Menu>query().lambda().orderByAsc(Menu::getParentId, Menu::getSort));
+        HashMap<Integer, Menu> map = new HashMap<>();
+        for (Menu menu : list) {
+            map.put(menu.getId(), menu);
+        }
+        for (int i = 0; i < list.size(); i++) {
+            Integer parentId = list.get(i).getParentId();
+            if (parentId == CommonConstants.MENU_ROOT) {
+                list.get(i).setParentKey("/");
+            } else {
+                list.get(i).setParentKey(map.get(parentId).getPath());
+
+            }
+        }
+        List<MenuTreeNode> routes = TreeUtil.buildRoutesByRecursive(list, CommonConstants.MENU_ROOT);
+        return R.ok(routes);
     }
 
     @MartinLog("批量删除系统菜单")
     @PostMapping("/deleteBatch")
     @PreAuthorize("hasAuthority('sys_menu_deleteBatch')")
-    public R removeBatch(@RequestBody String ids){
+    public R removeBatch(@RequestBody String ids) {
         List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
-        if(CollUtil.isEmpty(idList)){
+        if (CollUtil.isEmpty(idList)) {
             return R.failed("id 不能为空");
         }
         return R.ok(menuService.removeByIds(idList));

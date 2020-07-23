@@ -10,6 +10,5 @@ WORKDIR /martin-biz-resource
 
 EXPOSE 9401
 
-ADD ./martin-biz/martin-biz-resource/target/martin-biz-resource.jar ./
+ADD ./target/martin-biz-resource.jar ./
 
-ADD ./wait-for-it.sh /usr/local/bin

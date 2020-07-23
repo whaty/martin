@@ -53,6 +53,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <file-extension>yml</file-extension>
+        <docker.url>http://192.168.227.133:2375</docker.url>
+        <docker.repostory>192.168.227.133</docker.repostory>
+        <docker.registry.name>martin</docker.registry.name>
     </properties>
 
     <dependencyManagement>
@@ -141,6 +144,59 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>1.0.0</version>
+                    <executions>
+                        <execution>
+                            <id>build-image</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>tag-image</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>tag</goal>
+                            </goals>
+                            <configuration>
+                                <image>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}</image>
+                                <newName>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}</newName>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>push-image</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>push</goal>
+                            </goals>
+                            <configuration>
+                                <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
+                            </configuration>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <serverId>docker-harbor</serverId>
+                        <dockerHost>${docker.url}</dockerHost>
+                        <dockerDirectory>${project.basedir}</dockerDirectory>
+                        <imageName>
+                            ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
+                        </imageName>
+                        <imageTags>
+                            <imageTag>${project.version}</imageTag>
+                        </imageTags>
+                        <resources>
+                            <rescource>
+                                <targetPath>/</targetPath>
+                                <directory>${project.build.directory}</directory>
+                                <include>${project.build.finalName}.jar</include>
+                            </rescource>
+                        </resources>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -218,4 +274,16 @@
         </repository>
     </repositories>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus-martin-releases</id>
+            <name>nexus-martin-releases</name>
+            <url>http://192.168.227.136:30000/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-martin-snapshot</id>
+            <name>nexus-martin-snapshot</name>
+            <url>http://192.168.227.136:30000/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

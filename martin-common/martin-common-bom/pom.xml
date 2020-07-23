@@ -201,4 +201,16 @@
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+            <id>nexus-martin-releases</id>
+            <name>nexus-martin-releases</name>
+            <url>http://192.168.227.136:30000/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-martin-snapshot</id>
+            <name>nexus-martin-snapshot</name>
+            <url>http://192.168.227.136:30000/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

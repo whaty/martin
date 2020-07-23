@@ -31,11 +31,17 @@ public class BaseTreeNode implements Serializable {
     @ApiModelProperty(value = "父节点id")
     protected int parentId;
 
+    @ApiModelProperty(value = "父组件")
+    protected String parentKey;
+
+    @ApiModelProperty(value = "父组件集合")
+    protected String[] parentKeys;
+
     /**
      * 名字必须为children，ant design pro  中的子节点都叫children
      */
     @ApiModelProperty(value = "子节点列表")
-    protected List<BaseTreeNode> children = new ArrayList<BaseTreeNode>();
+    protected List<BaseTreeNode> children;
 
     public void add(BaseTreeNode node) {
         children.add(node);
@@ -45,9 +51,13 @@ public class BaseTreeNode implements Serializable {
      * 名字必须为 routes，ant design pro  中的路由
      */
     @ApiModelProperty(value = "子节点列表")
-    protected List<BaseTreeNode> routes = new ArrayList<BaseTreeNode>();
+    protected List<BaseTreeNode> routes;
 
     public void addRoutes(BaseTreeNode node) {
         routes.add(node);
+    }
+
+    public void addChildren(BaseTreeNode node) {
+        children.add(node);
     }
 }

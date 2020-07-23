@@ -10,6 +10,5 @@ WORKDIR /martin-biz-swagger
 
 EXPOSE 9403
 
-ADD ./martin-biz/martin-biz-swagger/target/martin-biz-swagger.jar ./
+ADD ./target/martin-biz-swagger.jar ./
 
-ADD ./wait-for-it.sh /usr/local/bin
