@@ -9,10 +9,11 @@ import org.springframework.context.annotation.Bean;
 
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/14
- * @Describtion: Martin 核心系统
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/14
+ * @describtion Martin 核心系统
+ * @since 1.0
  */
 @SpringBootApplication
 @MapperScan("com.java2e.martin.biz.system.mapper")

@@ -3,10 +3,11 @@ package com.java2e.martin.common.core.exception;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/4
- * @Describtion: SecurityException，带状态码的安全异常
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/4
+ * @describtion SecurityException，带状态码的安全异常
+ * @since 1.0
  */
 public class SecurityException extends StatefulException {
     public SecurityException() {

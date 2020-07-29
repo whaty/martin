@@ -1,10 +1,11 @@
 package com.java2e.martin.common.core.api;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/22
- * @Describtion: ApiErrorCode
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/22
+ * @describtion ApiErrorCode
+ * @since 1.0
  */
 public enum ApiErrorCode implements IErrorCode {
     FAILED(500, "服务器发生错误，请联系管理员"),

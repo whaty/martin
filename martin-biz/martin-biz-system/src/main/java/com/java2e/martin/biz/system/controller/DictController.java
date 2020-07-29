@@ -29,8 +29,9 @@ import java.util.Map;
  * 系统字典 前端控制器
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
+ * @since 1.0
  */
 @Slf4j
 @RestController

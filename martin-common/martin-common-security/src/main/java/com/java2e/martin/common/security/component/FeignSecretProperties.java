@@ -7,10 +7,11 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/4
- * @Describtion: FeignSecretProperties
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/4
+ * @describtion FeignSecretProperties
+ * @since 1.0
  */
 @Configuration
 @RefreshScope

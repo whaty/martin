@@ -7,10 +7,11 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Collection;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/5/29 10:35
- * @Describtion: 扩展auth2.0用户信息
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/5/29 10:35
+ * @describtion 扩展auth2.0用户信息
+ * @since 1.0
  */
 public class MartinUser extends User {
     /**

@@ -13,10 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/6/25
- * @Describtion: SwaggerProvider
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/6/25
+ * @describtion SwaggerProvider
+ * @since 1.0
  */
 @Component
 @Primary

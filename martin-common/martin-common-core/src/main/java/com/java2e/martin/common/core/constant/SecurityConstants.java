@@ -1,10 +1,11 @@
 package com.java2e.martin.common.core.constant;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/3/1 11:17
- * @Describtion: SecurityConstants
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/3/1 11:17
+ * @describtion SecurityConstants
+ * @since 1.0
  */
 public final class SecurityConstants {
     private SecurityConstants() {

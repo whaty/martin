@@ -11,10 +11,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/2
- * @Describtion: MartinOAuth2FeignRequestInterceptor
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/2
+ * @describtion MartinOAuth2FeignRequestInterceptor
+ * @since 1.0
  */
 @Slf4j
 public class MartinOAuth2FeignRequestInterceptor implements RequestInterceptor {

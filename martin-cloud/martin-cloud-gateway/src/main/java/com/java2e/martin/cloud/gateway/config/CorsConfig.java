@@ -9,10 +9,11 @@ import org.springframework.web.filter.CorsFilter;
 
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/20
- * @Describtion: CorsConfig
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/20
+ * @describtion CorsConfig
+ * @since 1.0
  */
 @Configuration
 public class CorsConfig {

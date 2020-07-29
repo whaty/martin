@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/5/22 11:09
- * @Describtion: PermitAllUrlProperties
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/5/22 11:09
+ * @describtion PermitAllUrlProperties
  * 模块对外开放的url集合
+ * @since 1.0
  */
-
 @Configuration
 @RefreshScope
 @ConfigurationProperties(prefix = "security.oauth2.client")

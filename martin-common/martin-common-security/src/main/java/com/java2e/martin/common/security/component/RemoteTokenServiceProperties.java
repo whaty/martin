@@ -8,10 +8,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/27
- * @Describtion: RemoteTokenServiceProperties
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/27
+ * @describtion RemoteTokenServiceProperties
+ * @since 1.0
  */
 @Data
 @AllArgsConstructor

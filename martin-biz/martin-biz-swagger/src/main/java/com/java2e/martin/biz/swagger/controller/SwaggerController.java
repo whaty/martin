@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/6/24
- * @Describtion: SwaggerController
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/6/24
+ * @describtion SwaggerController
+ * @since 1.0
  */
 @RestController
 @Api("测试")

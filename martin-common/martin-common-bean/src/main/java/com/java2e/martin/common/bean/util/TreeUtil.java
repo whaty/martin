@@ -12,10 +12,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/19
- * @Describtion: TreeUtil
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/19
+ * @describtion TreeUtil
+ * @since 1.0
  * <p>
  * If a class is annotated with @UtilityClass, the following things happen to it:
  * It is marked final.

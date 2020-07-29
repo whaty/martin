@@ -13,10 +13,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/5/29 11:07
- * @Describtion: EnableMartinResourceServer
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/5/29 11:07
+ * @describtion EnableMartinResourceServer
+ * @since 1.0
  */
 @Documented
 @Inherited

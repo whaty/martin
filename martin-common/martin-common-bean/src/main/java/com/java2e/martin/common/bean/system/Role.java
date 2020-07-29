@@ -17,8 +17,9 @@ import lombok.experimental.Accessors;
  * 系统角色
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
+ * @since 1.0
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

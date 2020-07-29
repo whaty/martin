@@ -8,10 +8,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/5
- * @Describtion: UserRolePrivilegeDto，传输给前端的权限，包含 菜单/操作/文件/元素 四类权限，后续可以自由扩展
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/5
+ * @describtion UserRolePrivilegeDto，传输给前端的权限，包含 菜单/操作/文件/元素 四类权限，后续可以自由扩展
+ * @since 1.0
  */
 @Data
 public class UserRolePrivilegeDto implements Serializable {

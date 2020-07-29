@@ -8,10 +8,11 @@ import org.springframework.security.oauth2.provider.client.JdbcClientDetailsServ
 import javax.sql.DataSource;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/27
- * @Describtion: MartinClientDetailsService
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/27
+ * @describtion MartinClientDetailsService
+ * @since 1.0
  */
 public class MartinClientDetailsService extends JdbcClientDetailsService {
     public MartinClientDetailsService(DataSource dataSource) {

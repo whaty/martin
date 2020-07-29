@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/5/17 15:55
- * @Describtion: ResourceApplication
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/5/17 15:55
+ * @describtion ResourceApplication
+ * @since 1.0
  */
 @SpringBootApplication
 public class MartinBizResourceApplication {

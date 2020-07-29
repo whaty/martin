@@ -15,8 +15,8 @@ import java.util.Set;
  * 系统权限 服务实现类
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
  */
 @Service
 public class PrivilegeServiceImpl extends ServiceImpl<PrivilegeMapper, Privilege> implements PrivilegeService {

@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
  * 系统角色权限关系 服务类
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
  */
 @Transactional(rollbackFor = Exception.class)
 public interface RolePrivilegeService extends IService<RolePrivilege> {

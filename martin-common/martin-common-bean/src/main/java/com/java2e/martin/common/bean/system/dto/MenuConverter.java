@@ -10,10 +10,11 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/19
- * @Describtion: MenuConverter
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/19
+ * @describtion MenuConverter
+ * @since 1.0
  */
 @Mapper
 public interface MenuConverter {

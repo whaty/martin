@@ -15,6 +15,7 @@ import com.java2e.martin.common.bean.system.dto.UserRolePrivilegeDto;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
+import com.java2e.martin.common.security.util.SecurityContextUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,8 +40,9 @@ import java.util.Set;
  * 系统用户 前端控制器
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
+ * @since 1.0
  */
 @Slf4j
 @RestController
@@ -153,6 +156,20 @@ public class UserController {
         }
         userRolePrivilegeDto.setAuthoritySet(authoritySet);
         return R.ok(userRolePrivilegeDto);
+    }
+
+    @GetMapping("/authorities")
+    public R<Map> getAuthority() {
+        HashMap<String, Object> map = new HashMap<>(3);
+        try {
+            map.put("status", "ok");
+            map.put("type", "");
+            map.put("currentAuthority", SecurityContextUtil.getAuthorities());
+        } catch (Exception e) {
+            map.put("status", "error");
+            log.error("", e.getMessage());
+        }
+        return R.ok(map);
     }
 
 }

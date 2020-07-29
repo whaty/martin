@@ -16,10 +16,11 @@ import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import java.util.Optional;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/6/25
- * @Describtion: SwaggerHandler
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/6/25
+ * @describtion SwaggerHandler
+ * @since 1.0
  */
 @RestController
 @RequestMapping("/swagger-resources")

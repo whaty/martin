@@ -4,10 +4,11 @@ import cn.hutool.core.util.StrUtil;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/3/1 10:58
- * @Describtion: 验证异常
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/3/1 10:58
+ * @describtion 验证异常
+ * @since 1.0
  */
 public class ValidateException extends StatefulException {
     private static final long serialVersionUID = 8315347862065295371L;

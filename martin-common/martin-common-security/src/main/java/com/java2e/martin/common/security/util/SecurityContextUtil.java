@@ -10,10 +10,11 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Set;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/10/25
- * @Describtion: SecurityContextUtil
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/10/25
+ * @describtion SecurityContextUtil
+ * @since 1.0
  */
 @UtilityClass
 public class SecurityContextUtil {

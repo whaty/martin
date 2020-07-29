@@ -1,10 +1,11 @@
 package com.java2e.martin.common.core.constant;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/27
- * @Describtion: CacheConstants，所有缓存都放到martin这个顶级标签下，和其他缓存做区分
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/27
+ * @describtion CacheConstants，所有缓存都放到martin这个顶级标签下，和其他缓存做区分
+ * @since 1.0
  */
 public class CacheConstants {
     /**

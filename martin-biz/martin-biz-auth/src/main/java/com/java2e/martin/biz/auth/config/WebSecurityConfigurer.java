@@ -9,10 +9,11 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/5/17
- * @Describtion: WebSecurityConfigurer
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/5/17
+ * @describtion WebSecurityConfigurer
+ * @since 1.0
  */
 @Configuration
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {

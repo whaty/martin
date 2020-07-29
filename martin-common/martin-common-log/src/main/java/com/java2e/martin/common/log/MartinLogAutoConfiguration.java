@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/22
- * @Describtion: M自动配置日志服务
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/22
+ * @describtion M自动配置日志服务
+ * @since 1.0
  */
 @Slf4j
 @Configuration

@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
  * 系统用户角色关系 服务类
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
  */
 @Transactional(rollbackFor = Exception.class)
 public interface UserRoleService extends IService<UserRole> {

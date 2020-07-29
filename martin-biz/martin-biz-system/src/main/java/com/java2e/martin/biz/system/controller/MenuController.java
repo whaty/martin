@@ -37,8 +37,9 @@ import java.util.stream.Collectors;
  * 系统菜单 前端控制器
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
+ * @since 1.0
  */
 @Slf4j
 @RestController
@@ -129,7 +130,9 @@ public class MenuController {
     @GetMapping("/tree")
     @PreAuthorize("hasAuthority('sys_menu_tree')")
     public R getMenuTree() {
-        List<Menu> list = menuService.list(Wrappers.<Menu>query().lambda().orderByAsc(Menu::getParentId, Menu::getSort));
+        List<Menu> list = menuService.list(Wrappers.<Menu>query().lambda()
+                .inSql(Menu::getDev, "select value from sys_dict where type='flag_dev_status' ")
+                .orderByAsc(Menu::getParentId, Menu::getSort));
         HashMap<Integer, Menu> map = new HashMap<>();
         for (Menu menu : list) {
             map.put(menu.getId(), menu);
@@ -156,6 +159,13 @@ public class MenuController {
             return R.failed("id 不能为空");
         }
         return R.ok(menuService.removeByIds(idList));
+    }
+
+    @MartinLog("批量添加系统菜单")
+    @PostMapping("/batchSave")
+    public R removeBatch(@RequestBody List<Menu> list) {
+
+        return R.ok(menuService.saveBatch(list));
     }
 
 

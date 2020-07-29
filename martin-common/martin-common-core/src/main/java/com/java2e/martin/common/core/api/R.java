@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/22
- * @Describtion: R 接口通用返回
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/22
+ * @describtion R 接口通用返回
+ * @since 1.0
  */
 public class R<T> implements Serializable {
     private static final long serialVersionUID = 1L;

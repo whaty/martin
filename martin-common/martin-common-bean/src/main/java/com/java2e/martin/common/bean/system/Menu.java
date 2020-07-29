@@ -22,8 +22,9 @@ import lombok.experimental.Accessors;
  * 系统菜单
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
+ * @since 1.0
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -73,6 +74,9 @@ public class Menu implements Serializable {
 
     @ApiModelProperty(value = "排序值")
     private Integer sort;
+
+    @ApiModelProperty(value = "是否为演示数据,0:不区分环境，1：演示，2：正式")
+    private Integer dev;
 
     @ApiModelProperty(value = "所属租户")
     private Integer tenantId;

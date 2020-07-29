@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
  * 系统部门 服务实现类
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
  */
 @Service
 public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements DeptService {

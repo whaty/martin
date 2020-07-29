@@ -18,10 +18,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/3
- * @Describtion: RemoteUrl 收集所有接口中的 url
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/3
+ * @describtion RemoteUrl 收集所有接口中的 url
+ * @since 1.0
  */
 @Slf4j
 public class RemoteUrl {

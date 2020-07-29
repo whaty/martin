@@ -8,10 +8,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/19
- * @Describtion: MenuTree, 菜单树
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/19
+ * @describtion MenuTree, 菜单树
+ * @since 1.0
  */
 @Data
 @NoArgsConstructor

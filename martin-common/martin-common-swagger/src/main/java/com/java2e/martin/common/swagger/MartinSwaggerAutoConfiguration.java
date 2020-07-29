@@ -30,10 +30,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/6/24
- * @Describtion: 自动配置Martin文档服务
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/6/24
+ * @describtion 自动配置Martin文档服务
+ * @since 1.0
  */
 @Slf4j
 @Configuration

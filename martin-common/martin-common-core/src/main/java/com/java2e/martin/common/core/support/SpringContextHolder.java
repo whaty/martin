@@ -9,10 +9,11 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/3/5
- * @Describtion: SpringContextHolder
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/3/5
+ * @describtion SpringContextHolder
+ * @since 1.0
  */
 @Slf4j
 @Service

@@ -12,10 +12,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/6/24
- * @Describtion: EnableMartinSwagger2
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/6/24
+ * @describtion EnableMartinSwagger2
+ * @since 1.0
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

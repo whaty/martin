@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import java.util.Map;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/2
- * @Describtion: RemoteSystem, system 模块对外提供的示例服务
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/2
+ * @describtion RemoteSystem, system 模块对外提供的示例服务
+ * @since 1.0
  */
 @FeignClient(contextId = "remoteSystem", name = ServiceNameConstants.MARTIN_BIZ_SYSTEM_SERVICE)
 public interface RemoteSystem {

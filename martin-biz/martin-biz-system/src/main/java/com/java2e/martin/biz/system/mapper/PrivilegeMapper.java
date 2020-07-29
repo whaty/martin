@@ -12,8 +12,8 @@ import java.util.Set;
  * 系统权限 Mapper 接口
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
  */
 public interface PrivilegeMapper extends BaseMapper<Privilege> {
     /**

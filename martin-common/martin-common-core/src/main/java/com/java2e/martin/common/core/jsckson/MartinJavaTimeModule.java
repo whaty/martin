@@ -16,10 +16,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/10/12
- * @Describtion: MatinJavaTimeModule
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/10/12
+ * @describtion MatinJavaTimeModule
+ * @since 1.0
  */
 public class MartinJavaTimeModule extends SimpleModule {
     public MartinJavaTimeModule() {

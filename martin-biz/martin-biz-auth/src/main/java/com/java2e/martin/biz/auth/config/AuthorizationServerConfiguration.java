@@ -30,10 +30,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/5/17
- * @Describtion: AuthorizationServerConfiguration
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/5/17
+ * @describtion AuthorizationServerConfiguration
+ * @since 1.0
  */
 @Configuration
 @EnableAuthorizationServer

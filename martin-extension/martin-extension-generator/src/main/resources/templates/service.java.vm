@@ -10,7 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author ${author}
- * @since ${date}
+ * @version 1.0
+ * @date ${date}
+ * @describtion
+ * @since 1.0
  */
 #if(${kotlin})
 interface ${table.serviceName} : ${superServiceClass}<${entity}>

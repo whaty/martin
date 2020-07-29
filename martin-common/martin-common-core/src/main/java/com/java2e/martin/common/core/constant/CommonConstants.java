@@ -1,10 +1,11 @@
 package com.java2e.martin.common.core.constant;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/2/28 10:43
- * @Describtion: CommonConstants
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/2/28 10:43
+ * @describtion CommonConstants
+ * @since 1.0
  */
 public final class CommonConstants {
     private CommonConstants() {

@@ -4,10 +4,11 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 import lombok.experimental.UtilityClass;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/11/5
- * @Describtion: TenantContextHolder, 将租户id在各线程中传递
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/11/5
+ * @describtion TenantContextHolder, 将租户id在各线程中传递
+ * @since 1.0
  */
 @UtilityClass
 public class TenantContextHolder {

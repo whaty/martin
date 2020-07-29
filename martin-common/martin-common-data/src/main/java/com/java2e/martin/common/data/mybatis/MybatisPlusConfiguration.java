@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/11/1
- * @Describtion: MybatisPlusConfiguration
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/11/1
+ * @describtion MybatisPlusConfiguration
+ * @since 1.0
  */
 @Configuration
 @Slf4j

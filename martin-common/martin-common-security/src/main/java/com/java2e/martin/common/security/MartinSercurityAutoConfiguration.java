@@ -34,10 +34,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import java.util.Set;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/5/29
- * @Describtion: 自动配置Martin安全服务
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/5/29
+ * @describtion 自动配置Martin安全服务
+ * @since 1.0
  */
 @Slf4j
 @Configuration

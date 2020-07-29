@@ -15,10 +15,11 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/10/12
- * @Describtion: JacksonConfig
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/10/12
+ * @describtion JacksonConfig
+ * @since 1.0
  */
 @Configuration
 @ConditionalOnClass(ObjectMapper.class)

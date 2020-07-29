@@ -22,10 +22,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/4
- * @Describtion: FeignInnerInterceptor, controller前置拦截器，校验内部feign调用秘钥
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/4
+ * @describtion FeignInnerInterceptor, controller前置拦截器，校验内部feign调用秘钥
+ * @since 1.0
  */
 @Slf4j
 @Configuration

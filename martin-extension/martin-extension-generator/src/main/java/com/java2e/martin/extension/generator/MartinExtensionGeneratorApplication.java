@@ -25,10 +25,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/8/14
- * @Describtion: MartinExtensionGeneratorApplication
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/8/14
+ * @describtion MartinExtensionGeneratorApplication
+ * @since 1.0
  */
 public class MartinExtensionGeneratorApplication {
 
@@ -68,7 +69,7 @@ public class MartinExtensionGeneratorApplication {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setFileOverride(true);
         //todo 修改作者
-        gc.setAuthor("liangcan");
+        gc.setAuthor("狮少");
         gc.setOpen(false);
         //实体属性 Swagger2 注解
         gc.setSwagger2(true);
@@ -192,7 +193,6 @@ public class MartinExtensionGeneratorApplication {
 //        });
 
 
-
         // 自定义配置会被优先输出
         focList.add(new FileOutConfig(enUsPath) {
             @Override
@@ -298,7 +298,7 @@ public class MartinExtensionGeneratorApplication {
         strategy.setSuperEntityColumns("");
         //todo 修改要生成的表名，多个英文逗号分割
 //        String[] tables = {"sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role"};
-        String[] tables = {"sys_dept"};
+        String[] tables = {"sys_config"};
         strategy.setInclude(tables);
         System.out.println("========menuSql========");
         printMenuSql(tables);
@@ -325,21 +325,21 @@ public class MartinExtensionGeneratorApplication {
         }
         String sql = "INSERT INTO sys_operation ( name, authority,parent_id) VALUES ('{}', '{}','0');";
         Arrays.asList(tables).stream().forEach(s -> {
-            String[] operate = {"add","del","edit","get","page","deleteBatch"};
+            String[] operate = {"add", "del", "edit", "get", "page", "deleteBatch"};
             Arrays.asList(operate).forEach(s1 -> System.out.println(StrUtil.format(sql, s + "_" + s1, s + "_" + s1)));
         });
     }
 
-    public static void printMenuSql(String[] tables ) {
+    public static void printMenuSql(String[] tables) {
 //        String[] tables = {"sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role"};
         if (tables.length <= 0) {
             return;
         }
         String childSql = "INSERT INTO sys_menu ( name, authority, path,component, sort) VALUES ( '{}', '{}', '{}', './System/{}/index',1);";
         String parentSql = "INSERT INTO sys_menu ( name, authority, path) VALUES ( '{}', '{}', '{}');";
-        System.out.println(StrUtil.format(parentSql,"system","system","/system"));
+        System.out.println(StrUtil.format(parentSql, "system", "system", "/system"));
         Arrays.asList(tables).stream()
-                .map(s -> StrUtil.format(childSql, getSysCamel(s, "sys_"),"system-"+ getSysAuth(s, "sys_"),"/system/"+ getSysUrl(s, "sys_"),StrUtil.upperFirst(getSysCamel(s, "sys_"))))
+                .map(s -> StrUtil.format(childSql, getSysCamel(s, "sys_"), "system-" + getSysAuth(s, "sys_"), "/system/" + getSysUrl(s, "sys_"), StrUtil.upperFirst(getSysCamel(s, "sys_"))))
                 .forEach(s -> System.out.println(s));
     }
 
@@ -352,11 +352,11 @@ public class MartinExtensionGeneratorApplication {
     }
 
     private static String getSysAuth(String s, String sys_) {
-        return StrUtil.subAfter(s, sys_, true).replace("_","-");
+        return StrUtil.subAfter(s, sys_, true).replace("_", "-");
     }
 
     private static String getSysUrl(String s, String sys_) {
-        return StrUtil.subAfter(s, sys_, true).replace("_","");
+        return StrUtil.subAfter(s, sys_, true).replace("_", "");
     }
 
 }

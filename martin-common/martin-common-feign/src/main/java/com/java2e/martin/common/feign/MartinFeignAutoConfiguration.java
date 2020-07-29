@@ -6,10 +6,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/7/30
- * @Describtion: 自动配置Martin内部通信服务
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/7/30
+ * @describtion 自动配置Martin内部通信服务
+ * @since 1.0
  */
 @Slf4j
 @Configuration

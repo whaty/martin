@@ -14,10 +14,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/11/5
- * @Describtion: MartinUserAuthenticationConverter
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/11/5
+ * @describtion MartinUserAuthenticationConverter
+ * @since 1.0
  */
 public class MartinUserAuthenticationConverter implements UserAuthenticationConverter {
     private static final String N_A = "N/A";

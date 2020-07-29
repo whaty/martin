@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * 系统字典 Mapper 接口
  * </p>
  *
- * @author liangcan
- * @since 2019-10-18
+ * @author 狮少
+ * @date 2019-10-18
  */
 public interface DictMapper extends BaseMapper<Dict> {
 

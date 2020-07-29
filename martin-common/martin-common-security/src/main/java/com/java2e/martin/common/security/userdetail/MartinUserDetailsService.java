@@ -24,10 +24,11 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/2
- * @Describtion: MartinUserDetailsService
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/2
+ * @describtion MartinUserDetailsService
+ * @since 1.0
  */
 @Slf4j
 @Service

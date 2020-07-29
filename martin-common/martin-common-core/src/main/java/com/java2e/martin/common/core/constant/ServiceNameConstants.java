@@ -1,10 +1,11 @@
 package com.java2e.martin.common.core.constant;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/3/1 11:21
- * @Describtion: 所有微服务服务名称，用于服务内部调用
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/3/1 11:21
+ * @describtion 所有微服务服务名称，用于服务内部调用
+ * @since 1.0
  */
 public final class ServiceNameConstants {
     private ServiceNameConstants() {

@@ -11,11 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author: liangcan
- * @Version: 1.0
- * @Date: 2019/9/19
- * @Describtion: 注意，下面的bean每个属性都为必要属性，不可缺一
+ * @author 狮少
+ * @version 1.0
+ * @date 2019/9/19
+ * @describtion 注意，下面的bean每个属性都为必要属性，不可缺一
  * 继承此bean再添加多个属性，不会影响树结构
+ * @since 1.0
  */
 @Data
 @NoArgsConstructor

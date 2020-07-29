@@ -4,9 +4,7 @@ import { stringify } from 'qs';
 import { TableListParams } from '@/components/Page/TablePage';
 import { $!{entity}ListItem } from '@/pages/Crawler/$!{entity}/model';
 
-export async function query(params: TableListParams) {
-  return request(`/api/crawler/sites?${stringify(params)}`);
-}
+
 
 export async function remove$!{entity}s(params: $!{entity}ListItem) {
   return request(`/api/crawler/sites/delete`, {
