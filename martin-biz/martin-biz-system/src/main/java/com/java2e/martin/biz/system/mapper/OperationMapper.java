@@ -13,4 +13,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface OperationMapper extends BaseMapper<Operation> {
 
+    /**
+     * 为菜单生成默认的增删改查按钮
+     *
+     * @param id
+     */
+    void generateDefaultOperation(Object id);
 }

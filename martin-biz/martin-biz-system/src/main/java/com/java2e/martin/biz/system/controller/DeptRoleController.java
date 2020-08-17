@@ -79,7 +79,6 @@ public class DeptRoleController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_dept_role_edit')")
     public R update(@Valid @RequestBody DeptRole deptRole) {
-        deptRole.setUpdateTime(LocalDateTime.now());
         return R.ok(deptRoleService.updateById(deptRole));
     }
 

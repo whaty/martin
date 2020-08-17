@@ -1,6 +1,6 @@
 package com.java2e.martin.common.api.system;
 
-import com.java2e.martin.common.bean.system.dto.UserRolePrivilegeDto;
+import com.java2e.martin.common.bean.system.vo.UserRolePrivilegeVo;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.core.constant.ServiceNameConstants;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -28,7 +28,7 @@ public interface RemoteSystem {
      * @return
      */
     @GetMapping("/user/loadUserByUsername/{username}")
-    R<UserRolePrivilegeDto> loadUserByUsername(@PathVariable("username") String username);
+    R<UserRolePrivilegeVo> loadUserByUsername(@PathVariable("username") String username);
 
     /**
      * 测试 post

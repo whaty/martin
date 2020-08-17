@@ -79,7 +79,6 @@ public class FileController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_file_edit')")
     public R update(@Valid @RequestBody File file) {
-        file.setUpdateTime(LocalDateTime.now());
         return R.ok(fileService.updateById(file));
     }
 

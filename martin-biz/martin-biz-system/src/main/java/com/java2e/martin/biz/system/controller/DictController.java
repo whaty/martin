@@ -79,7 +79,6 @@ public class DictController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_dict_edit')")
     public R update(@Valid @RequestBody Dict dict) {
-        dict.setUpdateTime(LocalDateTime.now());
         return R.ok(dictService.updateById(dict));
     }
 

@@ -8,7 +8,7 @@ package com.java2e.martin.common.core.api;
  * @since 1.0
  */
 public enum ApiErrorCode implements IErrorCode {
-    FAILED(500, "服务器发生错误，请联系管理员"),
+    FAILED(500, "操作发生错误，请联系管理员"),
 
     SUCCESS(200, "操作成功"),
 
@@ -21,7 +21,6 @@ public enum ApiErrorCode implements IErrorCode {
     ROLE_NOT_FOUND(9404002, "用户未分配角色"),
 
     PRIVILEGE_NOT_FOUND(9404003, "用户未授权");
-
 
 
     private final long code;

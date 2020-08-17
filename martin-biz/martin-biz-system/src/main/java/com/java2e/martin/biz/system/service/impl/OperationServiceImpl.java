@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class OperationServiceImpl extends ServiceImpl<OperationMapper, Operation> implements OperationService {
 
+    @Override
+    public void generateDefaultOperation(Object id) {
+        baseMapper.generateDefaultOperation(id);
+    }
 }

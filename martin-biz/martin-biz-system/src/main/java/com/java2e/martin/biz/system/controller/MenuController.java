@@ -86,7 +86,6 @@ public class MenuController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_menu_edit')")
     public R update(@Valid @RequestBody Menu menu) {
-        menu.setUpdateTime(LocalDateTime.now());
         return R.ok(menuService.updateById(menu));
     }
 

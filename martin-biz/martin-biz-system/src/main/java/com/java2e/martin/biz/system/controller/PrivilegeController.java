@@ -79,7 +79,6 @@ public class PrivilegeController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_privilege_edit')")
     public R update(@Valid @RequestBody Privilege privilege) {
-        privilege.setUpdateTime(LocalDateTime.now());
         return R.ok(privilegeService.updateById(privilege));
     }
 

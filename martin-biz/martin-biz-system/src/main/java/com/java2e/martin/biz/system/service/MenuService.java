@@ -24,4 +24,12 @@ public interface MenuService extends IService<Menu> {
      */
     List<Menu> getAllUiMenu();
 
+    /**
+     * 插入Menu并返回主键
+     *
+     * @param menu
+     * @return
+     */
+    Object insert(Menu menu);
+
 }

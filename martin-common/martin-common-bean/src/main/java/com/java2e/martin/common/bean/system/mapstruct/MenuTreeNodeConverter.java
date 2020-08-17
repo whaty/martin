@@ -1,10 +1,10 @@
-package com.java2e.martin.common.bean.system.dto;
+package com.java2e.martin.common.bean.system.mapstruct;
 
 import com.java2e.martin.common.bean.system.Menu;
+import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.ap.shaded.freemarker.template.utility.StringUtil;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -13,12 +13,12 @@ import java.util.List;
  * @author 狮少
  * @version 1.0
  * @date 2019/9/19
- * @describtion MenuConverter
+ * @describtion MenuTreeNodeConverter
  * @since 1.0
  */
 @Mapper
-public interface MenuConverter {
-    MenuConverter INSTANCE = Mappers.getMapper(MenuConverter.class);
+public interface MenuTreeNodeConverter {
+    MenuTreeNodeConverter INSTANCE = Mappers.getMapper(MenuTreeNodeConverter.class);
 
     /**
      * 数据库node转页面需要的node

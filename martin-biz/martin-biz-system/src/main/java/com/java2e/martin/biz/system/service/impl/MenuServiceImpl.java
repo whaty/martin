@@ -26,4 +26,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     public List<Menu> getAllUiMenu() {
         return menuMapper.getAllUiMenu();
     }
+
+    @Override
+    public Object insert(Menu menu) {
+        return menuMapper.insert(menu);
+    }
 }

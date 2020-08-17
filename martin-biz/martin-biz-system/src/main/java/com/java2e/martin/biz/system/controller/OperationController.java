@@ -79,7 +79,6 @@ public class OperationController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_operation_edit')")
     public R update(@Valid @RequestBody Operation operation) {
-        operation.setUpdateTime(LocalDateTime.now());
         return R.ok(operationService.updateById(operation));
     }
 

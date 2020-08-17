@@ -79,7 +79,6 @@ public class LogController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_log_edit')")
     public R update(@Valid @RequestBody Log logger) {
-        logger.setUpdateTime(LocalDateTime.now());
         return R.ok(logService.updateById(logger));
     }
 

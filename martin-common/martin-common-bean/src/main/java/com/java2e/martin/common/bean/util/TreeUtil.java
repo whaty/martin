@@ -2,13 +2,12 @@ package com.java2e.martin.common.bean.util;
 
 import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.dto.BaseTreeNode;
-import com.java2e.martin.common.bean.system.dto.MenuConverter;
+import com.java2e.martin.common.bean.system.mapstruct.MenuTreeNodeConverter;
 import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -54,7 +53,7 @@ public class TreeUtil {
      * @return
      */
     public List<MenuTreeNode> buildRoutesByRecursive(List<Menu> menus, int root) {
-        List<MenuTreeNode> menuTreeNodes = MenuConverter.INSTANCE.po2dto(menus);
+        List<MenuTreeNode> menuTreeNodes = MenuTreeNodeConverter.INSTANCE.po2dto(menus);
         return TreeUtil.buildRoutesByRecursive(menuTreeNodes, root);
     }
 

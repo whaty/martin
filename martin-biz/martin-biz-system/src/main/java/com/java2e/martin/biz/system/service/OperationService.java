@@ -15,4 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 public interface OperationService extends IService<Operation> {
 
+    /**
+     * 为菜单生成默认的增删改查按钮
+     *
+     * @param id
+     */
+    void generateDefaultOperation(Object id);
 }

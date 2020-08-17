@@ -79,7 +79,6 @@ public class RolePrivilegeController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_role_privilege_edit')")
     public R update(@Valid @RequestBody RolePrivilege rolePrivilege) {
-        rolePrivilege.setUpdateTime(LocalDateTime.now());
         return R.ok(rolePrivilegeService.updateById(rolePrivilege));
     }
 

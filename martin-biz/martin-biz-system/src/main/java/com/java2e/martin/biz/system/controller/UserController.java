@@ -1,6 +1,7 @@
 package com.java2e.martin.biz.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -11,7 +12,7 @@ import com.java2e.martin.biz.system.service.UserRoleService;
 import com.java2e.martin.biz.system.service.UserService;
 import com.java2e.martin.common.bean.system.User;
 import com.java2e.martin.common.bean.system.UserRole;
-import com.java2e.martin.common.bean.system.dto.UserRolePrivilegeDto;
+import com.java2e.martin.common.bean.system.vo.UserRolePrivilegeVo;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
@@ -29,10 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 /**
@@ -96,7 +99,6 @@ public class UserController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_user_edit')")
     public R update(@Valid @RequestBody User user) {
-        user.setUpdateTime(LocalDateTime.now());
         return R.ok(userService.updateById(user));
     }
 
@@ -135,15 +137,26 @@ public class UserController {
         return R.ok(userService.page(page, Wrappers.query(user)));
     }
 
+    @MartinLog("批量删除系统用户")
+    @PostMapping("/deleteBatch")
+    @PreAuthorize("hasAuthority('sys_user_deleteBatch')")
+    public R removeBatch(@RequestBody String ids) {
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if (CollUtil.isEmpty(idList)) {
+            return R.failed("id 不能为空");
+        }
+        return R.ok(userService.removeByIds(idList));
+    }
+
     @GetMapping("/loadUserByUsername/{username}")
-    public R<UserRolePrivilegeDto> loadUserByUsername(@PathVariable String username) {
-        UserRolePrivilegeDto userRolePrivilegeDto = new UserRolePrivilegeDto();
+    public R<UserRolePrivilegeVo> loadUserByUsername(@PathVariable String username) {
+        UserRolePrivilegeVo userRolePrivilegeVo = new UserRolePrivilegeVo();
         User user = userService.getOne(Wrappers.<User>query().lambda().eq(User::getUsername, username));
         log.debug("{}", Convert.toStr(user));
         if (null == user) {
             return R.failed(ApiErrorCode.USER_NOT_FOUND);
         }
-        userRolePrivilegeDto.setUser(user);
+        userRolePrivilegeVo.setUser(user);
         List<UserRole> roleList = userRoleService.list(Wrappers.<UserRole>query().lambda().eq(UserRole::getUserId, user.getId()));
         if (CollectionUtil.isEmpty(roleList)) {
             log.error("{}", R.failed(ApiErrorCode.ROLE_NOT_FOUND));
@@ -154,8 +167,8 @@ public class UserController {
             log.error("{}", R.failed(ApiErrorCode.PRIVILEGE_NOT_FOUND));
             return R.failed(ApiErrorCode.PRIVILEGE_NOT_FOUND);
         }
-        userRolePrivilegeDto.setAuthoritySet(authoritySet);
-        return R.ok(userRolePrivilegeDto);
+        userRolePrivilegeVo.setAuthoritySet(authoritySet);
+        return R.ok(userRolePrivilegeVo);
     }
 
     @GetMapping("/authorities")

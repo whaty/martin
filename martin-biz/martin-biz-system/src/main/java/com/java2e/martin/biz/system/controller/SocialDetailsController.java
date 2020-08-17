@@ -79,7 +79,6 @@ public class SocialDetailsController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_social_details_edit')")
     public R update(@Valid @RequestBody SocialDetails socialDetails) {
-        socialDetails.setUpdateTime(LocalDateTime.now());
         return R.ok(socialDetailsService.updateById(socialDetails));
     }
 

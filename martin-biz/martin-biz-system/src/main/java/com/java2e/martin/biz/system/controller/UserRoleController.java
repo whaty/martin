@@ -79,7 +79,6 @@ public class UserRoleController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_user_role_edit')")
     public R update(@Valid @RequestBody UserRole userRole) {
-        userRole.setUpdateTime(LocalDateTime.now());
         return R.ok(userRoleService.updateById(userRole));
     }
 

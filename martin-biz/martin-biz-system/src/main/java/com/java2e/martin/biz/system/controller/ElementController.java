@@ -79,7 +79,6 @@ public class ElementController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_element_edit')")
     public R update(@Valid @RequestBody Element element) {
-        element.setUpdateTime(LocalDateTime.now());
         return R.ok(elementService.updateById(element));
     }
 

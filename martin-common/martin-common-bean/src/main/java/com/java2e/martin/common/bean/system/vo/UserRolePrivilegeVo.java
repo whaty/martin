@@ -1,4 +1,4 @@
-package com.java2e.martin.common.bean.system.dto;
+package com.java2e.martin.common.bean.system.vo;
 
 import com.java2e.martin.common.bean.system.User;
 import lombok.Data;
@@ -11,11 +11,11 @@ import java.util.Set;
  * @author 狮少
  * @version 1.0
  * @date 2019/9/5
- * @describtion UserRolePrivilegeDto，传输给前端的权限，包含 菜单/操作/文件/元素 四类权限，后续可以自由扩展
+ * @describtion UserRolePrivilegeVo，传输给前端的权限，包含 菜单/操作/文件/元素 四类权限，后续可以自由扩展
  * @since 1.0
  */
 @Data
-public class UserRolePrivilegeDto implements Serializable {
+public class UserRolePrivilegeVo implements Serializable {
 
     private static final long serialVersionUID = -74188199181458373L;
     /**
