@@ -109,7 +109,6 @@ public class ${table.controllerName} {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('$!{table.name}_edit')")
     public R update(@Valid @RequestBody $!{entity} $!{entityname}) {
-        $!{entityname}.setUpdateTime(LocalDateTime.now());
         return R.ok($!{servicename}.updateById($!{entityname}));
     }
 
@@ -136,16 +135,15 @@ public class ${table.controllerName} {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('$!{table.name}_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        $!{entity} $!{entityname}  = new $!{entity}();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, $!{entityname}, true);
-        } catch (Exception e) {
+            return R.ok($!{servicename}.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok($!{servicename}.page(page, Wrappers.query($!{entityname})));
     }
 
 

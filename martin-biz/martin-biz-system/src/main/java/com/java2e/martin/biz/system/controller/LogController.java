@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 
-
 /**
  * <p>
  * 系统日志 前端控制器
@@ -105,16 +104,15 @@ public class LogController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_log_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        Log logger  = new Log();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, logger, true);
-        } catch (Exception e) {
+            return R.ok(logService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(logService.page(page, Wrappers.query(logger)));
     }
 
 

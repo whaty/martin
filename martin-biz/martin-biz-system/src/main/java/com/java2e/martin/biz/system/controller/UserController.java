@@ -125,16 +125,15 @@ public class UserController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_user_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        User user = new User();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, user, true);
-        } catch (Exception e) {
-            log.error(e.getMessage());
+            return R.ok(userService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
+            log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(userService.page(page, Wrappers.query(user)));
     }
 
     @MartinLog("批量删除系统用户")

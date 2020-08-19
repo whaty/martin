@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.java2e.martin.common.bean.system.Role;
 import com.java2e.martin.biz.system.service.RoleService;
 import com.java2e.martin.common.core.api.ApiErrorCode;
+import com.java2e.martin.common.core.api.IErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import io.swagger.annotations.Api;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.Map;
-
 
 
 /**
@@ -105,16 +105,15 @@ public class RoleController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_role_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        Role role  = new Role();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, role, true);
-        } catch (Exception e) {
+            return R.ok(roleService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(roleService.page(page, Wrappers.query(role)));
     }
 
 

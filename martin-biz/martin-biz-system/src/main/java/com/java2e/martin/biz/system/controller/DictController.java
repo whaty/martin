@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 
-
 /**
  * <p>
  * 系统字典 前端控制器
@@ -105,16 +104,15 @@ public class DictController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_dict_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        Dict dict  = new Dict();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, dict, true);
-        } catch (Exception e) {
+            return R.ok(dictService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(dictService.page(page, Wrappers.query(dict)));
     }
 
 

@@ -113,16 +113,15 @@ public class MenuController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_menu_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        Menu menu = new Menu();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, menu, true);
-        } catch (Exception e) {
+            return R.ok(menuService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(menuService.page(page, Wrappers.query(menu)));
     }
 
     @MartinLog("获取所有系统菜单")

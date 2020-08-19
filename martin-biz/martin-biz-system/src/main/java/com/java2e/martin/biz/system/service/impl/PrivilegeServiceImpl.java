@@ -5,6 +5,7 @@ import com.java2e.martin.biz.system.mapper.PrivilegeMapper;
 import com.java2e.martin.biz.system.service.PrivilegeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.java2e.martin.common.bean.system.UserRole;
+import com.java2e.martin.common.data.mybatis.service.impl.MartinServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +20,14 @@ import java.util.Set;
  * @date 2019-10-18
  */
 @Service
-public class PrivilegeServiceImpl extends ServiceImpl<PrivilegeMapper, Privilege> implements PrivilegeService {
+public class PrivilegeServiceImpl extends MartinServiceImpl<PrivilegeMapper, Privilege> implements PrivilegeService {
     @Override
     public Set<String> getPrivilegeByRoles(List<UserRole> roleList) {
         return this.baseMapper.getPrivilegeByRoles(roleList);
+    }
+
+    @Override
+    protected void setEntity() {
+        this.clz = Privilege.class;
     }
 }

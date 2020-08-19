@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 
-
 /**
  * <p>
  * 系统用户部门关系 前端控制器
@@ -105,16 +104,15 @@ public class DeptUserController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_dept_user_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        DeptUser deptUser  = new DeptUser();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, deptUser, true);
-        } catch (Exception e) {
+            return R.ok(deptUserService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(deptUserService.page(page, Wrappers.query(deptUser)));
     }
 
 

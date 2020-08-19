@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 
-
 /**
  * <p>
  * 系统角色权限关系 前端控制器
@@ -105,16 +104,15 @@ public class RolePrivilegeController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_role_privilege_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        RolePrivilege rolePrivilege  = new RolePrivilege();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, rolePrivilege, true);
-        } catch (Exception e) {
+            return R.ok(rolePrivilegeService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(rolePrivilegeService.page(page, Wrappers.query(rolePrivilege)));
     }
 
 

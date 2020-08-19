@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 
-
 /**
  * <p>
  * 系统部门角色关系 前端控制器
@@ -105,16 +104,15 @@ public class DeptRoleController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_dept_role_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        DeptRole deptRole  = new DeptRole();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, deptRole, true);
-        } catch (Exception e) {
+            return R.ok(deptRoleService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(deptRoleService.page(page, Wrappers.query(deptRole)));
     }
 
 

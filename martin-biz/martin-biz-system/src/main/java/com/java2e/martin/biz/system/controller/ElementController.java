@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 
-
 /**
  * <p>
  * 系统页面元素 前端控制器
@@ -105,16 +104,15 @@ public class ElementController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_element_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        Element element  = new Element();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, element, true);
-        } catch (Exception e) {
+            return R.ok(elementService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(elementService.page(page, Wrappers.query(element)));
     }
 
 

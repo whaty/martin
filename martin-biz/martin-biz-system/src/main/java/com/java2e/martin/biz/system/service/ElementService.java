@@ -2,6 +2,7 @@ package com.java2e.martin.biz.system.service;
 
 import com.java2e.martin.common.bean.system.Element;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.java2e.martin.common.data.mybatis.service.MartinService;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -13,6 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @date 2019-10-18
  */
 @Transactional(rollbackFor = Exception.class)
-public interface ElementService extends IService<Element> {
+public interface ElementService extends MartinService<Element> {
 
 }

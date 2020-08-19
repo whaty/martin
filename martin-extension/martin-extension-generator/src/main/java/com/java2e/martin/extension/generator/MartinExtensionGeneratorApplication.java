@@ -287,6 +287,8 @@ public class MartinExtensionGeneratorApplication {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setSuperEntityClass("");
+        strategy.setSuperServiceClass("MartinService");
+        strategy.setSuperServiceImplClass("MartinServiceImpl");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         strategy.setTablePrefix("sys_");
@@ -298,7 +300,7 @@ public class MartinExtensionGeneratorApplication {
         strategy.setSuperEntityColumns("");
         //todo 修改要生成的表名，多个英文逗号分割
 //        String[] tables = {"sys_dept", "sys_dept_role", "sys_dept_user", "sys_dict", "sys_element", "sys_file", "sys_log", "sys_menu", "sys_operation", "sys_privilege", "sys_role", "sys_role_privilege", "sys_social_details", "sys_user", "sys_user_role"};
-        String[] tables = {"sys_config"};
+        String[] tables = {"sys_role"};
         strategy.setInclude(tables);
         System.out.println("========menuSql========");
         printMenuSql(tables);
@@ -313,6 +315,7 @@ public class MartinExtensionGeneratorApplication {
         //mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         ArrayList<TableFill> tableFills = new ArrayList<>();
         tableFills.add(new TableFill("creator", FieldFill.INSERT));
+        tableFills.add(new TableFill("create_time", FieldFill.INSERT));
         tableFills.add(new TableFill("updater", FieldFill.UPDATE));
         tableFills.add(new TableFill("update_time", FieldFill.UPDATE));
         strategy.setTableFillList(tableFills);

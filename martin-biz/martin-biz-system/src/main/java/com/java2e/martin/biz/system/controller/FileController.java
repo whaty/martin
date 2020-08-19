@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 
-
 /**
  * <p>
  * 系统操作 前端控制器
@@ -105,16 +104,15 @@ public class FileController {
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_file_page')")
     public R<IPage> getPage(@RequestBody Map params) {
-        Page page = new Page();
-        File file  = new File();
         try {
-            BeanUtil.fillBeanWithMap(params, page, true);
-            BeanUtil.fillBeanWithMap(params, file, true);
-        } catch (Exception e) {
+            return R.ok(fileService.getPage(params));
+        } catch (IllegalAccessException e) {
+            log.error("", e);
+            return R.failed(ApiErrorCode.FAILED);
+        } catch (InstantiationException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
-        return R.ok(fileService.page(page, Wrappers.query(file)));
     }
 
 

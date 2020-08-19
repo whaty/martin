@@ -4,6 +4,7 @@ import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.biz.system.mapper.MenuMapper;
 import com.java2e.martin.biz.system.service.MenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.java2e.martin.common.data.mybatis.service.impl.MartinServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +19,20 @@ import java.util.List;
  * @date 2019-10-18
  */
 @Service
-public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements MenuService {
-    @Autowired
-    MenuMapper menuMapper;
+public class MenuServiceImpl extends MartinServiceImpl<MenuMapper, Menu> implements MenuService {
 
     @Override
     public List<Menu> getAllUiMenu() {
-        return menuMapper.getAllUiMenu();
+        return baseMapper.getAllUiMenu();
     }
 
     @Override
     public Object insert(Menu menu) {
-        return menuMapper.insert(menu);
+        return baseMapper.insert(menu);
+    }
+
+    @Override
+    protected void setEntity() {
+        this.clz = Menu.class;
     }
 }
