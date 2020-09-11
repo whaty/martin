@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author 狮少
  * @version 1.0
@@ -49,5 +51,17 @@ public class MenuTreeNode extends BaseTreeNode {
 
     @ApiModelProperty(value = "排序值")
     private Integer sort;
+
+    /**
+     * 名字必须为 routes，ant design pro  中的路由
+     */
+    @ApiModelProperty(value = "子节点列表")
+    protected List<BaseTreeNode> routes;
+
+    public void addRoutes(BaseTreeNode node) {
+        routes.add(node);
+    }
+
+
 
 }

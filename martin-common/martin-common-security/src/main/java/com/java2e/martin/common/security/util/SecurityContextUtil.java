@@ -27,7 +27,7 @@ public class SecurityContextUtil {
         return AuthorityUtils.authorityListToSet(getAuthentication().getAuthorities());
     }
 
-    public User getUser() {
-        return (User) getAuthentication().getPrincipal();
+    public MartinUser getUser() {
+        return (MartinUser) getAuthentication().getPrincipal();
     }
 }

@@ -4,6 +4,8 @@ import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.dto.BaseTreeNode;
 import com.java2e.martin.common.bean.system.mapstruct.MenuTreeNodeConverter;
 import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
+import com.java2e.martin.common.bean.system.mapstruct.RoleMenuNodeConverter;
+import com.java2e.martin.common.bean.system.vo.RoleMenuTreeVo;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
@@ -38,9 +40,8 @@ public class TreeUtil {
         List<T> trees = new ArrayList<T>();
         for (T treeNode : treeNodes) {
             if (root.equals(treeNode.getParentId())) {
-                trees.add(findRoutes(treeNode, treeNodes,treeNode.getParentKeys()));
+                trees.add(findRoutes(treeNode, treeNodes, treeNode.getParentKeys()));
             }
-
         }
         return trees;
     }
@@ -63,14 +64,14 @@ public class TreeUtil {
      * @param treeNodes
      * @return
      */
-    public <T extends BaseTreeNode> T findRoutes(T treeNode, List<T> treeNodes,String[] parentKeys) {
+    public <T extends BaseTreeNode> T findRoutes(T treeNode, List<T> treeNodes, String[] parentKeys) {
         for (T it : treeNodes) {
             ArrayList<String> parentKeysList = new ArrayList<>();
             if (treeNode.getId() == it.getParentId()) {
                 if (treeNode.getChildren() == null) {
                     treeNode.setChildren(new ArrayList<>());
                 }
-                treeNode.addChildren(findRoutes(it, treeNodes,treeNode.getParentKeys()));
+                treeNode.addChildren(findRoutes(it, treeNodes, treeNode.getParentKeys()));
             }
             if (parentKeys != null) {
                 parentKeysList.addAll(Arrays.asList(parentKeys));
@@ -80,5 +81,54 @@ public class TreeUtil {
         }
         return treeNode;
     }
+
+    /**
+     * 通过sysMenu集合创建树形角色菜单
+     *
+     * @param menus
+     * @param root
+     * @return
+     */
+    public List<RoleMenuTreeVo> buildRoleMenusByMenus(List<Menu> menus, int root) {
+        List<RoleMenuTreeVo> menuTreeNodes = RoleMenuNodeConverter.INSTANCE.po2dto(menus);
+        return TreeUtil.buildRoleMenusByRecursive(menuTreeNodes, root);
+    }
+
+    /**
+     * 递归获取所有菜单
+     *
+     * @param treeNodes 所有菜单
+     * @param root      父节点
+     * @param <T>
+     * @return
+     */
+    public <T extends BaseTreeNode> List<T> buildRoleMenusByRecursive(List<T> treeNodes, Object root) {
+        List<T> trees = new ArrayList<T>();
+        for (T treeNode : treeNodes) {
+            if (root.equals(treeNode.getParentId())) {
+                trees.add(findMenus(treeNode, treeNodes));
+            }
+        }
+        return trees;
+    }
+
+    /**
+     * 递归查找子路由
+     *
+     * @param treeNodes
+     * @return
+     */
+    public <T extends BaseTreeNode> T findMenus(T treeNode, List<T> treeNodes) {
+        for (T it : treeNodes) {
+            if (treeNode.getId() == it.getParentId()) {
+                if (treeNode.getChildren() == null) {
+                    treeNode.setChildren(new ArrayList<>());
+                }
+                treeNode.addChildren(findMenus(it, treeNodes));
+            }
+        }
+        return treeNode;
+    }
+
 
 }

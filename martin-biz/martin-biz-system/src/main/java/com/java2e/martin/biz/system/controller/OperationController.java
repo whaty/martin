@@ -1,11 +1,11 @@
 package com.java2e.martin.biz.system.controller;
 
-import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.Operation;
+import com.java2e.martin.biz.system.service.MenuService;
 import com.java2e.martin.biz.system.service.OperationService;
+import com.java2e.martin.common.bean.system.Operation;
+import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -40,6 +43,9 @@ public class OperationController {
 
     @Autowired
     private OperationService operationService;
+
+    @Autowired
+    private MenuService menuService;
 
 
     /**
@@ -103,9 +109,14 @@ public class OperationController {
     @MartinLog("分页查询系统操作")
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_operation_page')")
-    public R<IPage> getPage(@RequestBody Map params) {
+    public R getPage(@RequestBody Map params) {
         try {
-            return R.ok(operationService.getPage(params));
+            IPage<Operation> page = operationService.getPage(params);
+            List<MenuTreeNode> menuTree = menuService.getAllMenuTree();
+            HashMap<String, Object> map = new HashMap<>(2);
+            map.put("page", page);
+            map.put("menuTree", menuTree);
+            return R.ok(map);
         } catch (IllegalAccessException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
@@ -113,6 +124,17 @@ public class OperationController {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
+    }
+
+    @MartinLog("批量删除系统操作")
+    @PostMapping("/deleteBatch")
+    @PreAuthorize("hasAuthority('sys_operation_deleteBatch')")
+    public R removeBatch(@RequestBody String ids) {
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if (CollUtil.isEmpty(idList)) {
+            return R.failed("id 不能为空");
+        }
+        return R.ok(operationService.removeByIds(idList));
     }
 
 

@@ -146,6 +146,17 @@ public class ${table.controllerName} {
         }
     }
 
+    @MartinLog("批量删除$!{table.comment}")
+    @PostMapping("/deleteBatch")
+    @PreAuthorize("hasAuthority('$!{table.name}_deleteBatch')")
+    public R removeBatch(@RequestBody String ids) {
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if (CollUtil.isEmpty(idList)) {
+            return R.failed("id 不能为空");
+        }
+        return R.ok($!{servicename}.removeByIds(idList));
+    }
+
 
 }
 

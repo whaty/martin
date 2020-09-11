@@ -22,7 +22,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "树基类")
-public class BaseTreeNode implements Serializable {
+public class BaseTreeNode {
 
     private static final long serialVersionUID = 7444637036085561618L;
 
@@ -46,16 +46,6 @@ public class BaseTreeNode implements Serializable {
 
     public void add(BaseTreeNode node) {
         children.add(node);
-    }
-
-    /**
-     * 名字必须为 routes，ant design pro  中的路由
-     */
-    @ApiModelProperty(value = "子节点列表")
-    protected List<BaseTreeNode> routes;
-
-    public void addRoutes(BaseTreeNode node) {
-        routes.add(node);
     }
 
     public void addChildren(BaseTreeNode node) {

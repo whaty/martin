@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author 狮少
@@ -19,6 +20,7 @@ public class MartinUser extends User {
      */
     @Getter
     private Integer id;
+
     /**
      * 部门ID
      */
@@ -26,15 +28,22 @@ public class MartinUser extends User {
     private Integer deptId;
 
     /**
+     * 角色ID
+     */
+    @Getter
+    private Set<Integer> roleIds;
+
+    /**
      * 租户ID
      */
     @Getter
     private Integer tenantId;
 
-    public MartinUser(Integer id, Integer deptId, Integer tenantId, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public MartinUser(Integer id, Integer deptId,Set<Integer> roleIds, Integer tenantId, String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.id = id;
         this.deptId = deptId;
+        this.roleIds = roleIds;
         this.tenantId = tenantId;
     }
 }

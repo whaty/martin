@@ -1,6 +1,7 @@
 package com.java2e.martin.biz.system.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -22,7 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -116,6 +120,18 @@ public class DeptController {
             return R.failed(ApiErrorCode.FAILED);
         }
     }
+
+    @MartinLog("批量删除系统部门")
+    @PostMapping("/deleteBatch")
+    @PreAuthorize("hasAuthority('sys_dept_deleteBatch')")
+    public R removeBatch(@RequestBody String ids) {
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if (CollUtil.isEmpty(idList)) {
+            return R.failed("id 不能为空");
+        }
+        return R.ok(deptService.removeByIds(idList));
+    }
+
 
 }
 

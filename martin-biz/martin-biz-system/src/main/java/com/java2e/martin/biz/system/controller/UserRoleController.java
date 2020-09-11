@@ -1,11 +1,9 @@
 package com.java2e.martin.biz.system.controller;
 
-import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.UserRole;
 import com.java2e.martin.biz.system.service.UserRoleService;
+import com.java2e.martin.common.bean.system.UserRole;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
@@ -19,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -113,6 +113,17 @@ public class UserRoleController {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
+    }
+
+    @MartinLog("批量删除系统用户角色关系")
+    @PostMapping("/deleteBatch")
+    @PreAuthorize("hasAuthority('sys_user_role_deleteBatch')")
+    public R removeBatch(@RequestBody String ids) {
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if (CollUtil.isEmpty(idList)) {
+            return R.failed("id 不能为空");
+        }
+        return R.ok(userRoleService.removeByIds(idList));
     }
 
 

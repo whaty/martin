@@ -7,6 +7,7 @@ import com.java2e.martin.common.data.mybatis.service.MartinService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -26,4 +27,20 @@ public interface PrivilegeService extends MartinService<Privilege> {
      * @return
      */
     Set<String> getPrivilegeByRoles(List<UserRole> roleList);
+
+    /**
+     * 更新角色的菜单信息，先删除原来的，再插入新的
+     *
+     * @param map
+     * @return
+     */
+    Boolean saveCheckedMenus(Map map);
+
+    /**
+     * 更新角色的按钮信息，先删除原来的，再插入新的
+     *
+     * @param map
+     * @return
+     */
+    Boolean saveCheckedOperations(Map map);
 }

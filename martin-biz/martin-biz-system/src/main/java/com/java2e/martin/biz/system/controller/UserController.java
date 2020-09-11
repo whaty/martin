@@ -1,13 +1,13 @@
 package com.java2e.martin.biz.system.controller;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.java2e.martin.biz.system.vo.RoleCheckbox;
 import com.java2e.martin.biz.system.service.PrivilegeService;
+import com.java2e.martin.biz.system.service.RoleService;
 import com.java2e.martin.biz.system.service.UserRoleService;
 import com.java2e.martin.biz.system.service.UserService;
 import com.java2e.martin.common.bean.system.User;
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +61,9 @@ public class UserController {
 
     @Autowired
     private PrivilegeService privilegeService;
+
+    @Autowired
+    private RoleService roleService;
 
 
     /**
@@ -161,6 +164,8 @@ public class UserController {
             log.error("{}", R.failed(ApiErrorCode.ROLE_NOT_FOUND));
             return R.failed(ApiErrorCode.ROLE_NOT_FOUND);
         }
+        Map<Integer, List<UserRole>> roles = roleList.stream().collect(Collectors.groupingBy(UserRole::getRoleId));
+        userRolePrivilegeVo.setRoles(roles.keySet());
         Set<String> authoritySet = privilegeService.getPrivilegeByRoles(roleList);
         if (CollectionUtil.isEmpty(authoritySet)) {
             log.error("{}", R.failed(ApiErrorCode.PRIVILEGE_NOT_FOUND));
@@ -184,5 +189,29 @@ public class UserController {
         return R.ok(map);
     }
 
+    @PostMapping("/getAllRoles")
+    public R<List<RoleCheckbox>> getAllRoles(@RequestBody User user) {
+        List<RoleCheckbox> roles = roleService.getAllRoles();
+        List<RoleCheckbox> selectRoles = roleService.getSelectRoles(user);
+        List<RoleCheckbox> roleCheckboxes = roles.stream().map(roleCheckbox -> {
+            boolean anyMatch = selectRoles.stream().anyMatch(roleCheckbox1 -> roleCheckbox1.getValue().compareTo(roleCheckbox.getValue()) == 0);
+            if (anyMatch) {
+                roleCheckbox.setChecked(true);
+            }
+            return roleCheckbox;
+        }).collect(Collectors.toList());
+        return R.ok(roleCheckboxes);
+    }
+
+    @PostMapping("/addUserRole")
+    public R addUserRole(@Valid @RequestBody UserRole userRole) {
+        return R.ok(userRoleService.save(userRole));
+    }
+
+    @PostMapping("/deleteUserRole")
+    public R deleteUserRole(@Valid @RequestBody UserRole userRole) {
+        System.out.println("userRole1 = " + userRole);
+        return R.ok(userRoleService.remove(Wrappers.query(userRole)));
+    }
 }
 

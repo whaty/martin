@@ -99,6 +99,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             additionalInfo.put(SecurityConstants.TOKEN_USER_ID, martinUser.getId());
             additionalInfo.put(SecurityConstants.TOKEN_USERNAME, martinUser.getUsername());
             additionalInfo.put(SecurityConstants.TOKEN_DEPT_ID, martinUser.getDeptId());
+            additionalInfo.put(SecurityConstants.TOKEN_ROLE_IDS, martinUser.getRoleIds());
             additionalInfo.put(SecurityConstants.TOKEN_TENANT_ID, martinUser.getTenantId());
             additionalInfo.put(SecurityConstants.TOKEN_LICENSE, SecurityConstants.MARTIN_LICENSE);
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);

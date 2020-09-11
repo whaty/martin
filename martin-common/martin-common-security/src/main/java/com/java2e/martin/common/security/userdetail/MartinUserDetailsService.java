@@ -62,7 +62,7 @@ public class MartinUserDetailsService implements UserDetailsService {
 
         boolean enabled = StrUtil.equals(sysUser.getDelFlag(), CommonConstants.STATUS_NORMAL);
         boolean accountNonLocked = !StrUtil.equals(sysUser.getLockFlag(), CommonConstants.STATUS_LOCK);
-        MartinUser martinUser = new MartinUser(sysUser.getId(), sysUser.getDeptId(), sysUser.getTenantId(), sysUser.getUsername(), sysUser.getPwd(), enabled, true, true, accountNonLocked, authorities);
+        MartinUser martinUser = new MartinUser(sysUser.getId(), sysUser.getDeptId(),userRolePrivilegeVo.getRoles(), sysUser.getTenantId(), sysUser.getUsername(), sysUser.getPwd(), enabled, true, true, accountNonLocked, authorities);
         return martinUser;
     }
 }

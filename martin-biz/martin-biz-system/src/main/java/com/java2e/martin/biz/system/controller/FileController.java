@@ -1,11 +1,9 @@
 package com.java2e.martin.biz.system.controller;
 
-import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.File;
 import com.java2e.martin.biz.system.service.FileService;
+import com.java2e.martin.common.bean.system.File;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
@@ -19,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -35,7 +35,7 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequestMapping("file")
-@Api(value = "File 控制器", tags = "系统操作")
+@Api(value = "File 控制器", tags = "系统文件")
 public class FileController {
 
     @Autowired
@@ -48,7 +48,7 @@ public class FileController {
      * @param file File
      * @return R
      */
-    @MartinLog("添加系统操作")
+    @MartinLog("添加系统文件")
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_file_add')")
     public R save(@Valid @RequestBody File file) {
@@ -61,7 +61,7 @@ public class FileController {
      * @param file File
      * @return R
      */
-    @MartinLog("删除系统操作")
+    @MartinLog("删除系统文件")
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('sys_file_del')")
     public R removeById(@Valid @RequestBody File file) {
@@ -74,7 +74,7 @@ public class FileController {
      * @param file File
      * @return R
      */
-    @MartinLog("编辑系统操作")
+    @MartinLog("编辑系统文件")
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_file_edit')")
     public R update(@Valid @RequestBody File file) {
@@ -87,7 +87,7 @@ public class FileController {
      * @param file File
      * @return R
      */
-    @MartinLog("单个查询系统操作")
+    @MartinLog("单个查询系统文件")
     @PostMapping("/get")
     @PreAuthorize("hasAuthority('sys_file_get')")
     public R getById(@RequestBody File file) {
@@ -100,7 +100,7 @@ public class FileController {
      * @param params 分页以及查询参数
      * @return R
      */
-    @MartinLog("分页查询系统操作")
+    @MartinLog("分页查询系统文件")
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_file_page')")
     public R<IPage> getPage(@RequestBody Map params) {
@@ -113,6 +113,17 @@ public class FileController {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);
         }
+    }
+
+    @MartinLog("批量删除系统文件")
+    @PostMapping("/deleteBatch")
+    @PreAuthorize("hasAuthority('sys_file_deleteBatch')")
+    public R removeBatch(@RequestBody String ids) {
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if (CollUtil.isEmpty(idList)) {
+            return R.failed("id 不能为空");
+        }
+        return R.ok(fileService.removeByIds(idList));
     }
 
 

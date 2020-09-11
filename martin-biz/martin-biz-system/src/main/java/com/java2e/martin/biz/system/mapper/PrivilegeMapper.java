@@ -5,6 +5,7 @@ import com.java2e.martin.common.bean.system.Privilege;
 import com.java2e.martin.common.bean.system.UserRole;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -23,4 +24,37 @@ public interface PrivilegeMapper extends BaseMapper<Privilege> {
      * @return
      */
     Set<String> getPrivilegeByRoles(List<UserRole> roleList);
+
+    /**
+     * 先删除原来的角色菜单
+     *
+     * @param map
+     * @return
+     */
+    Boolean deleteOldMenus(Map map);
+
+    /**
+     * 插入角色新菜单信息
+     *
+     * @param map
+     * @return
+     */
+    Boolean saveCheckedMenus(Map map);
+
+
+    /**
+     * 先删除原来的角色按钮
+     *
+     * @param map
+     * @return
+     */
+    Boolean deleteOldOperations(Map map);
+
+    /**
+     * 插入角色新按钮信息
+     *
+     * @param map
+     * @return
+     */
+    Boolean saveCheckedOperations(Map map);
 }

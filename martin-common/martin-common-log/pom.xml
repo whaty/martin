@@ -19,10 +19,6 @@
             <groupId>com.java2e</groupId>
             <artifactId>martin-common-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-        </dependency>
         <!-- Your project must also directly depend on either logback-classic or logback-access.  For example: -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -30,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
+            <artifactId>logback-core</artifactId>
         </dependency>
     </dependencies>
 

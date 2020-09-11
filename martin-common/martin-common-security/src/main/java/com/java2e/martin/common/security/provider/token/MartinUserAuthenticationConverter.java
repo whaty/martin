@@ -10,8 +10,11 @@ import org.springframework.security.oauth2.provider.token.UserAuthenticationConv
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author 狮少
@@ -35,13 +38,14 @@ public class MartinUserAuthenticationConverter implements UserAuthenticationConv
 
     @Override
     public Authentication extractAuthentication(Map<String, ?> map) {
-        if (map.containsKey(USERNAME)) {
+         if (map.containsKey(USERNAME)) {
             Collection<? extends GrantedAuthority> authorities = getAuthorities(map);
             String username = (String) map.get(USERNAME);
             Integer id = (Integer) map.get(SecurityConstants.TOKEN_USER_ID);
             Integer deptId = (Integer) map.get(SecurityConstants.TOKEN_DEPT_ID);
             Integer tenantId = (Integer) map.get(SecurityConstants.TOKEN_TENANT_ID);
-            MartinUser user = new MartinUser(id, deptId, tenantId, username, N_A, true
+            List roles = (List) map.get(SecurityConstants.TOKEN_ROLE_IDS);
+            MartinUser user = new MartinUser(id, deptId, new HashSet<>(roles), tenantId, username, N_A, true
                     , true, true, true, authorities);
             return new UsernamePasswordAuthenticationToken(user, N_A, authorities);
         }

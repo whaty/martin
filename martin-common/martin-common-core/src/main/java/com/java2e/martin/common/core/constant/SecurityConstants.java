@@ -132,6 +132,11 @@ public final class SecurityConstants {
     public static final String TOKEN_DEPT_ID = "dept_id";
 
     /**
+     * 用户角色字段
+     */
+    public static final String TOKEN_ROLE_IDS = "role_ids";
+
+    /**
      * 租户ID 字段
      */
     public static final String TOKEN_TENANT_ID = "tenant_id";

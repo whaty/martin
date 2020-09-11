@@ -163,8 +163,12 @@
                                 <goal>tag</goal>
                             </goals>
                             <configuration>
-                                <image>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}</image>
-                                <newName>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}</newName>
+                                <image>
+                                    ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
+                                </image>
+                                <newName>
+                                    ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
+                                </newName>
                             </configuration>
                         </execution>
                         <execution>
@@ -174,7 +178,9 @@
                                 <goal>push</goal>
                             </goals>
                             <configuration>
-                                <imageName>${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}</imageName>
+                                <imageName>
+                                    ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
+                                </imageName>
                             </configuration>
                         </execution>
                     </executions>

@@ -1,13 +1,13 @@
 package com.java2e.martin.biz.system.controller;
 
-import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.Role;
+import com.java2e.martin.biz.system.service.MenuService;
+import com.java2e.martin.biz.system.service.PrivilegeService;
 import com.java2e.martin.biz.system.service.RoleService;
+import com.java2e.martin.common.bean.system.Role;
+import com.java2e.martin.common.bean.system.vo.RoleOperationVo;
 import com.java2e.martin.common.core.api.ApiErrorCode;
-import com.java2e.martin.common.core.api.IErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import io.swagger.annotations.Api;
@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -41,6 +44,12 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MenuService menuService;
+
+    @Autowired
+    private PrivilegeService privilegeService;
 
 
     /**
@@ -116,6 +125,40 @@ public class RoleController {
         }
     }
 
+    @MartinLog("批量删除系统角色")
+    @PostMapping("/deleteBatch")
+    @PreAuthorize("hasAuthority('sys_role_deleteBatch')")
+    public R removeBatch(@RequestBody String ids) {
+        List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
+        if (CollUtil.isEmpty(idList)) {
+            return R.failed("id 不能为空");
+        }
+        return R.ok(roleService.removeByIds(idList));
+    }
+
+    @PostMapping("/getAllMenuByRole")
+    public R<Map> getAllMenuByRole(@RequestBody Role role) {
+        HashMap<String, Object> map = menuService.getAllMenuByRole(role);
+        return R.ok(map);
+    }
+
+    @PostMapping("/saveCheckedMenus")
+    public R<Boolean> saveCheckedMenus(@RequestBody Map map) {
+        Boolean flag = privilegeService.saveCheckedMenus(map);
+        return R.ok(flag);
+    }
+
+    @PostMapping("/getOperationByCheckedMenus")
+    public R<List<RoleOperationVo>> getOperationByCheckedMenus(@RequestBody Map map) {
+        List<RoleOperationVo> result = roleService.getOperationByCheckedMenus(map);
+        return R.ok(result);
+    }
+
+    @PostMapping("/saveCheckedOperations")
+    public R<Boolean> saveCheckedOperations(@RequestBody Map map) {
+        Boolean flag = privilegeService.saveCheckedOperations(map);
+        return R.ok(flag);
+    }
 
 }
 
