@@ -6,13 +6,7 @@ import { $!{entity}ListItem } from './model';
 const tableListDataSource: $!{entity}ListItem[] = [];
 
 function get$!{entity}s(req: Request, res: Response) {
-  const params = req.query;
-
   let dataSource = [...tableListDataSource];
-  if (params.name) {
-    dataSource = dataSource.filter(x => x.${table.entityPath}name.indexOf(params.name) !== -1);
-  }
-
   return getTableList(req, res, dataSource);
 }
 

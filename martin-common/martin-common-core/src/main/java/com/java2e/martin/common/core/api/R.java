@@ -1,5 +1,7 @@
 package com.java2e.martin.common.core.api;
 
+import cn.hutool.core.util.StrUtil;
+
 import java.io.Serializable;
 import java.util.Optional;
 
@@ -46,6 +48,10 @@ public class R<T> implements Serializable {
         return restResult(data, errorCode.getCode(), errorCode.getMsg());
     }
 
+    public static String pretty(String msg) {
+        return StrUtil.C_BRACKET_START + msg + StrUtil.C_BRACKET_END;
+    }
+
     private static <T> R<T> restResult(T data, long code, String msg) {
         R<T> apiResult = new R();
         apiResult.setCode(code);
@@ -53,6 +59,7 @@ public class R<T> implements Serializable {
         apiResult.setMsg(msg);
         return apiResult;
     }
+
 
     public long getCode() {
         return this.code;

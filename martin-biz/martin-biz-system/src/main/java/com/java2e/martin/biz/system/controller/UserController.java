@@ -3,6 +3,7 @@ package com.java2e.martin.biz.system.controller;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.java2e.martin.biz.system.vo.RoleCheckbox;
@@ -15,12 +16,14 @@ import com.java2e.martin.common.bean.system.UserRole;
 import com.java2e.martin.common.bean.system.vo.UserRolePrivilegeVo;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
+import com.java2e.martin.common.core.constant.SecurityConstants;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import com.java2e.martin.common.security.util.SecurityContextUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,6 +68,9 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     /**
      * 添加
@@ -76,6 +82,10 @@ public class UserController {
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_user_add')")
     public R save(@Valid @RequestBody User user) {
+        String pwd = user.getPwd();
+        if (StrUtil.isNotBlank(pwd)) {
+            user.setPwd(SecurityConstants.BCRYPT + bCryptPasswordEncoder.encode(pwd));
+        }
         return R.ok(userService.save(user));
     }
 
@@ -102,6 +112,10 @@ public class UserController {
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_user_edit')")
     public R update(@Valid @RequestBody User user) {
+        String pwd = user.getPwd();
+        if (StrUtil.isNotBlank(pwd)) {
+            user.setPwd(SecurityConstants.BCRYPT + bCryptPasswordEncoder.encode(pwd));
+        }
         return R.ok(userService.updateById(user));
     }
 

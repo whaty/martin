@@ -159,7 +159,7 @@ class $!{entity} extends Component<$!{entity}Props, $!{entity}State> {
     const {dispatch} = this.props;
     const that = this;
     dispatch({
-      type: 'system_${table.entityPath}/delete',
+      type: '${cfg.moduleName}_${table.entityPath}/delete',
       payload: ${table.entityPath}
 
     })
@@ -183,7 +183,7 @@ class $!{entity} extends Component<$!{entity}Props, $!{entity}State> {
     const that = this;
 
     dispatch({
-      type: 'system_${table.entityPath}/deleteBatch',
+      type: '${cfg.moduleName}_${table.entityPath}/deleteBatch',
       payload: ids.join(','),
 
     })
@@ -200,9 +200,9 @@ class $!{entity} extends Component<$!{entity}Props, $!{entity}State> {
       })
   };
 
-  handleAdd = (fields: any) => this.handleAddOrEdit('system_${table.entityPath}/add', fields);
+  handleAdd = (fields: any) => this.handleAddOrEdit('${cfg.moduleName}_${table.entityPath}/add', fields);
 
-  handleEdit = (fields: any) => this.handleAddOrEdit('system_${table.entityPath}/update', fields);
+  handleEdit = (fields: any) => this.handleAddOrEdit('${cfg.moduleName}_${table.entityPath}/update', fields);
 
   handleAddOrEdit = (type: string, fields: any) => {
     const {dispatch} = this.props;
@@ -258,7 +258,7 @@ class $!{entity} extends Component<$!{entity}Props, $!{entity}State> {
       dispatch,
       loading,
       // @ts-ignore
-      system_${table.entityPath}: {data},
+      ${cfg.moduleName}_${table.entityPath}: {data},
     } = this.props;
     const {selectedRows} = this.state;
 
@@ -266,7 +266,7 @@ class $!{entity} extends Component<$!{entity}Props, $!{entity}State> {
       <TablePage<$!{entity}ListItem>
         ref={this.pageRef}
         title={formatMessage({id: 'app.${table.entityPath}'})}
-        action="system_${table.entityPath}/page"
+        action="${cfg.moduleName}_${table.entityPath}/page"
         columns={this.columns}
         data={data}
         loading={loading}
@@ -284,17 +284,17 @@ class $!{entity} extends Component<$!{entity}Props, $!{entity}State> {
 
 export default connect(
   ({
-     system_${table.entityPath},
+     ${cfg.moduleName}_${table.entityPath},
      loading,
    }: {
-    system_${table.entityPath}: $!{entity}StateType;
+    ${cfg.moduleName}_${table.entityPath}: $!{entity}StateType;
     loading: {
       models: {
         [key: string]: boolean;
       };
     };
   }) => ({
-    system_${table.entityPath},
-    loading: loading.models.system_${table.entityPath},
+    ${cfg.moduleName}_${table.entityPath},
+    loading: loading.models.${cfg.moduleName}_${table.entityPath},
   }),
 )($!{entity});

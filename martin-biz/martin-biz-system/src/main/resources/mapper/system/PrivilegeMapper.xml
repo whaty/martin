@@ -22,7 +22,7 @@
         <if test="checkedKeys!=null and checkedKeys.size()>0">
             INSERT INTO sys_privilege ( type,role_id, resource_id, dict_id)
             values
-            <foreach collection="checkedKeys" item="item" index="index" open="" close="" separator=",">
+            <foreach collection="checked" item="item" index="index" open="" close="" separator=",">
                 (1,#{roleId},#{item},#{dict_id})
             </foreach>
         </if>

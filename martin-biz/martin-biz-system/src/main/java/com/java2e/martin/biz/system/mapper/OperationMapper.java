@@ -1,7 +1,7 @@
 package com.java2e.martin.biz.system.mapper;
 
-import com.java2e.martin.common.bean.system.Operation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.java2e.martin.common.bean.system.Operation;
 
 /**
  * <p>
@@ -14,9 +14,10 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface OperationMapper extends BaseMapper<Operation> {
 
     /**
-     * 为菜单生成默认的增删改查按钮
+     * 判定表在数据库是否存在
      *
-     * @param id
+     * @param tableName
+     * @return
      */
-    void generateDefaultOperation(Object id);
+    int isTableExits(String tableName);
 }

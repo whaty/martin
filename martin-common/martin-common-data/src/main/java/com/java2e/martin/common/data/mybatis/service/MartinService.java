@@ -18,6 +18,8 @@ public interface MartinService<T> extends IService<T> {
      *
      * @param params
      * @return
+     * @throws IllegalAccessException
+     * @throws InstantiationException
      */
     IPage<T> getPage(Map params) throws IllegalAccessException, InstantiationException;
 }

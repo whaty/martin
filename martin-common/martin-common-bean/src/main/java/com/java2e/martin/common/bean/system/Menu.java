@@ -1,22 +1,20 @@
 package com.java2e.martin.common.bean.system;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableLogic;
-
-import java.io.Serializable;
-
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.java2e.martin.common.core.annotation.BindField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -49,6 +47,9 @@ public class Menu implements Serializable {
     @ApiModelProperty(value = "前端URL")
     private String path;
 
+    @ApiModelProperty(value = "绑定表名")
+    private String tableName;
+
     @ApiModelProperty(value = "父菜单ID")
     private Integer parentId;
 
@@ -79,6 +80,9 @@ public class Menu implements Serializable {
     @ApiModelProperty(value = "是否为演示数据,0:不区分环境，1：演示，2：正式")
     private Integer dev;
 
+    @ApiModelProperty(value = "是否已生成按钮")
+    private Boolean flagIsGentOperation;
+
     @ApiModelProperty(value = "所属租户")
     private Integer tenantId;
 
@@ -94,10 +98,12 @@ public class Menu implements Serializable {
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
+    @BindField(entity = User.class, field = "username")
     @ApiModelProperty(value = "创建人")
     @TableField(fill = FieldFill.INSERT)
     private String creator;
 
+    @BindField(entity = User.class, field = "username")
     @ApiModelProperty(value = "修改人")
     @TableField(fill = FieldFill.UPDATE)
     private String updater;

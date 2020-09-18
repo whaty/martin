@@ -3,12 +3,11 @@ package com.java2e.martin.biz.system.controller;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.java2e.martin.biz.system.service.MenuService;
+import com.java2e.martin.biz.system.service.OperationService;
 import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
-import com.java2e.martin.common.bean.util.TreeUtil;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
-import com.java2e.martin.common.core.constant.CommonConstants;
 import com.java2e.martin.common.log.annotation.MartinLog;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +43,8 @@ import java.util.stream.Collectors;
 public class MenuController {
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private OperationService operationService;
 
 
     /**
@@ -112,7 +113,7 @@ public class MenuController {
         try {
             IPage<Menu> page = menuService.getPage(params);
             List<MenuTreeNode> menuTree = menuService.getAllMenuTree();
-            HashMap<String , Object> map = new HashMap<>(2);
+            HashMap<String, Object> map = new HashMap<>(2);
             map.put("page", page);
             map.put("menuTree", menuTree);
             return R.ok(map);
@@ -147,8 +148,13 @@ public class MenuController {
     @MartinLog("批量添加系统菜单")
     @PostMapping("/batchSave")
     public R removeBatch(@RequestBody List<Menu> list) {
-
         return R.ok(menuService.saveBatch(list));
+    }
+
+    @MartinLog("生成菜单CRUD按钮")
+    @PostMapping("/generateOperation")
+    public R generateOperation(@RequestBody Menu menu) {
+        return operationService.generateOperation(menu);
     }
 
 

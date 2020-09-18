@@ -5,6 +5,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,8 @@ import org.springframework.stereotype.Service;
  * @describtion SpringContextHolder
  * @since 1.0
  */
+@Configuration
 @Slf4j
-@Service
-@Lazy(false)
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
 

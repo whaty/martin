@@ -1,9 +1,12 @@
 package com.java2e.martin.common.bean.util;
 
+import com.java2e.martin.common.bean.system.Dept;
 import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.dto.BaseTreeNode;
-import com.java2e.martin.common.bean.system.mapstruct.MenuTreeNodeConverter;
+import com.java2e.martin.common.bean.system.dto.DeptTreeNode;
 import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
+import com.java2e.martin.common.bean.system.mapstruct.DeptTreeNodeConverter;
+import com.java2e.martin.common.bean.system.mapstruct.MenuTreeNodeConverter;
 import com.java2e.martin.common.bean.system.mapstruct.RoleMenuNodeConverter;
 import com.java2e.martin.common.bean.system.vo.RoleMenuTreeVo;
 import lombok.experimental.UtilityClass;
@@ -29,14 +32,14 @@ import java.util.List;
 @UtilityClass
 public class TreeUtil {
     /**
-     * 递归获取所有路由信息
+     * 递归获取所有子节点
      *
-     * @param treeNodes 所有路由
+     * @param treeNodes 所有节点
      * @param root      父节点
      * @param <T>
      * @return
      */
-    public <T extends BaseTreeNode> List<T> buildRoutesByRecursive(List<T> treeNodes, Object root) {
+    public <T extends BaseTreeNode> List<T> buildTreeByRecursive(List<T> treeNodes, Object root) {
         List<T> trees = new ArrayList<T>();
         for (T treeNode : treeNodes) {
             if (root.equals(treeNode.getParentId())) {
@@ -53,9 +56,21 @@ public class TreeUtil {
      * @param root
      * @return
      */
-    public List<MenuTreeNode> buildRoutesByRecursive(List<Menu> menus, int root) {
+    public List<MenuTreeNode> buildMenuTreeByRecursive(List<Menu> menus, int root) {
         List<MenuTreeNode> menuTreeNodes = MenuTreeNodeConverter.INSTANCE.po2dto(menus);
-        return TreeUtil.buildRoutesByRecursive(menuTreeNodes, root);
+        return TreeUtil.buildTreeByRecursive(menuTreeNodes, root);
+    }
+
+    /**
+     * 通过sysDept集合创建树形部门
+     *
+     * @param depts
+     * @param root
+     * @return
+     */
+    public List<DeptTreeNode> buildDeptTreeByRecursive(List<Dept> depts, int root) {
+        List<DeptTreeNode> deptTreeNodes = DeptTreeNodeConverter.INSTANCE.po2dto(depts);
+        return TreeUtil.buildTreeByRecursive(deptTreeNodes, root);
     }
 
     /**

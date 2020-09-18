@@ -32,14 +32,14 @@ public class MybatisPlusConfiguration implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
-        this.setInsertFieldValByName(CommonConstants.CREATOR, SecurityContextUtil.getUser().getUsername(), metaObject);
+        this.setInsertFieldValByName(CommonConstants.CREATOR, SecurityContextUtil.getUser().getId(), metaObject);
         this.setInsertFieldValByName(CommonConstants.CREATE_TIME, LocalDateTime.now(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
-        this.setUpdateFieldValByName(CommonConstants.UPDATER, SecurityContextUtil.getUser().getUsername(), metaObject);
+        this.setUpdateFieldValByName(CommonConstants.UPDATER, SecurityContextUtil.getUser().getId(), metaObject);
         this.setUpdateFieldValByName(CommonConstants.UPDATE_TIME, LocalDateTime.now(), metaObject);
     }
 }

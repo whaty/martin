@@ -1,13 +1,10 @@
 package com.java2e.martin.biz.system.controller;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.java2e.martin.common.bean.system.Dept;
 import com.java2e.martin.biz.system.service.DeptService;
+import com.java2e.martin.common.bean.system.Dept;
+import com.java2e.martin.common.bean.system.dto.DeptTreeNode;
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.log.annotation.MartinLog;
@@ -21,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -109,9 +105,14 @@ public class DeptController {
     @MartinLog("分页查询系统部门")
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_dept_page')")
-    public R<IPage> getPage(@RequestBody Map params) {
+    public R getPage(@RequestBody Map params) {
         try {
-            return R.ok(deptService.getPage(params));
+            IPage<Dept> page = deptService.getPage(params);
+            List menuTree = deptService.getAllDptTree();
+            HashMap<String, Object> map = new HashMap<>(2);
+            map.put("page", page);
+            map.put("deptTree", menuTree);
+            return R.ok(map);
         } catch (IllegalAccessException e) {
             log.error("", e);
             return R.failed(ApiErrorCode.FAILED);

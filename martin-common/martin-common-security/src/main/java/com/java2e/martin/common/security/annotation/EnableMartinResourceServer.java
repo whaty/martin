@@ -1,6 +1,6 @@
 package com.java2e.martin.common.security.annotation;
 
-import com.java2e.martin.common.security.MartinSercurityAutoConfiguration;
+import com.java2e.martin.common.security.MartinSecurityAutoConfiguration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -25,6 +25,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Import({MartinSercurityAutoConfiguration.class})
+@Import({MartinSecurityAutoConfiguration.class})
 public @interface EnableMartinResourceServer {
 }

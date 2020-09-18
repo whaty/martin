@@ -117,7 +117,7 @@ public class RolePrivilegeController {
 
     @MartinLog("批量删除系统角色权限关系")
     @PostMapping("/deleteBatch")
-    @PreAuthorize("hasAuthority(sys_role_privilege_deleteBatch')")
+    @PreAuthorize("hasAuthority('sys_role_privilege_deleteBatch')")
     public R removeBatch(@RequestBody String ids) {
         List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
         if (CollUtil.isEmpty(idList)) {

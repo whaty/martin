@@ -16,6 +16,8 @@ public enum ApiErrorCode implements IErrorCode {
 
     FORBIDDEN(403, "禁止操作"),
 
+    PAGE_LIMIT_ERROR(1000001, "分页参数过大"),
+
     USER_NOT_FOUND(9404001, "查无此用户"),
 
     ROLE_NOT_FOUND(9404002, "用户未分配角色"),

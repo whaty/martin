@@ -57,4 +57,5 @@ public interface MenuService extends MartinService<Menu> {
      * @return
      */
     List getAllMenuTree();
+
 }

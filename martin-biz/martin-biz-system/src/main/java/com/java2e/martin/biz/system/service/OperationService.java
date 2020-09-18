@@ -1,7 +1,8 @@
 package com.java2e.martin.biz.system.service;
 
+import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.Operation;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.data.mybatis.service.MartinService;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional(rollbackFor = Exception.class)
 public interface OperationService extends MartinService<Operation> {
+    /**
+     * 生成菜单CRUD按钮
+     *
+     * @param menu
+     * @return
+     */
+    R generateOperation(Menu menu);
 
     /**
-     * 为菜单生成默认的增删改查按钮
+     * 判定表在数据库是否存在
      *
-     * @param id
+     * @param tableName
+     * @return
      */
-    void generateDefaultOperation(Object id);
+    boolean isTableExits(String tableName);
 }

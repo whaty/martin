@@ -1,7 +1,7 @@
 import request from '@/utils/request';
 
 import {TableListParams} from '@/components/Page/TablePage';
-import {$!{entity}ListItem} from '@/pages/system/${table.entityPath}/model';
+import {$!{entity}ListItem} from '@/pages/${cfg.moduleName}/${table.entityPath}/model';
 
 export async function page$!{entity}s(params: TableListParams) {
   return request('/syst/${table.entityPath}/page', {

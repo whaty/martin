@@ -117,7 +117,7 @@ public class SocialDetailsController {
 
     @MartinLog("批量删除系统社交账号")
     @PostMapping("/deleteBatch")
-    @PreAuthorize("hasAuthority(sys_social_details_deleteBatch')")
+    @PreAuthorize("hasAuthority('sys_social_details_deleteBatch')")
     public R removeBatch(@RequestBody String ids) {
         List<String> idList = Arrays.stream(ids.split(",")).collect(Collectors.toList());
         if (CollUtil.isEmpty(idList)) {

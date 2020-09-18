@@ -16,10 +16,12 @@ import org.springframework.boot.autoconfigure.security.oauth2.OAuth2ClientProper
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -51,7 +53,7 @@ import java.util.Set;
 )
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MartinSercurityAutoConfiguration extends ResourceServerConfigurerAdapter implements WebMvcConfigurer {
+public class MartinSecurityAutoConfiguration extends ResourceServerConfigurerAdapter implements WebMvcConfigurer {
     @Autowired
     private PermitAllUrlProperties permitAllUrlProperties;
     @Autowired
@@ -135,5 +137,10 @@ public class MartinSercurityAutoConfiguration extends ResourceServerConfigurerAd
     public void addInterceptors(InterceptorRegistry registry) {
         //feignClient 内部服务调用拦截器
         registry.addInterceptor(feignInnerInterceptor());
+    }
+
+    @Bean
+    public BCryptPasswordEncoder encode() {
+        return new BCryptPasswordEncoder();
     }
 }

@@ -1,10 +1,9 @@
 package com.java2e.martin.biz.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import com.java2e.martin.common.bean.system.Privilege;
 import com.java2e.martin.biz.system.mapper.PrivilegeMapper;
 import com.java2e.martin.biz.system.service.PrivilegeService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.java2e.martin.common.bean.system.Privilege;
 import com.java2e.martin.common.bean.system.UserRole;
 import com.java2e.martin.common.data.mybatis.service.impl.MartinServiceImpl;
 import org.springframework.stereotype.Service;
@@ -34,9 +33,29 @@ public class PrivilegeServiceImpl extends MartinServiceImpl<PrivilegeMapper, Pri
         if (roleId != null) {
             this.baseMapper.deleteOldMenus(map);
         }
-        List checkedKeys = (List) map.get("checkedKeys");
-        if (CollUtil.isNotEmpty(checkedKeys)) {
-            this.baseMapper.saveCheckedMenus(map);
+        Object checkedKeys = map.get("checkedKeys");
+        if (checkedKeys instanceof Map) {
+            List checked = null;
+            if (CollUtil.isNotEmpty((Map) checkedKeys)) {
+                checked = (List) ((Map) checkedKeys).get("checked");
+                if (CollUtil.isNotEmpty(checked)) {
+                    map.put("checked", checked);
+                    this.baseMapper.saveCheckedMenus(map);
+                } else {
+                    return Boolean.FALSE;
+                }
+            } else {
+                return Boolean.FALSE;
+            }
+        } else if (checkedKeys instanceof List) {
+            if (CollUtil.isNotEmpty((List) checkedKeys)) {
+                map.put("checked", checkedKeys);
+                this.baseMapper.saveCheckedMenus(map);
+            } else {
+                return Boolean.FALSE;
+            }
+        } else {
+            return Boolean.FALSE;
         }
         return Boolean.TRUE;
     }

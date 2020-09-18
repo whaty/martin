@@ -43,5 +43,33 @@ public final class CommonConstants {
      * 修改人
      */
     public static final String UPDATER = "updater";
+    /**
+     * 系统常用增删改查，中文
+     */
+    public static final String[] CRUD_CN = {"新增", "删除", "修改", "查询", "分页", "批量删除"};
+    /**
+     * 系统常用增删改查，字段数
+     */
+    public static final int CRUD_SIZE = CRUD_CN.length;
+    /**
+     * 系统常用增删改查，英文
+     */
+    public static final String[] CRUD_EN = {"add", "del", "edit", "get", "page", "deleteBatch"};
+    /**
+     * 系统默认字典service在spring中的名字
+     */
+    public static final String DICT_SERVICE = "dictServiceImpl";
+    /**
+     * 系统默认主键字段
+     */
+    public static final String PRIMARY_KRY = "id";
+    /**
+     * entity字段做绑定时，替换外键末尾的ID为 BIND_SUFFIX
+     */
+    public static final String BIND_SUFFIX = "Name";
+    /**
+     * 数据库外键结尾字符
+     */
+    public static final String FK_SUFFIX = "Id";
 
 }

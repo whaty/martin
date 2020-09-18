@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.java2e.martin.common.core.annotation.BindField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -61,10 +62,12 @@ public class Config implements Serializable {
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
+    @BindField(entity = User.class, field = "username")
     @ApiModelProperty(value = "创建人")
     @TableField(fill = FieldFill.INSERT)
     private String creator;
 
+    @BindField(entity = User.class, field = "username")
     @ApiModelProperty(value = "修改人")
     @TableField(fill = FieldFill.UPDATE)
     private String updater;

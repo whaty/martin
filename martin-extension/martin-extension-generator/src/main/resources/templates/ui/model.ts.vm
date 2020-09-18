@@ -52,7 +52,7 @@ export interface $!{entity}ModelType {
 
 // @ts-ignore
 const $!{entity}Model: $!{entity}ModelType = {
-  namespace: 'system_${table.entityPath}',
+  namespace: '${cfg.moduleName}_${table.entityPath}',
 
   state: {
     data: {

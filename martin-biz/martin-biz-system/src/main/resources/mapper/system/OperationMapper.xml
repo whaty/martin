@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java2e.martin.biz.system.mapper.OperationMapper">
-
-    <insert id="generateDefaultOperation">
-		INSERT INTO
-		  sys_operation (
-			name,
-			authority,
-			parent_id,
-			menu_id,
-			icon,
-			component,
-			sort,
-			tenant_id,
-			del_flag,
-			update_time,
-			creator,
-			updater
-		  )
-		VALUES
-		  (
-			'新增',
-			'sys_dept_user_add',
-			0,
-			NULL,
-			NULL,
-			NULL,
-			1,
-			0,
-			'0',
-			NULL,
-			NULL,
-			NULL
-		  )
-    </insert>
+    <select id="isTableExits" resultType="int" parameterType="java.lang.String">
+		select count(*) from ${tableName}
+	</select>
 </mapper>

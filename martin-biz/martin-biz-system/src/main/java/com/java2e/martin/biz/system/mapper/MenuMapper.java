@@ -46,4 +46,13 @@ public interface MenuMapper extends BaseMapper<Menu> {
      * @return
      */
     List<Menu> getCurrentUserMenusByRoles(Set<Integer> roleIds);
+
+    /**
+     * 生成菜单CRUD按钮
+     *
+     * @param menu
+     * @return
+     */
+    Object generateOperation(Menu menu);
+
 }
