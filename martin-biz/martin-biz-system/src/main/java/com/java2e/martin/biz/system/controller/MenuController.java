@@ -57,6 +57,11 @@ public class MenuController {
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_menu_add')")
     public R save(@Valid @RequestBody Menu menu) {
+        Integer sort = menu.getSort();
+        if (sort == null) {
+            Integer max = menuService.getMaxSort();
+            menu.setSort(max + 1);
+        }
         return R.ok(menuService.save(menu));
     }
 
@@ -155,6 +160,12 @@ public class MenuController {
     @PostMapping("/generateOperation")
     public R generateOperation(@RequestBody Menu menu) {
         return operationService.generateOperation(menu);
+    }
+
+    @MartinLog("交换两个菜单的排序字段")
+    @PostMapping("/exchangeSort")
+    public R generateOperation(@RequestBody List<Integer> list) {
+        return menuService.exchangeSort(list);
     }
 
 

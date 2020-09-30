@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>martin-common-bean</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <description>Martin 每个业务模块一个目录，在该目录下定义的实体、DTO、POJO作为整个系统的基础传输对象</description>

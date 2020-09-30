@@ -16,7 +16,6 @@ public final class CommonConstants {
      * 正常
      */
     public static final String STATUS_NORMAL = "0";
-
     /**
      * 锁定
      */
@@ -71,5 +70,10 @@ public final class CommonConstants {
      * 数据库外键结尾字符
      */
     public static final String FK_SUFFIX = "Id";
+    /**
+     * 用户表中的用户名字段
+     */
+    public static final String USER_USERNAME = "username";
+
 
 }

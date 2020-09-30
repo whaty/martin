@@ -8,10 +8,10 @@
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
-
     <artifactId>martin-cloud-gateway</artifactId>
     <version>0.0.1</version>
+    <packaging>jar</packaging>
+
     <description>Martin服务网关，基于spring cloud gateway</description>
 
 
@@ -38,6 +38,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
         </dependency>
+        <!--Alibaba流量哨兵 begin-->
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-sentinel</artifactId>
+        </dependency>
+        <!--Alibaba流量哨兵 end-->
     </dependencies>
 
     <build>

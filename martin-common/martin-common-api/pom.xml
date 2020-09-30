@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>martin-common-api</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <description>Martin 内部接口调用服务，每个业务模块一个目录,本着架构最简原则，远程调用不允许传输自己模块的对象,要传输的对象统一放到martin-common-bean模块下</description>

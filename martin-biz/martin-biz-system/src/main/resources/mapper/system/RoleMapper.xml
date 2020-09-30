@@ -24,7 +24,7 @@
                  inner join sys_dict sd on sp.dict_id = sd.id and sd.type = 'flag_resource_status' and sd.value = '1'
                  inner join sys_menu sm on sp.resource_id = sm.id
                  inner join sys_operation so on sm.id = so.menu_id
-        order by so.sort
+        order by sm.sort,so.sort asc
     </select>
     <select id="getCheckedOperationsByMenus" resultType="com.java2e.martin.common.bean.system.vo.MenuOperationVo">
         select sm.id as menuId, sm.name as menuName, so.id as value, so.name
@@ -33,6 +33,6 @@
                  inner join sys_dict sd on sp.dict_id = sd.id and sd.type = 'flag_resource_status' and sd.value = '2'
                  inner join sys_operation so on sp.resource_id = so.id
                  inner join sys_menu sm on so.menu_id = sm.id and sm.id
-        order by so.sort
+        order by sm.sort,so.sort asc
     </select>
 </mapper>

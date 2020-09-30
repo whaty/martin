@@ -18,4 +18,3 @@ spring:
         refreshable-dataids: application.${file-extension},application-${spring.profiles.active}.${file-extension}
 
 
-

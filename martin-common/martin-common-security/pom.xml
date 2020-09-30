@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>martin-common-security</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <description>Martin安全核心模块</description>

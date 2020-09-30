@@ -1,8 +1,9 @@
 package com.java2e.martin.biz.system.mapper;
 
-import com.java2e.martin.common.bean.system.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.Role;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
@@ -48,11 +49,19 @@ public interface MenuMapper extends BaseMapper<Menu> {
     List<Menu> getCurrentUserMenusByRoles(Set<Integer> roleIds);
 
     /**
-     * 生成菜单CRUD按钮
+     * 交换两个菜单的排序字段
      *
-     * @param menu
+     * @param id1
+     * @param id2
      * @return
      */
-    Object generateOperation(Menu menu);
+    Integer exchangeSort(@Param("id1") Integer id1, @Param("id2") Integer id2);
+
+    /**
+     * 获取当前排序最大值
+     *
+     * @return
+     */
+    Integer getMaxSort();
 
 }

@@ -13,81 +13,20 @@
     <packaging>pom</packaging>
 
     <description>Martin 拓展模块，既不属于biz，又不属于cloud的模块，可以放到这个模块下面</description>
+
     <modules>
         <module>martin-extension-generator</module>
+        <module>martin-extension-monitor</module>
+        <module>martin-extension-skywalking</module>
     </modules>
 
     <dependencies>
-        <dependency>
-            <groupId>com.java2e</groupId>
-            <artifactId>martin-common-data</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.java2e</groupId>
-            <artifactId>martin-common-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.java2e</groupId>
-            <artifactId>martin-common-swagger</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.java2e</groupId>
-            <artifactId>martin-common-log</artifactId>
-        </dependency>
-        <!--nacos 服务注册发现-->
+        <!--Alibaba流量哨兵 begin-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
-        <!--nacos 配置管理-->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <!--jasypt配置文件加解密-->
-        <dependency>
-            <groupId>com.github.ulisesbocchio</groupId>
-            <artifactId>jasypt-spring-boot-starter</artifactId>
-        </dependency>
-        <!--监控-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!--监控客户端-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-        </dependency>
-        <!--测试依赖-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!--web 模块-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!--undertow容器-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <!--业务模块都加安全验证 begin-->
-        <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
-        </dependency>
-        <!--业务模块都加安全验证 end-->
+        <!--Alibaba流量哨兵 end-->
     </dependencies>
-
 
 </project>

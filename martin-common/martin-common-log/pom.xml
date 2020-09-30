@@ -19,6 +19,10 @@
             <groupId>com.java2e</groupId>
             <artifactId>martin-common-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-api</artifactId>
+        </dependency>
         <!-- Your project must also directly depend on either logback-classic or logback-access.  For example: -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -27,6 +31,15 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <!--必须依赖该包，才能实现feign远程调用-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         </dependency>
     </dependencies>
 

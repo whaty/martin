@@ -26,7 +26,7 @@ public @interface BindField {
     Class entity();
 
     /***
-     * 绑定外键Entity要显示的字段，，比如@BindField(entity=User.class,field="username")
+     * 绑定外键Entity要显示的数据库字段，，比如@BindField(entity=User.class,field="username")
      * @return
      */
     String field();

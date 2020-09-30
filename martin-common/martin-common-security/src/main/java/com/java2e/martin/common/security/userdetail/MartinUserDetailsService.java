@@ -1,7 +1,7 @@
 package com.java2e.martin.common.security.userdetail;
 
 import cn.hutool.core.util.StrUtil;
-import com.java2e.martin.common.api.system.RemoteSystem;
+import com.java2e.martin.common.api.system.RemoteSystemUser;
 import com.java2e.martin.common.bean.system.User;
 import com.java2e.martin.common.bean.system.vo.UserRolePrivilegeVo;
 import com.java2e.martin.common.core.api.ApiErrorCode;
@@ -31,7 +31,7 @@ import java.util.Set;
 @Service
 public class MartinUserDetailsService implements UserDetailsService {
     @Autowired
-    private RemoteSystem remoteSystem;
+    private RemoteSystemUser remoteSystem;
 
     /**
      * 获取用户、权限、菜单

@@ -63,7 +63,6 @@ public class OperationServiceImpl extends MartinServiceImpl<OperationMapper, Ope
         boolean flag = false;
         int tableExits = 0;
         try {
-            System.out.println("tableName = " + tableName);
             tableExits = baseMapper.isTableExits(tableName);
             if (tableExits >= 0) {
                 flag = true;

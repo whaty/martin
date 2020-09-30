@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>martin-common-data</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <description>Martin 数据处理模块</description>

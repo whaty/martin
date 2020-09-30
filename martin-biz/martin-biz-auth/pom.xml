@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>martin-biz-auth</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <description>Martin认证授权中心，基于 spring security oAuth2</description>
-
 
     <dependencies>
         <dependency>

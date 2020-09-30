@@ -10,6 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>martin-cloud</artifactId>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
 
     <description>spring cloud微服务相关服务</description>
@@ -58,6 +59,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!--Alibaba流量哨兵 begin-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!--Alibaba流量哨兵 end-->
     </dependencies>
 
 </project>

@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>martin-common</artifactId>
+    <version>0.0.1</version>
     <packaging>pom</packaging>
 
     <description>martin公共资源模块</description>
@@ -25,6 +26,8 @@
         <module>martin-common-log</module>
         <module>martin-common-bean</module>
         <module>martin-common-data</module>
+        <module>martin-common-message</module>
+        <module>martin-common-sentinel</module>
     </modules>
 
 </project>

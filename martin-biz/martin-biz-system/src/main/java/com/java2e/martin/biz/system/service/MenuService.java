@@ -3,6 +3,7 @@ package com.java2e.martin.biz.system.service;
 import com.java2e.martin.common.bean.system.Menu;
 import com.java2e.martin.common.bean.system.Role;
 import com.java2e.martin.common.bean.system.dto.MenuTreeNode;
+import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.data.mybatis.service.MartinService;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -57,5 +58,20 @@ public interface MenuService extends MartinService<Menu> {
      * @return
      */
     List getAllMenuTree();
+
+    /**
+     * 交换两个菜单的排序字段
+     *
+     * @param list
+     * @return
+     */
+    R exchangeSort(List<Integer> list);
+
+    /**
+     * 获取当前排序最大值
+     *
+     * @return
+     */
+    Integer getMaxSort();
 
 }

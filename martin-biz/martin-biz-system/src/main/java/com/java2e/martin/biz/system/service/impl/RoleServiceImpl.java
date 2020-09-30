@@ -10,7 +10,8 @@ import com.java2e.martin.common.bean.system.vo.RoleOperationVo;
 import com.java2e.martin.common.data.mybatis.service.impl.MartinServiceImpl;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -47,13 +48,14 @@ public class RoleServiceImpl extends MartinServiceImpl<RoleMapper, Role> impleme
         //获取所选菜单的已选按钮
         List<MenuOperationVo> checkedOperationsByMenus = baseMapper.getCheckedOperationsByMenus(map);
 
-        Map<String, List<MenuOperationVo>> groupMenus = allOperationsByMenus.stream().collect(Collectors.groupingBy(MenuOperationVo::getMenuName));
+        //使用LinkedHashMap保证从数据库查出的顺序不变，默认的构造函数是HashMap，无法保证顺序
+        Map<String, List<MenuOperationVo>> groupMenus = allOperationsByMenus.stream().collect(Collectors.groupingBy(MenuOperationVo::getMenuName, LinkedHashMap::new, Collectors.toList()));
 
-        List<RoleOperationVo> returnList = new LinkedList<>();
+        List<RoleOperationVo> returnList = new ArrayList<>();
         groupMenus.forEach((k, v) -> {
             RoleOperationVo roleOperationVo = new RoleOperationVo();
-            List<Integer> defaultValue = new LinkedList<>();
-            List operations = new LinkedList<>();
+            List<Integer> defaultValue = new ArrayList<>();
+            List operations = new ArrayList<>();
             v.stream().forEach((allOperation) -> {
                         checkedOperationsByMenus.stream().forEach((checkedOperation) -> {
                             if (allOperation.getValue().equals(checkedOperation.getValue())) {

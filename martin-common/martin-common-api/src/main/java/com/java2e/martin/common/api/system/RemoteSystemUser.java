@@ -16,11 +16,11 @@ import java.util.Map;
  * @author 狮少
  * @version 1.0
  * @date 2019/9/2
- * @describtion RemoteSystem, system 模块对外提供的示例服务
+ * @describtion RemoteSystemUser, system 模块对外提供的示例服务
  * @since 1.0
  */
-@FeignClient(contextId = "remoteSystem", name = ServiceNameConstants.MARTIN_BIZ_SYSTEM_SERVICE)
-public interface RemoteSystem {
+@FeignClient(contextId = "remoteSystemUser", name = ServiceNameConstants.MARTIN_BIZ_SYSTEM_SERVICE)
+public interface RemoteSystemUser {
     /**
      * 获取用户、权限、菜单
      *

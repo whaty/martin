@@ -29,17 +29,22 @@ public class MybatisPlusConfiguration implements MetaObjectHandler {
         return new PaginationInterceptor();
     }
 
+    /**
+     * 在进行填充时，需要保证填充对象与填充数据类型一致，不然无法填充
+     *
+     * @param metaObject
+     */
     @Override
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
-        this.setInsertFieldValByName(CommonConstants.CREATOR, SecurityContextUtil.getUser().getId(), metaObject);
+        this.setInsertFieldValByName(CommonConstants.CREATOR, SecurityContextUtil.getUser().getId() + "", metaObject);
         this.setInsertFieldValByName(CommonConstants.CREATE_TIME, LocalDateTime.now(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("start update fill ....");
-        this.setUpdateFieldValByName(CommonConstants.UPDATER, SecurityContextUtil.getUser().getId(), metaObject);
+        this.setUpdateFieldValByName(CommonConstants.UPDATER, SecurityContextUtil.getUser().getId() + "", metaObject);
         this.setUpdateFieldValByName(CommonConstants.UPDATE_TIME, LocalDateTime.now(), metaObject);
     }
 }

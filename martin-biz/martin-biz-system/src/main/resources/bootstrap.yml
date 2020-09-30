@@ -14,6 +14,21 @@ spring:
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         file-extension: ${file-extension}
+        # 1、shared-dataids < ext-config < 项目自己的配置，如果出现相同key，后面的会覆盖前面的，
+        # 2、当出现相同的key时，数组、map类型的值，不会自动合并，而是后面的覆盖前面的，这点nacos做的不好
+        # https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-config 最底下有说明
         shared-dataids: application.${file-extension},application-${spring.profiles.active}.${file-extension}
         refreshable-dataids: application.${file-extension},application-${spring.profiles.active}.${file-extension}
 
+    sentinel:
+      datasource:
+        ds1-nacos:
+          nacos:
+            server-addr: ${spring.cloud.nacos.discovery.server-addr}
+            username: nacos
+            password: nacos
+            namespace: public
+            dataId: ${spring.application.name}-sentinel
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow

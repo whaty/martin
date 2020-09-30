@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestController
 @RequestMapping("config")
-@Api(value = "Config 控制器", tags = "")
+@Api(value = "Config 控制器", tags = "系统配置 ")
 public class ConfigController {
 
     @Autowired
@@ -48,7 +48,7 @@ public class ConfigController {
      * @param config Config
      * @return R
      */
-    @MartinLog("添加")
+    @MartinLog("添加系统配置 ")
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_config_add')")
     public R save(@Valid @RequestBody Config config) {
@@ -61,7 +61,7 @@ public class ConfigController {
      * @param config Config
      * @return R
      */
-    @MartinLog("删除")
+    @MartinLog("删除系统配置 ")
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('sys_config_del')")
     public R removeById(@Valid @RequestBody Config config) {
@@ -74,7 +74,7 @@ public class ConfigController {
      * @param config Config
      * @return R
      */
-    @MartinLog("编辑")
+    @MartinLog("编辑系统配置 ")
     @PostMapping("/update")
     @PreAuthorize("hasAuthority('sys_config_edit')")
     public R update(@Valid @RequestBody Config config) {
@@ -87,7 +87,7 @@ public class ConfigController {
      * @param config Config
      * @return R
      */
-    @MartinLog("单个查询")
+    @MartinLog("单个查询系统配置 ")
     @PostMapping("/get")
     @PreAuthorize("hasAuthority('sys_config_get')")
     public R getById(@RequestBody Config config) {
@@ -100,7 +100,7 @@ public class ConfigController {
      * @param params 分页以及查询参数
      * @return R
      */
-    @MartinLog("分页查询")
+    @MartinLog("分页查询系统配置 ")
     @PostMapping("/page")
     @PreAuthorize("hasAuthority('sys_config_page')")
     public R<IPage> getPage(@RequestBody Map params) {

@@ -61,7 +61,6 @@ public class CodeServiceImpl extends MartinServiceImpl<CodeMapper, Code> impleme
         AutoGenerator mpg = new AutoGenerator();
         String pathName = SecurityContextUtil.getUser().getUsername() + IdUtil.simpleUUID();
         String projectPath = System.getProperty("user.dir") + File.separator + pathName;
-        System.out.println("projectPath = " + projectPath);
         // 全局配置
         setGlobalConfig(projectPath, code, mpg);
         //数据源设置

@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.context.request.RequestContextListener;
 
 /**
  * @author 狮少
@@ -25,6 +28,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
         havingValue = "true",
         matchIfMissing = true
 )
+@ComponentScan(basePackages = {"com.java2e.martin.common.log", "com.java2e.martin.common.core"})
 public class MartinLogAutoConfiguration {
-
 }

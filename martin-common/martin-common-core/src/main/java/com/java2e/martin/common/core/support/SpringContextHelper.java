@@ -1,11 +1,12 @@
-package com.java2e.martin.common.data.util;
+package com.java2e.martin.common.core.support;
 
 import cn.hutool.core.collection.CollUtil;
-import com.baomidou.mybatisplus.extension.service.IService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,6 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author 狮少
@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @Lazy(false)
 @Slf4j
-public class SpringContextHelper implements ApplicationContextAware {
+public class SpringContextHelper implements ApplicationContextAware, DisposableBean {
 
     public static ApplicationContext getApplicationContext() {
         if (APPLICATION_CONTEXT == null) {
@@ -39,27 +39,12 @@ public class SpringContextHelper implements ApplicationContextAware {
      */
     private static ApplicationContext APPLICATION_CONTEXT = null;
 
-    /**
-     * Entity-对应的Service缓存
-     */
-    private static Map<String, IService> ENTITY_SERVICE_CACHE = new ConcurrentHashMap<>();
-    /**
-     * 存储主键字段非id的Entity
-     */
-    private static Map<String, String> PK_NID_ENTITY_CACHE = new ConcurrentHashMap<>();
-    /**
-     * 数据库类型
-     */
-    private static String DATABASE_TYPE = null;
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         if (log.isDebugEnabled()) {
             log.debug("==== martin data 自动绑定上下文信息 ====");
         }
         APPLICATION_CONTEXT = applicationContext;
-        ENTITY_SERVICE_CACHE.clear();
-        PK_NID_ENTITY_CACHE.clear();
     }
 
 
@@ -115,5 +100,35 @@ public class SpringContextHelper implements ApplicationContextAware {
         List<Object> beanList = new ArrayList<>();
         beanList.addAll(map.values());
         return beanList;
+    }
+
+    /**
+     * 发布事件
+     *
+     * @param event
+     */
+    public static void publishEvent(ApplicationEvent event) {
+        if (APPLICATION_CONTEXT == null) {
+            return;
+        }
+        APPLICATION_CONTEXT.publishEvent(event);
+    }
+
+    /**
+     * 实现DisposableBean接口, 在Context关闭时清理静态变量.
+     */
+    @Override
+    public void destroy() {
+        clearContext();
+    }
+
+    /**
+     * 清除SpringContextHolder中的ApplicationContext为Null.
+     */
+    public static void clearContext() {
+        if (log.isDebugEnabled()) {
+            log.debug("清除 SpringContextHelper 中的ApplicationContext:" + APPLICATION_CONTEXT);
+        }
+        APPLICATION_CONTEXT = null;
     }
 }

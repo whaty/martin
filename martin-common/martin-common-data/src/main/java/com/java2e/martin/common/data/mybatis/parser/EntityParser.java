@@ -10,9 +10,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.java2e.martin.common.core.annotation.BindDict;
 import com.java2e.martin.common.core.annotation.BindField;
 import com.java2e.martin.common.core.constant.CommonConstants;
+import com.java2e.martin.common.core.support.SpringContextHelper;
 import com.java2e.martin.common.data.mybatis.service.MartinService;
 import com.java2e.martin.common.data.util.BeanUtils;
-import com.java2e.martin.common.data.util.SpringContextHelper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;

@@ -40,13 +40,14 @@
         <module>martin-cloud</module>
         <module>martin-biz</module>
         <module>martin-extension</module>
+        <module>martin-spring-boot-starter</module>
     </modules>
 
     <properties>
-        <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
-        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-platform.version>Cairo-SR7</spring-platform.version>
-        <spring-cloud-alibaba-dependencies>2.1.0.RELEASE</spring-cloud-alibaba-dependencies>
+        <spring-cloud-alibaba-dependencies>2.2.3.RELEASE</spring-cloud-alibaba-dependencies>
         <java.version>1.8</java.version>
         <resource.delimiter>@</resource.delimiter>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -130,6 +131,7 @@
             </resource>
         </resources>
 
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -148,60 +150,6 @@
                     <groupId>com.spotify</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
                     <version>1.0.0</version>
-                    <executions>
-                        <execution>
-                            <id>build-image</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>build</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>tag-image</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>tag</goal>
-                            </goals>
-                            <configuration>
-                                <image>
-                                    ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
-                                </image>
-                                <newName>
-                                    ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
-                                </newName>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>push-image</id>
-                            <phase>deploy</phase>
-                            <goals>
-                                <goal>push</goal>
-                            </goals>
-                            <configuration>
-                                <imageName>
-                                    ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
-                                </imageName>
-                            </configuration>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <serverId>docker-harbor</serverId>
-                        <dockerHost>${docker.url}</dockerHost>
-                        <dockerDirectory>${project.basedir}</dockerDirectory>
-                        <imageName>
-                            ${docker.repostory}/${docker.registry.name}/${project.artifactId}:${project.version}
-                        </imageName>
-                        <imageTags>
-                            <imageTag>${project.version}</imageTag>
-                        </imageTags>
-                        <resources>
-                            <rescource>
-                                <targetPath>/</targetPath>
-                                <directory>${project.build.directory}</directory>
-                                <include>${project.build.finalName}.jar</include>
-                            </rescource>
-                        </resources>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

@@ -1,5 +1,7 @@
 package com.java2e.martin.biz.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.java2e.martin.biz.system.mapper.MenuMapper;
 import com.java2e.martin.biz.system.service.MenuService;
 import com.java2e.martin.common.bean.system.Menu;
@@ -54,7 +56,6 @@ public class MenuServiceImpl extends MartinServiceImpl<MenuMapper, Menu> impleme
             if (parentId == CommonConstants.MENU_ROOT) {
                 list.get(i).setParentKey("/");
             } else {
-                System.out.println("list.get(i) = " + list.get(i));
                 list.get(i).setParentKey(map.get(parentId) != null ? map.get(parentId).getPath() : "");
             }
         }
@@ -77,9 +78,27 @@ public class MenuServiceImpl extends MartinServiceImpl<MenuMapper, Menu> impleme
 
     @Override
     public List getAllMenuTree() {
-        List<Menu> list = this.list();
+        Menu menu = new Menu();
+        QueryWrapper<Menu> query = Wrappers.query(menu);
+        query.orderByAsc("sort");
+        List<Menu> list = this.list(query);
         List<MenuTreeNode> menuTree = TreeUtil.buildMenuTreeByRecursive(list, CommonConstants.MENU_ROOT);
         return menuTree;
+    }
+
+    @Override
+    public R exchangeSort(List<Integer> list) {
+        if (list.size() != 2) {
+            R.failed("传入的参数有误，请检查传参是否正确！");
+        }
+        Integer id1 = list.get(0);
+        Integer id2 = list.get(1);
+        return R.ok(baseMapper.exchangeSort(id1, id2));
+    }
+
+    @Override
+    public Integer getMaxSort() {
+        return baseMapper.getMaxSort();
     }
 
 

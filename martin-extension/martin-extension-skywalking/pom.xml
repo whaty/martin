@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>martin-extension</artifactId>
+        <groupId>com.java2e</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>martin-extension-skywalking</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+
+    <description>
+        该模块可根据实际需求进行改动，
+        如果不想单独启动一个模块处理SkyWalking的通知，
+        在其他模块引入martin-common-message即可，
+        在其余模块引入martin-common-message，会导致SkyWalking通知依赖该服务，
+        但是可以少启动该服务，各取所需，所以我做了两套方案，根据实际情况来
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-spring-boot-starter</artifactId>
+        </dependency>
+        <!--消息通知模块-->
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-message</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

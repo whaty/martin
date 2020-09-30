@@ -48,7 +48,6 @@ public class LogController {
      * @param logger Log
      * @return R
      */
-    @MartinLog("添加系统日志")
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('sys_log_add')")
     public R save(@Valid @RequestBody Log logger) {

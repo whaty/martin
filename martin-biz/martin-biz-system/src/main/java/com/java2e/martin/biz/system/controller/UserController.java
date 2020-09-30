@@ -224,7 +224,6 @@ public class UserController {
 
     @PostMapping("/deleteUserRole")
     public R deleteUserRole(@Valid @RequestBody UserRole userRole) {
-        System.out.println("userRole1 = " + userRole);
         return R.ok(userRoleService.remove(Wrappers.query(userRole)));
     }
 }

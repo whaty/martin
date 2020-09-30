@@ -1,7 +1,6 @@
 package com.java2e.martin.common.data.mybatis.parser;
 
 import com.java2e.martin.common.data.mybatis.service.MartinService;
-import com.java2e.martin.common.data.util.SpringContextHelper;
 import lombok.Data;
 
 import java.io.Serializable;

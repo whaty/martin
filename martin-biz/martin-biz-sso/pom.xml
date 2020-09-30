@@ -8,9 +8,10 @@
         <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>martin-biz-sso</artifactId>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
+
     <description>示例sso服务器</description>
 
     <build>

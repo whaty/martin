@@ -1,23 +1,21 @@
 package com.java2e.martin.common.bean.system;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableLogic;
-
-import java.io.Serializable;
-
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.java2e.martin.common.core.annotation.BindField;
+import com.java2e.martin.common.core.constant.CommonConstants;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -56,6 +54,8 @@ public class Dept implements Serializable {
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
+    @BindField(entity = Dept.class, field = "name")
+    @ApiModelProperty(value = "上级部门")
     private Integer parentId;
 
     @ApiModelProperty(value = "所属租户")
@@ -73,12 +73,12 @@ public class Dept implements Serializable {
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
-    @BindField(entity = User.class, field = "username")
+    @BindField(entity = User.class, field = CommonConstants.USER_USERNAME)
     @ApiModelProperty(value = "创建人")
     @TableField(fill = FieldFill.INSERT)
     private String creator;
 
-    @BindField(entity = User.class, field = "username")
+    @BindField(entity = User.class, field = CommonConstants.USER_USERNAME)
     @ApiModelProperty(value = "修改人")
     @TableField(fill = FieldFill.UPDATE)
     private String updater;

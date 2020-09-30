@@ -6,13 +6,12 @@ import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.core.constant.SecurityConstants;
 import com.java2e.martin.common.feign.remote.RemoteUrl;
 import com.java2e.martin.common.security.component.PermitAllUrlProperties;
-import com.java2e.martin.common.security.component.RemoteTokenServiceProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -30,6 +29,7 @@ import java.util.Set;
  */
 @Slf4j
 @Configuration
+@RefreshScope
 @EnableConfigurationProperties({PermitAllUrlProperties.class})
 public class FeignInnerInterceptor extends HandlerInterceptorAdapter {
     @Value("${martin.feign.secret:123456}")

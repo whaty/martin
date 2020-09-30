@@ -2,7 +2,6 @@ package com.java2e.martin.common.security.exception;
 
 import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
