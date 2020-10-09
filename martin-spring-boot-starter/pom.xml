@@ -7,12 +7,13 @@
         <groupId>com.java2e</groupId>
         <version>0.0.1</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>martin-spring-boot-starter</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <description>提供统一的业务开发starter，需要做扩展卡时，只需引入该stater即可</description>
+    <description>提供统一的业务开发starter，需要做扩展时，只需引入该stater即可</description>
 
     <dependencies>
         <dependency>
