@@ -61,7 +61,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- 自定义的这个bom一定要放在最上面，花了两天时间买的教训，maven的机制，当出现相同的引用，使用最开始定义的版本-->
             <dependency>
                 <groupId>com.java2e</groupId>
                 <artifactId>martin-common-bom</artifactId>
@@ -230,14 +229,12 @@
 
     <distributionManagement>
         <repository>
-            <id>nexus-martin-releases</id>
-            <name>nexus-martin-releases</name>
-            <url>http://192.168.227.136:30000/repository/maven-releases/</url>
+            <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/72079-release-GIwkm4/</url>
         </repository>
         <snapshotRepository>
-            <id>nexus-martin-snapshot</id>
-            <name>nexus-martin-snapshot</name>
-            <url>http://192.168.227.136:30000/repository/maven-snapshots/</url>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/72079-snapshot-NOYb1F/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

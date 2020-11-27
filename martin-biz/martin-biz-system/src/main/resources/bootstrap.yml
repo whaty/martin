@@ -19,16 +19,3 @@ spring:
         # https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-config 最底下有说明
         shared-dataids: application.${file-extension},application-${spring.profiles.active}.${file-extension}
         refreshable-dataids: application.${file-extension},application-${spring.profiles.active}.${file-extension}
-
-    sentinel:
-      datasource:
-        ds1-nacos:
-          nacos:
-            server-addr: ${spring.cloud.nacos.discovery.server-addr}
-            username: nacos
-            password: nacos
-            namespace: public
-            dataId: ${spring.application.name}-sentinel
-            groupId: DEFAULT_GROUP
-            data-type: json
-            rule-type: flow

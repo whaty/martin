@@ -33,6 +33,12 @@
             <groupId>com.java2e</groupId>
             <artifactId>martin-common-log</artifactId>
         </dependency>
+        <!--Alibaba流量哨兵 begin-->
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-common-sentinel</artifactId>
+        </dependency>
+        <!--Alibaba流量哨兵 end-->
         <!--nacos 服务注册发现-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -86,12 +92,6 @@
             <artifactId>spring-security-oauth2</artifactId>
         </dependency>
         <!--业务模块都加安全验证 end-->
-        <!--Alibaba流量哨兵 begin-->
-        <dependency>
-            <groupId>com.java2e</groupId>
-            <artifactId>martin-common-sentinel</artifactId>
-        </dependency>
-        <!--Alibaba流量哨兵 end-->
     </dependencies>
 
 </project>
