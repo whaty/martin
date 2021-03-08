@@ -1,0 +1,35 @@
+version: "2.2"
+services:
+  martin-cloud-nacos:
+    image: nacos/nacos-server:latest
+    container_name: martin-cloud-nacos
+    env_file:
+      - ../env/nacos-standlone-mysql.env
+    volumes:
+      - ../../../logs/martin-nacos-logs/:/home/nacos/logs
+      - ./init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9555:9555"
+    depends_on:
+      - martin-mysql
+    restart: on-failure
+    networks:
+      - martin
+
+  martin-mysql:
+    container_name: martin-mysql
+    image: nacos/nacos-mysql:5.7
+    env_file:
+      - ../env/mysql.env
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - martin
+
+networks:
+  martin:
+    external: true
+
