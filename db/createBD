@@ -1,0 +1,16 @@
+-- 创建用户，并指定给数据库
+
+CREATE USER 'skywalking'@'localhost'  IDENTIFIED BY 'skywalking';
+
+CREATE USER 'skywalking'@'%'  IDENTIFIED BY 'skywalking';
+
+drop  database `martin-skywalking`;
+
+create database `martin-skywalking` default charset utf8 collate utf8_general_ci;
+
+
+grant all privileges on `martin-skywalking`.* to "skywalking"@"localhost" identified by "skywalking";
+
+grant all privileges on `martin-skywalking`.* to "skywalking"@"%" identified by "skywalking";
+
+flush privileges;

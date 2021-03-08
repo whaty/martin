@@ -10,5 +10,6 @@ WORKDIR /martin-biz-swagger
 
 EXPOSE 9403
 
-ADD ./target/martin-biz-swagger.jar ./
+ADD ./martin-biz/martin-biz-swagger/target/martin-biz-swagger.jar ./
+
 

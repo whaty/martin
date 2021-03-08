@@ -11,5 +11,9 @@ WORKDIR /martin-cloud-nacos
 EXPOSE 8848
 EXPOSE 6666
 
-ADD ./nacos ./
+ADD ./martin-cloud/martin-cloud-nacos/nacos/ ./
+
+RUN ls
+
+ADD ./wait-for-it.sh /usr/local/bin
 

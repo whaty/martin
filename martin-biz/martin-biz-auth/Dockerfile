@@ -10,5 +10,6 @@ WORKDIR /martin-biz-auth
 
 EXPOSE 9400
 
-ADD ./target/martin-biz-auth.jar ./
+ADD ./martin-biz/martin-biz-auth/target/martin-biz-auth.jar ./
+
 

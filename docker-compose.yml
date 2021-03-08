@@ -1,33 +1,8 @@
-# martin-cloud V0.0.1
-
-version: '2.2'
+version: "2.2"
 services:
-  martin-mysql:
-    build:
-      context: ./
-      dockerfile: ./db/Dockerfile
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    restart: always
-    mem_limit: 256m
-    privileged: true
-    container_name: martin-mysql
-    image: martin-mysql
-    volumes:
-      - /f/volumes/mysql:/var/lib/mysql
-    ports:
-      - 3306:3306
-    networks:
-      - martin
-
-#
-#  martin-zookeeper:
-#    image: zookeeper:3.4.13
-#    restart: always
-#
   martin-redis:
     image: redis:4.0.10
-    restart: always
+    restart: on-failure
     mem_limit: 256m
     container_name: martin-redis
     ports:
@@ -35,22 +10,22 @@ services:
     networks:
       - martin
 
-  martin-cloud-nacos:
+  martin-extension-monitor:
     build:
       context: ./
-      dockerfile: ./martin-cloud/martin-cloud-nacos/Dockerfile
-    restart: always
-    container_name: martin-cloud-nacos
-    image: martin-cloud-nacos
+      dockerfile: ./martin-extension/martin-extension-monitor/Dockerfile
+    restart: on-failure
+    mem_limit: 256m
+    container_name: martin-extension-monitor
+    image: martin-extension-monitor
+    environment:
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
     volumes:
-      - ./logs/martin-cloud-nacos:/martin-cloud-nacos/logs
-    entrypoint: "wait-for-it.sh -t 0 martin-mysql:3306 -- "
-    command: "sh bin/startup.sh -m standalone"
-    links:
-      - martin-mysql
+      - ./logs:/martin-extension-monitor/logs
+      - ./agent:/opt/agent
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinExtensionMonitor martin-extension-monitor.jar"
     ports:
-      - 8848:8848
-      - 6666:6666
+      - 9601:9601
     networks:
       - martin
 
@@ -58,16 +33,16 @@ services:
     build:
       context: ./
       dockerfile: ./martin-cloud/martin-cloud-gateway/Dockerfile
-    restart: always
+    restart: on-failure
     mem_limit: 256m
     container_name: martin-cloud-gateway
     image: martin-cloud-gateway
+    environment:
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
     volumes:
       - ./logs:/martin-cloud-gateway/logs
-    depends_on:
-      - martin-cloud-nacos
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m martin-cloud-gateway.jar"
+      - ./agent:/opt/agent
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinCloudGateway martin-cloud-gateway.jar"
     ports:
       - 9502:9502
     networks:
@@ -78,16 +53,16 @@ services:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-auth/Dockerfile
-    restart: always
+    restart: on-failure
     mem_limit: 256m
     container_name: martin-biz-auth
     image: martin-biz-auth
+    environment:
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
     volumes:
       - ./logs:/martin-biz-auth/logs
-    depends_on:
-      - martin-cloud-nacos
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m martin-biz-auth.jar"
+      - ./agent:/opt/agent
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizAuth martin-biz-auth.jar"
     networks:
       - martin
 
@@ -96,34 +71,16 @@ services:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-resource/Dockerfile
-    restart: always
+    restart: on-failure
     mem_limit: 256m
     container_name: martin-biz-resource
     image: martin-biz-resource
+    environment:
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
     volumes:
       - ./logs:/martin-biz-resource/logs
-    depends_on:
-      - martin-cloud-nacos
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m martin-biz-resource.jar"
-    networks:
-      - martin
-
-
-  martin-biz-sso:
-    build:
-      context: ./
-      dockerfile: ./martin-biz/martin-biz-sso/Dockerfile
-    restart: always
-    mem_limit: 256m
-    container_name: martin-biz-sso
-    image: martin-biz-sso
-    volumes:
-      - ./logs:/martin-biz-sso/logs
-    depends_on:
-      - martin-cloud-nacos
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m martin-biz-sso.jar"
+      - ./agent:/opt/agent
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizResource martin-biz-resource.jar"
     networks:
       - martin
 
@@ -132,16 +89,16 @@ services:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-swagger/Dockerfile
-    restart: always
+    restart: on-failure
     mem_limit: 256m
     container_name: martin-biz-swagger
     image: martin-biz-swagger
+    environment:
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
     volumes:
       - ./logs:/martin-biz-swagger/logs
-    depends_on:
-      - martin-cloud-nacos
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m martin-biz-swagger.jar"
+      - ./agent:/opt/agent
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizSwagger martin-biz-swagger.jar"
     networks:
       - martin
 
@@ -149,20 +106,19 @@ services:
     build:
       context: ./
       dockerfile: ./martin-biz/martin-biz-system/Dockerfile
-    restart: always
+    restart: on-failure
     mem_limit: 256m
     container_name: martin-biz-system
     image: martin-biz-system
+    environment:
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
     volumes:
       - ./logs:/martin-biz-system/logs
-    depends_on:
-      - martin-cloud-nacos
-    entrypoint: "wait-for-it.sh -t 0 martin-cloud-nacos:8848 -- "
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m martin-biz-system.jar"
+      - ./agent:/opt/agent
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizSystem martin-biz-system.jar"
     networks:
       - martin
 
 networks:
   martin:
-    driver: bridge
     external: true

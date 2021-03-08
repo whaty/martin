@@ -10,5 +10,6 @@ WORKDIR /martin-biz-resource
 
 EXPOSE 9401
 
-ADD ./target/martin-biz-resource.jar ./
+ADD ./martin-biz/martin-biz-resource/target/martin-biz-resource.jar ./
+
 

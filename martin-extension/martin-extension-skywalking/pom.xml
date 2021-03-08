@@ -15,11 +15,7 @@
     <packaging>jar</packaging>
 
     <description>
-        该模块可根据实际需求进行改动，
-        如果不想单独启动一个模块处理SkyWalking的通知，
-        在其他模块引入martin-common-message即可，
-        在其余模块引入martin-common-message，会导致SkyWalking通知依赖该服务，
-        但是可以少启动该服务，各取所需，所以我做了两套方案，根据实际情况来
+        该模块为 skywalking 的通知模块。用于发送 skywalking 监控通知信息。
     </description>
 
     <dependencies>
