@@ -1,0 +1,180 @@
+2021-02-28 19:30:50.348 INFO App name resolved from default: sentinel-dashboard-1.8.0
+2021-02-28 19:30:50.350 INFO [SentinelConfig] Application type resolved: 0
+2021-02-28 19:30:50.352 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit
+2021-02-28 19:30:50.360 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc
+2021-02-28 19:30:50.379 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc
+2021-02-28 19:30:50.381 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit
+2021-02-28 19:30:50.390 INFO [SpiLoader] Found CommandCenter SPI: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter with order 2147483647
+2021-02-28 19:30:50.392 INFO [CommandCenterProvider] CommandCenter resolved: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 19:30:50.416 INFO [CommandCenterInit] Starting command center: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 19:30:50.419 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc with order -1
+2021-02-28 19:30:50.430 WARNING [SimpleHttpHeartbeatSender] Dashboard server address not configured or not available
+2021-02-28 19:30:50.431 INFO [SpiLoader] Found HeartbeatSender SPI: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender with order 2147483647
+2021-02-28 19:30:50.432 INFO [HeartbeatSenderProvider] HeartbeatSender activated: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 19:30:50.434 INFO [HeartbeatSenderInit] Heartbeat interval not configured in config property or invalid, using sender default: 10000
+2021-02-28 19:30:50.436 INFO [HeartbeatSenderInit] HeartbeatSender started: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 19:30:50.437 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc with order -1
+2021-02-28 19:30:50.440 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit with order 2147483647
+2021-02-28 19:30:50.442 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit with order 2147483647
+2021-02-28 19:47:46.733 INFO App name resolved from default: sentinel-dashboard-1.8.0
+2021-02-28 19:47:46.736 INFO [SentinelConfig] Application type resolved: 0
+2021-02-28 19:47:46.738 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit
+2021-02-28 19:47:46.742 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc
+2021-02-28 19:47:46.757 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc
+2021-02-28 19:47:46.760 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit
+2021-02-28 19:47:46.771 INFO [SpiLoader] Found CommandCenter SPI: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter with order 2147483647
+2021-02-28 19:47:46.773 INFO [CommandCenterProvider] CommandCenter resolved: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 19:47:46.803 INFO [CommandCenterInit] Starting command center: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 19:47:46.805 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc with order -1
+2021-02-28 19:47:46.813 WARNING [SimpleHttpHeartbeatSender] Dashboard server address not configured or not available
+2021-02-28 19:47:46.813 INFO [SpiLoader] Found HeartbeatSender SPI: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender with order 2147483647
+2021-02-28 19:47:46.815 INFO [HeartbeatSenderProvider] HeartbeatSender activated: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 19:47:46.819 INFO [HeartbeatSenderInit] Heartbeat interval not configured in config property or invalid, using sender default: 10000
+2021-02-28 19:47:46.821 INFO [HeartbeatSenderInit] HeartbeatSender started: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 19:47:46.822 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc with order -1
+2021-02-28 19:47:46.824 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit with order 2147483647
+2021-02-28 19:47:46.826 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit with order 2147483647
+2021-02-28 19:48:01.495 INFO Add child <sentinel_default_context> to node <machine-root>
+2021-02-28 19:48:01.499 INFO Add child <sentinel_web_servlet_context> to node <machine-root>
+2021-02-28 19:48:01.507 INFO [SlotChainProvider] Global slot chain builder resolved: com.alibaba.csp.sentinel.slots.DefaultSlotChainBuilder
+2021-02-28 19:48:01.523 INFO Add child </> to node <sentinel_web_servlet_context>
+2021-02-28 19:48:01.527 INFO [AuthorityRuleManager] Load authority rules: {}
+2021-02-28 19:48:01.531 INFO [SystemRuleManager] Current system check status: false, highestSystemLoad: 1.797693e+308, highestCpuUsage: 1.797693e+308, maxRt: 9223372036854775807, maxThread: 9223372036854775807, maxQps: 1.797693e+308
+2021-02-28 19:48:01.534 INFO [GatewayRuleManager] No gateway rules, clearing parameter metrics of previous rules
+2021-02-28 19:48:01.535 INFO [GatewayRuleManager] Gateway flow rules loaded: {}
+2021-02-28 19:48:01.538 INFO [ParamFlowRuleManager] No parameter flow rules, clearing all parameter metrics
+2021-02-28 19:48:01.539 INFO [ParamFlowRuleManager] Parameter flow rules received: {}
+2021-02-28 19:48:01.542 INFO [FlowRuleManager] Flow rules loaded: {}
+2021-02-28 19:48:01.545 INFO [MetricWriter] Creating new MetricWriter, singleFileSize=52428800, totalFileCount=6
+2021-02-28 19:48:01.549 INFO [DegradeRuleManager] Degrade rules loaded: {}
+2021-02-28 19:48:01.552 INFO [MetricExtensionProvider] No existing MetricExtension found
+2021-02-28 19:48:02.042 INFO Add child </version> to node <sentinel_web_servlet_context>
+2021-02-28 19:48:02.118 INFO Add child </assets/img/sentinel-logo.png> to node <sentinel_web_servlet_context>
+2021-02-28 19:48:02.560 INFO [MetricWriter] New metric file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28
+2021-02-28 19:48:02.561 INFO [MetricWriter] New metric index file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28.idx
+2021-02-28 19:48:08.325 INFO Add child </auth/login> to node <sentinel_web_servlet_context>
+2021-02-28 19:48:08.380 INFO Add child </app/briefinfos.json> to node <sentinel_web_servlet_context>
+2021-02-28 19:49:17.085 INFO App name resolved from default: sentinel-dashboard-1.8.0
+2021-02-28 19:49:17.089 INFO [SentinelConfig] Application type resolved: 0
+2021-02-28 19:49:17.096 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit
+2021-02-28 19:49:17.103 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc
+2021-02-28 19:49:17.129 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc
+2021-02-28 19:49:17.133 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit
+2021-02-28 19:49:17.160 INFO [SpiLoader] Found CommandCenter SPI: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter with order 2147483647
+2021-02-28 19:49:17.164 INFO [CommandCenterProvider] CommandCenter resolved: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 19:49:17.207 INFO [CommandCenterInit] Starting command center: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 19:49:17.213 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc with order -1
+2021-02-28 19:49:17.243 WARNING [SimpleHttpHeartbeatSender] Dashboard server address not configured or not available
+2021-02-28 19:49:17.245 INFO [SpiLoader] Found HeartbeatSender SPI: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender with order 2147483647
+2021-02-28 19:49:17.249 INFO [HeartbeatSenderProvider] HeartbeatSender activated: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 19:49:17.252 INFO [HeartbeatSenderInit] Heartbeat interval not configured in config property or invalid, using sender default: 10000
+2021-02-28 19:49:17.255 INFO [HeartbeatSenderInit] HeartbeatSender started: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 19:49:17.257 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc with order -1
+2021-02-28 19:49:17.263 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit with order 2147483647
+2021-02-28 19:49:17.269 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit with order 2147483647
+2021-02-28 20:11:12.136 INFO Add child <sentinel_default_context> to node <machine-root>
+2021-02-28 20:11:12.137 INFO Add child <sentinel_web_servlet_context> to node <machine-root>
+2021-02-28 20:11:12.142 INFO [SlotChainProvider] Global slot chain builder resolved: com.alibaba.csp.sentinel.slots.DefaultSlotChainBuilder
+2021-02-28 20:11:12.155 INFO Add child </> to node <sentinel_web_servlet_context>
+2021-02-28 20:11:12.158 INFO [AuthorityRuleManager] Load authority rules: {}
+2021-02-28 20:11:12.161 INFO [SystemRuleManager] Current system check status: false, highestSystemLoad: 1.797693e+308, highestCpuUsage: 1.797693e+308, maxRt: 9223372036854775807, maxThread: 9223372036854775807, maxQps: 1.797693e+308
+2021-02-28 20:11:12.165 INFO [GatewayRuleManager] No gateway rules, clearing parameter metrics of previous rules
+2021-02-28 20:11:12.166 INFO [GatewayRuleManager] Gateway flow rules loaded: {}
+2021-02-28 20:11:12.168 INFO [ParamFlowRuleManager] No parameter flow rules, clearing all parameter metrics
+2021-02-28 20:11:12.169 INFO [ParamFlowRuleManager] Parameter flow rules received: {}
+2021-02-28 20:11:12.171 INFO [FlowRuleManager] Flow rules loaded: {}
+2021-02-28 20:11:12.174 INFO [MetricWriter] Creating new MetricWriter, singleFileSize=52428800, totalFileCount=6
+2021-02-28 20:11:12.178 INFO [DegradeRuleManager] Degrade rules loaded: {}
+2021-02-28 20:11:12.180 INFO [MetricExtensionProvider] No existing MetricExtension found
+2021-02-28 20:11:12.510 INFO Add child </version> to node <sentinel_web_servlet_context>
+2021-02-28 20:11:13.192 INFO [MetricWriter] New metric file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28.1
+2021-02-28 20:11:13.193 INFO [MetricWriter] New metric index file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28.1.idx
+2021-02-28 20:11:13.970 INFO Add child </auth/login> to node <sentinel_web_servlet_context>
+2021-02-28 20:11:14.015 INFO Add child </app/briefinfos.json> to node <sentinel_web_servlet_context>
+2021-02-28 20:47:36.802 INFO App name resolved from default: sentinel-dashboard-1.8.0
+2021-02-28 20:47:36.805 INFO [SentinelConfig] Application type resolved: 0
+2021-02-28 20:47:36.811 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit
+2021-02-28 20:47:36.821 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc
+2021-02-28 20:47:36.843 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc
+2021-02-28 20:47:36.847 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit
+2021-02-28 20:47:36.861 INFO [SpiLoader] Found CommandCenter SPI: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter with order 2147483647
+2021-02-28 20:47:36.865 INFO [CommandCenterProvider] CommandCenter resolved: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 20:47:36.944 INFO [CommandCenterInit] Starting command center: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 20:47:36.949 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc with order -1
+2021-02-28 20:47:36.973 WARNING [SimpleHttpHeartbeatSender] Dashboard server address not configured or not available
+2021-02-28 20:47:36.974 INFO [SpiLoader] Found HeartbeatSender SPI: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender with order 2147483647
+2021-02-28 20:47:36.978 INFO [HeartbeatSenderProvider] HeartbeatSender activated: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 20:47:36.981 INFO [HeartbeatSenderInit] Heartbeat interval not configured in config property or invalid, using sender default: 10000
+2021-02-28 20:47:36.984 INFO [HeartbeatSenderInit] HeartbeatSender started: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 20:47:36.986 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc with order -1
+2021-02-28 20:47:36.991 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit with order 2147483647
+2021-02-28 20:47:36.995 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit with order 2147483647
+2021-02-28 20:52:30.447 INFO Add child <sentinel_default_context> to node <machine-root>
+2021-02-28 20:52:30.449 INFO Add child <sentinel_web_servlet_context> to node <machine-root>
+2021-02-28 20:52:30.465 INFO [SlotChainProvider] Global slot chain builder resolved: com.alibaba.csp.sentinel.slots.DefaultSlotChainBuilder
+2021-02-28 20:52:30.500 INFO Add child </> to node <sentinel_web_servlet_context>
+2021-02-28 20:52:30.510 INFO [AuthorityRuleManager] Load authority rules: {}
+2021-02-28 20:52:30.520 INFO [SystemRuleManager] Current system check status: false, highestSystemLoad: 1.797693e+308, highestCpuUsage: 1.797693e+308, maxRt: 9223372036854775807, maxThread: 9223372036854775807, maxQps: 1.797693e+308
+2021-02-28 20:52:30.525 INFO [GatewayRuleManager] No gateway rules, clearing parameter metrics of previous rules
+2021-02-28 20:52:30.526 INFO [GatewayRuleManager] Gateway flow rules loaded: {}
+2021-02-28 20:52:30.529 INFO [ParamFlowRuleManager] No parameter flow rules, clearing all parameter metrics
+2021-02-28 20:52:30.531 INFO [ParamFlowRuleManager] Parameter flow rules received: {}
+2021-02-28 20:52:30.535 INFO [FlowRuleManager] Flow rules loaded: {}
+2021-02-28 20:52:30.539 INFO [MetricWriter] Creating new MetricWriter, singleFileSize=52428800, totalFileCount=6
+2021-02-28 20:52:30.546 INFO [DegradeRuleManager] Degrade rules loaded: {}
+2021-02-28 20:52:30.550 INFO [MetricExtensionProvider] No existing MetricExtension found
+2021-02-28 20:52:31.184 INFO Add child </version> to node <sentinel_web_servlet_context>
+2021-02-28 20:52:31.568 INFO [MetricWriter] New metric file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28.2
+2021-02-28 20:52:31.569 INFO [MetricWriter] New metric index file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28.2.idx
+2021-02-28 20:52:33.084 INFO Add child </auth/login> to node <sentinel_web_servlet_context>
+2021-02-28 20:52:33.178 INFO Add child </app/briefinfos.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:16:09.992 INFO Add child </registry/machine> to node <sentinel_web_servlet_context>
+2021-02-28 21:22:33.906 INFO App name resolved from default: sentinel-dashboard-1.8.0
+2021-02-28 21:22:33.909 INFO [SentinelConfig] Application type resolved: 0
+2021-02-28 21:22:33.914 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit
+2021-02-28 21:22:33.920 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc
+2021-02-28 21:22:33.940 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc
+2021-02-28 21:22:33.945 INFO [InitExecutor] Found init func: com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit
+2021-02-28 21:22:33.957 INFO [SpiLoader] Found CommandCenter SPI: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter with order 2147483647
+2021-02-28 21:22:33.959 INFO [CommandCenterProvider] CommandCenter resolved: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 21:22:34.005 INFO [CommandCenterInit] Starting command center: com.alibaba.csp.sentinel.transport.command.SimpleHttpCommandCenter
+2021-02-28 21:22:34.010 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.CommandCenterInitFunc with order -1
+2021-02-28 21:22:34.038 WARNING [SimpleHttpHeartbeatSender] Dashboard server address not configured or not available
+2021-02-28 21:22:34.039 INFO [SpiLoader] Found HeartbeatSender SPI: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender with order 2147483647
+2021-02-28 21:22:34.042 INFO [HeartbeatSenderProvider] HeartbeatSender activated: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 21:22:34.045 INFO [HeartbeatSenderInit] Heartbeat interval not configured in config property or invalid, using sender default: 10000
+2021-02-28 21:22:34.049 INFO [HeartbeatSenderInit] HeartbeatSender started: com.alibaba.csp.sentinel.transport.heartbeat.SimpleHttpHeartbeatSender
+2021-02-28 21:22:34.051 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.transport.init.HeartbeatSenderInitFunc with order -1
+2021-02-28 21:22:34.056 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.metric.extension.MetricCallbackInit with order 2147483647
+2021-02-28 21:22:34.059 INFO [InitExecutor] Executing com.alibaba.csp.sentinel.init.ParamFlowStatisticSlotCallbackInit with order 2147483647
+2021-02-28 21:22:40.493 INFO Add child <sentinel_default_context> to node <machine-root>
+2021-02-28 21:22:40.495 INFO Add child <sentinel_web_servlet_context> to node <machine-root>
+2021-02-28 21:22:40.507 INFO [SlotChainProvider] Global slot chain builder resolved: com.alibaba.csp.sentinel.slots.DefaultSlotChainBuilder
+2021-02-28 21:22:40.532 INFO Add child </> to node <sentinel_web_servlet_context>
+2021-02-28 21:22:40.536 INFO [AuthorityRuleManager] Load authority rules: {}
+2021-02-28 21:22:40.543 INFO [SystemRuleManager] Current system check status: false, highestSystemLoad: 1.797693e+308, highestCpuUsage: 1.797693e+308, maxRt: 9223372036854775807, maxThread: 9223372036854775807, maxQps: 1.797693e+308
+2021-02-28 21:22:40.549 INFO [GatewayRuleManager] No gateway rules, clearing parameter metrics of previous rules
+2021-02-28 21:22:40.550 INFO [GatewayRuleManager] Gateway flow rules loaded: {}
+2021-02-28 21:22:40.553 INFO [ParamFlowRuleManager] No parameter flow rules, clearing all parameter metrics
+2021-02-28 21:22:40.554 INFO [ParamFlowRuleManager] Parameter flow rules received: {}
+2021-02-28 21:22:40.559 INFO [FlowRuleManager] Flow rules loaded: {}
+2021-02-28 21:22:40.564 INFO [MetricWriter] Creating new MetricWriter, singleFileSize=52428800, totalFileCount=6
+2021-02-28 21:22:40.569 INFO [DegradeRuleManager] Degrade rules loaded: {}
+2021-02-28 21:22:40.572 INFO [MetricExtensionProvider] No existing MetricExtension found
+2021-02-28 21:22:41.222 INFO Add child </version> to node <sentinel_web_servlet_context>
+2021-02-28 21:22:41.591 INFO [MetricWriter] New metric file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28.3
+2021-02-28 21:22:41.592 INFO [MetricWriter] New metric index file created: /root/logs/csp/sentinel-dashboard-1-8-0-metrics.log.2021-02-28.3.idx
+2021-02-28 21:22:42.505 INFO Add child </auth/login> to node <sentinel_web_servlet_context>
+2021-02-28 21:22:42.560 INFO Add child </app/briefinfos.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:22:49.959 INFO Add child </registry/machine> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:42.687 INFO Add child </metric/queryTopResourceMetric.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:44.799 INFO Add child </app/martin-biz-system/machines.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:44.837 INFO Add child </v1/flow/rules> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:47.219 INFO Add child </degrade/rules.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:47.751 INFO Add child </paramFlow/rules> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:48.400 INFO Add child </system/rules.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:48.838 INFO Add child </authority/rules> to node <sentinel_web_servlet_context>
+2021-02-28 21:23:49.324 INFO Add child </cluster/server_state/martin-biz-system> to node <sentinel_web_servlet_context>
+2021-02-28 21:31:47.589 INFO Add child </resource/machineResource.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:32:44.929 INFO Add child </app/martin-biz-auth/machines.json> to node <sentinel_web_servlet_context>
+2021-02-28 21:33:07.468 INFO Add child </cluster/server_state/martin-biz-auth> to node <sentinel_web_servlet_context>
