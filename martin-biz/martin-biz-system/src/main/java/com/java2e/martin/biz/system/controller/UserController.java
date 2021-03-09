@@ -18,6 +18,7 @@ import com.java2e.martin.common.core.api.ApiErrorCode;
 import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.core.constant.SecurityConstants;
 import com.java2e.martin.common.log.annotation.MartinLog;
+import com.java2e.martin.common.security.userdetail.MartinUser;
 import com.java2e.martin.common.security.util.SecurityContextUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -225,6 +226,11 @@ public class UserController {
     @PostMapping("/deleteUserRole")
     public R deleteUserRole(@Valid @RequestBody UserRole userRole) {
         return R.ok(userRoleService.remove(Wrappers.query(userRole)));
+    }
+
+    @GetMapping("/currentUser")
+    public R currentUser(){
+        return userService.currentUser();
     }
 }
 

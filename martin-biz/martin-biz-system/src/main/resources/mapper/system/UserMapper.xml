@@ -2,4 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.java2e.martin.biz.system.mapper.UserMapper">
 
+    <select id="currentUser" resultType="java.util.Map">
+        SELECT
+			id,
+			username AS name,
+			avatar,
+			email,
+			signature,
+			title,
+			address,
+			phone
+		FROM
+			sys_user
+		where id=#{id}
+    </select>
 </mapper>

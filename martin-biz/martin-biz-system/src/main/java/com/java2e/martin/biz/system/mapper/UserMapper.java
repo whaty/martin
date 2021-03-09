@@ -2,6 +2,10 @@ package com.java2e.martin.biz.system.mapper;
 
 import com.java2e.martin.common.bean.system.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.java2e.martin.common.core.api.R;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +17,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     * 根据用户id查询用户所有信息
+     *
+     * @param id
+     * @return
+     */
+    List<Map> currentUser(Object id);
 }

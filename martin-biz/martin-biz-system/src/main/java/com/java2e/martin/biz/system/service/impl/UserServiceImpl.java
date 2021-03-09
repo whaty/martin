@@ -4,7 +4,10 @@ import com.java2e.martin.common.bean.system.User;
 import com.java2e.martin.biz.system.mapper.UserMapper;
 import com.java2e.martin.biz.system.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.java2e.martin.common.core.api.R;
 import com.java2e.martin.common.data.mybatis.service.impl.MartinServiceImpl;
+import com.java2e.martin.common.security.userdetail.MartinUser;
+import com.java2e.martin.common.security.util.SecurityContextUtil;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,5 +24,11 @@ public class UserServiceImpl extends MartinServiceImpl<UserMapper, User> impleme
     @Override
     protected void setEntity() {
         this.clz = User.class;
+    }
+
+    @Override
+    public R currentUser() {
+        MartinUser user = SecurityContextUtil.getUser();
+        return R.ok(this.baseMapper.currentUser(user.getId()));
     }
 }
