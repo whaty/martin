@@ -19,11 +19,10 @@ services:
     container_name: martin-extension-monitor
     image: martin-extension-monitor
     environment:
-      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: "martin-skywalking-oap:11800"
+      JAVA_OPTS: " -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinExtensionMonitor"
     volumes:
       - ./logs:/martin-extension-monitor/logs
-      - ./agent:/opt/agent
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinExtensionMonitor martin-extension-monitor.jar"
     ports:
       - 9601:9601
     networks:
@@ -38,11 +37,10 @@ services:
     container_name: martin-cloud-gateway
     image: martin-cloud-gateway
     environment:
-      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: "martin-skywalking-oap:11800"
+      JAVA_OPTS: " -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinCloudGateway"
     volumes:
       - ./logs:/martin-cloud-gateway/logs
-      - ./agent:/opt/agent
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinCloudGateway martin-cloud-gateway.jar"
     ports:
       - 9502:9502
     networks:
@@ -58,11 +56,11 @@ services:
     container_name: martin-biz-auth
     image: martin-biz-auth
     environment:
-      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: "martin-skywalking-oap:11800"
+      JAVA_OPTS: " -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizAuth"
+
     volumes:
       - ./logs:/martin-biz-auth/logs
-      - ./agent:/opt/agent
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizAuth martin-biz-auth.jar"
     networks:
       - martin
 
@@ -76,11 +74,10 @@ services:
     container_name: martin-biz-resource
     image: martin-biz-resource
     environment:
-      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: "martin-skywalking-oap:11800"
+      JAVA_OPTS: " -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizResource"
     volumes:
       - ./logs:/martin-biz-resource/logs
-      - ./agent:/opt/agent
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizResource martin-biz-resource.jar"
     networks:
       - martin
 
@@ -94,11 +91,10 @@ services:
     container_name: martin-biz-swagger
     image: martin-biz-swagger
     environment:
-      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: "martin-skywalking-oap:11800"
+      JAVA_OPTS: " -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizSwagger"
     volumes:
       - ./logs:/martin-biz-swagger/logs
-      - ./agent:/opt/agent
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms128m -Xmx128m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizSwagger martin-biz-swagger.jar"
     networks:
       - martin
 
@@ -111,11 +107,25 @@ services:
     container_name: martin-biz-system
     image: martin-biz-system
     environment:
-      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=martin-skywalking-oap:11800
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: "martin-skywalking-oap:11800"
+      JAVA_OPTS: " -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizSystem"
     volumes:
       - ./logs:/martin-biz-system/logs
-      - ./agent:/opt/agent
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar -Xms256m -Xmx256m -javaagent:/opt/agent/skywalking-agent.jar -Dskywalking.agent.service_name=MartinBizSystem martin-biz-system.jar"
+    networks:
+      - martin
+
+  martin-ui:
+    build:
+      context: ./
+      dockerfile: ./ui/Dockerfile
+    restart: on-failure
+    mem_limit: 256m
+    container_name: martin-ui
+    image: martin-ui
+    ports:
+      - 8000:8000
+    volumes:
+      - ./logs/nginx:/var/log/nginx
     networks:
       - martin
 

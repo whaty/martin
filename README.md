@@ -1,9 +1,31 @@
 # Martin
-spring cloud微服务，开箱即用
+spring cloud企业级微服务，开箱即用
 
 带你领略spring boot、spring cloud 之美
 
 ----
+## 体验地址
+[https://martin.java2e.com/](https://martin.java2e.com/)
+
+
+## 技术架构图
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309181517227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70#pic_center)
+## 技术栈
+- spring boot
+- spring cloud
+- mybatis plus
+- oauth2.0
+- nacos
+- sentinel
+- skywalking
+- redis
+- minio
+- elk
+- spring boot admin
+- swagger
+- docker
+- docker compose
+
 ## 背景
 为什么有了那么多优秀的spring cloud开源项目了，我还要再自己做一个呢？
 
@@ -44,23 +66,36 @@ spring cloud微服务，开箱即用
     ----> Martin
     
 	    ----> Martin-biz（各种资源、业务模块）
-	    	----> Martin-biz-api	   （各业务远程通信模块）
-	        ---->  Martin-biz-resource （示例资源模块）
+	        ----> Martin-biz-auth     （定义整个项目认证模块）
+	        ----> Martin-biz-resource （示例资源模块）
 	        ----> Martin-biz-sso       （示例单点登录模块）
 	        ----> Martin-biz-swagger   （示例接口文档模块）
+	        ----> Martin-biz-system    （定义整个项目核心业务、系统功能）
 	       
 	
 	    ----> Martin-cloud（各种 spring cloud 模块）
-	        ---->  Martin-cloud-eureka   （注册中心）
-	        ---->  Martin-cloud-config   （配置中心）
-	        ---->  Martin-cloud-gateway  （网关）
+	        ----> Martin-cloud-gateway  （网关）
+	        ----> Martin-cloud-nacos    （注册、配置中心）
 	
 	    ----> Martin-common（各种公共组件模块）
+	        ----> Martin-common-api     （暴露整个项目各个模块开放的api）
+	        ----> Martin-common-bean    （暴露整个项目核心系统的bean）
 	        ----> Martin-common-bom     （约定整个项目jar版本）
 	        ----> Martin-common-core    （定义整个项目核心ar）
+	        ----> Martin-common-data    （约定整个项目缓存、mybatis-plus）
+	        ----> Martin-common-feign   （约定整个项目远程通信方式）
+	        ----> Martin-common-log     （定义整个项目日志输出）
 	        ----> Martin-common-security（控制整个项目安全策略）
+	        ----> Martin-common-sentinel（约定整个项目流控组件为sentinel）
 	        ----> Martin-common-swagger （配置整个项目接口文档）
+	
+	    ----> Martin-extension（各种拓展模块）
+	        ----> Martin-extension-generator     （代码生成）
+	        ----> Martin-common-monitor          （系统监控）
+	        ----> Martin-common-skywalking       （skywalking消息推送）
 
+	        
+	        
 下面看看 eureka 管理端展示图吧！所有服务从上至下有序排列，一目了然！
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190729172614736.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
 
@@ -84,7 +119,72 @@ spring cloud微服务，开箱即用
 	        ---->  Martin-cloud-gateway：9502  （网关）
 	
 
+    ----> Martin
+    
+	    ----> Martin-biz：94**（各种资源、业务模块）
+	        ----> Martin-biz-auth：9400     （定义整个项目认证模块）
+	        ----> Martin-biz-resource：9401 （示例资源模块）
+	        ----> Martin-biz-sso：9402      （示例单点登录模块）
+	        ----> Martin-biz-swagger：9403   （示例接口文档模块）
+	        ----> Martin-biz-system：9404    （定义整个项目核心业务、系统功能）
+	       
+	
+	    ----> Martin-cloud（各种 spring cloud 模块）
+	        ----> Martin-cloud-gateway：9527  （网关）
+	        ----> Martin-cloud-nacos：8848    （注册、配置中心）
+	
+	
+	    ----> Martin-extension：96**（各种拓展模块）
+	        ----> Martin-extension-generator：9601     （代码生成）
+	        ----> Martin-common-monitor：9602          （系统监控）
+	        ----> Martin-common-skywalking：9603       （skywalking消息推送）
+	        ----> skywalking-ui：9604       （skywalking消息推送）
+	        
 ----
 
+## 开关特性
+spring boot最核心的特性是`自动装配`，这个特性在spring boot 本身，以及很多开源项目上得到了广泛使用，大部分非spring boot的第三方代码，都是用enable***来开启功能。诸君想过这么做的后果是什么吗？`硬编码`，对，会导致在代码里硬编码，要开启或者关闭某些功能，就只能改代码。
+
+Martin Cloud对这一现象做了改进、优化，将一切用到的特性，封装成可配置开关，只需修改nacos配置即可实时生效！
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309175047442.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+
+## feign链路加密
+为了暴露出来的feign接口更加安全，Martin Cloud对所有Feign调用配置了秘钥，可在配置文件动态修改。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021030917521956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+## 管理端支持全字段搜索、排序
+管理端每个功能都支持全字段搜索、排序。
+
+- 排序
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182430573.png)
+- 搜索
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182455541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
 
 
+## 演示图片
+- 用户管理
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182043536.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+- 角色管理
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182107326.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+- 部门管理
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182135418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+- 菜单管理
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182153250.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+- 操作日志管理
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182210870.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+- 服务监控
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182232259.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309183129849.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021030918330249.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021030918320783.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+
+
+- redis监控
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182248794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+- 链路追踪
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309182307970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70)
+## 微信二维码
+如需详细部署、使用资料，请点star后，截图给下面微信联系人。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210309184254347.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwMDU0OTYx,size_16,color_FFFFFF,t_70#pic_center)

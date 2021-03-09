@@ -12,4 +12,8 @@ EXPOSE 9602
 
 ADD ./martin-extension/martin-extension-skywalking/target/martin-extension-skywalking.jar ./
 
+RUN mkdir -p /opt/agent/
 
+ADD ./agent/agent8.4.0.tar.gz /opt/agent/
+
+ENTRYPOINT java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar martin-extension-skywalking.jar

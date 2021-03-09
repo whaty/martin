@@ -11,3 +11,9 @@ WORKDIR /martin-cloud-gateway
 EXPOSE 9527
 
 ADD ./martin-cloud/martin-cloud-gateway/target/martin-cloud-gateway.jar ./
+
+RUN mkdir -p /opt/agent/
+
+ADD ./agent/agent8.4.0.tar.gz /opt/agent/
+
+ENTRYPOINT java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar martin-cloud-gateway.jar

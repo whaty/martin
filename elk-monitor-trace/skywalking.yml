@@ -51,10 +51,9 @@ services:
       - martin-skywalking-oap
     restart: always
     ports:
-      - 9603:9603
+      - 9603:8080
     environment:
       SW_OAP_ADDRESS: martin-skywalking-oap:12800
-      SW_RECEIVER_METER: 9603
 
 networks:
   martin:

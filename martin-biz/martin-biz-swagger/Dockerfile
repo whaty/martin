@@ -12,4 +12,8 @@ EXPOSE 9403
 
 ADD ./martin-biz/martin-biz-swagger/target/martin-biz-swagger.jar ./
 
+RUN mkdir -p /opt/agent/
 
+ADD ./agent/agent8.4.0.tar.gz /opt/agent/
+
+ENTRYPOINT java ${JAVA_OPTS} -Djava.security.egd=file:/dev/./urandom -jar martin-biz-swagger.jar
