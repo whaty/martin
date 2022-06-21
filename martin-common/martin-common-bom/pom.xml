@@ -25,7 +25,7 @@
         <!-- 引入的开源框架技术放到最上面，一目了然 -->
         <hutool.version>5.4.2</hutool.version>
         <mybatis-plus.version>3.2.0</mybatis-plus.version>
-        <mysql.connector.version>8.0.13</mysql.connector.version>
+        <mysql.connector.version>8.0.28</mysql.connector.version>
         <ttl.version>2.10.1</ttl.version>
         <jasypt.version>2.1.0</jasypt.version>
         <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
